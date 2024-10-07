@@ -1,0 +1,27 @@
+{
+  "name": "fe-new",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "next": "^13.5.6",
+    "react": "^18.3.1",
+    "react-18-image-lightbox": "^5.1.4",
+    "react-countup": "^6.5.3",
+    "react-dom": "^18.3.1",
+    "react-icons": "^4.12.0",
+    "react-modal-video": "^2.0.2",
+    "react-responsive-carousel": "^3.2.23",
+    "react-scroll": "^1.9.0",
+    "react-select": "^5.8.1",
+    "react-type-animation": "^3.2.0",
+    "sass": "^1.79.4",
+    "tiny-slider-react": "^0.5.7"
+  }
+}
