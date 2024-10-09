@@ -12,6 +12,8 @@ const league = League_Spartan({
 export const metadata = {
   title: '5th Avenue',
   description: '5th Avenue is a modern and stylish e-commerce template. It is built on top of Bootstrap 4 and it is fully responsive.',
+  image: '/images/logo/logo.png',
+
 }
 
 export default function RootLayout({ children }) {
@@ -21,4 +23,3 @@ export default function RootLayout({ children }) {
     </html>
   )
 }
-// Compare this snippet from src/app/assets/scss/style.scss:
