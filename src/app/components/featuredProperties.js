@@ -16,7 +16,8 @@ export default function FuaturedProperties(){
             </div>
         </div>
 
-        <div className="row g-4 mt-0">
+
+        <div className="row g-4 mt-5">
             {propertyData.slice(0,6).map((item, index) => {
                 return(
                     <div className="col-lg-4 col-md-6 col-12" key={index}>

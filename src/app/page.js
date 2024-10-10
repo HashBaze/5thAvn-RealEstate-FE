@@ -1,26 +1,53 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import { useEffect, useState } from "react";
+import "./page.module.css";
+import "./globals.css";
 
 import VideoOne from "./components/modalVideo/videoOne";
-import Counter from "./components/counter/counter";
 import IndexThreeSlider from "./components/indexThreeSlider";
 import Footer from "./components/footer";
 import ScrollTop from "./components/scrollTop";
-import AboutUs from "./components/about";
-import Broker from "./components/broker";
 import FeaturedProperties from "./components/featuredProperties";
-import GetInTuch from "./components/getInTuch";
 import Navbar from "./components/navbar";
+import { WhoWeAre } from "./components/whoWeAre";
+import { Subscribe } from "./components/subscribe";
+import { Testimonials } from "./components/testimonials";
+import Searchbar from "./components/searchbar";
 
 export default function Home() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <>
-    <Navbar
+    <div
+      className="overflow-hidden"
+      style={{
+        width: "100vw",
+      }}
+    >
+      <Navbar
         navClass="defaultscroll sticky"
         menuClass="navigation-menu nav-left"
+        scrolled={isScrolled}
       />
       <IndexThreeSlider />
-      <section className="section">
+      <section className="section w-100">
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-6 col-md-6">
@@ -85,36 +112,24 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="container mt-100 mt-60">
+        <Searchbar />
+
+        <div className="container">
           <FeaturedProperties />
         </div>
 
-        <div className="container-fluid mt-100 mt-60">
-          <div
-            className="position-relative overflow-hidden rounded-3 shadow py-5"
-            style={{
-              backgroundImage: "url('/images/bg/05.jpg')",
-              backgroundPosition: "center",
-              backgroundAttachment: "fixed",
-            }}
-          >
-            <div className="bg-overlay"></div>
-            <div className="container">
-              <Counter />
-            </div>
-          </div>
+        <div className="mt-100">
+          <WhoWeAre />
         </div>
 
         <div className="container mt-100 mt-60">
-          <Broker />
+          <Testimonials />
         </div>
 
-        <div className="container mt-100 mt-60">
-          <GetInTuch />
-        </div>
+        <Subscribe />
       </section>
       <Footer />
       <ScrollTop />
-    </>
+    </div>
   );
 }
