@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FiSearch } from "../assets/icons/vander";
-import TextAnimation from "./textAnimation";
+import TextAnimation from "./TextAnimation";
 
 const Searchbar = () => {
   const [isSelect, setIsSelect] = useState("Rent");

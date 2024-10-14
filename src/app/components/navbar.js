@@ -8,92 +8,6 @@ import { FiSearch, FiUser } from "../assets/icons/vander";
 export default function Navbar({ logolight, menuClass, scrolled }) {
   let [isMenu, setisMenu] = useState(false);
 
-  const toggleMenu = () => {
-    // setisMenu(!isMenu);
-    // if (document.getElementById("navigation")) {
-    //   const anchorArray = Array.from(
-    //     document.getElementById("navigation").getElementsByTagName("a")
-    //   );
-    //   anchorArray.forEach((element) => {
-    //     element.addEventListener("click", (elem) => {
-    //       const target = elem.target.getAttribute("href");
-    //       if (target !== "") {
-    //         if (elem.target.nextElementSibling) {
-    //           var submenu = elem.target.nextElementSibling.nextElementSibling;
-    //           submenu.classList.toggle("open");
-    //         }
-    //       }
-    //     });
-    //   });
-    // }
-  };
-  function getClosest(elem, selector) {
-    // Element.matches() polyfill
-    // if (!Element.prototype.matches) {
-    //   Element.prototype.matches =
-    //     Element.prototype.matchesSelector ||
-    //     Element.prototype.mozMatchesSelector ||
-    //     Element.prototype.msMatchesSelector ||
-    //     Element.prototype.oMatchesSelector ||
-    //     Element.prototype.webkitMatchesSelector ||
-    //     function (s) {
-    //       var matches = (this.document || this.ownerDocument).querySelectorAll(
-    //           s
-    //         ),
-    //         i = matches.length;
-    //       while (--i >= 0 && matches.item(i) !== this) {}
-    //       return i > -1;
-    //     };
-    // }
-    // // Get the closest matching element
-    // for (; elem && elem !== document; elem = elem.parentNode) {
-    //   if (elem.matches(selector)) return elem;
-    // }
-    // return null;
-  }
-
-  function activateMenu() {
-    // var menuItems = document.getElementsByClassName("sub-menu-item");
-    // if (menuItems) {
-    //   var matchingMenuItem = null;
-    //   for (var idx = 0; idx < menuItems.length; idx++) {
-    //     if (menuItems[idx].href === window.location.href) {
-    //       matchingMenuItem = menuItems[idx];
-    //     }
-    //   }
-    //   if (matchingMenuItem) {
-    //     matchingMenuItem.classList.add("active");
-    //     var immediateParent = getClosest(matchingMenuItem, "li");
-    //     if (immediateParent) {
-    //       immediateParent.classList.add("active");
-    //     }
-    //     var parent = getClosest(immediateParent, ".child-menu-item");
-    //     if (parent) {
-    //       parent.classList.add("active");
-    //     }
-    //     var parent = getClosest(parent || immediateParent, ".parent-menu-item");
-    //     if (parent) {
-    //       parent.classList.add("active");
-    //       var parentMenuitem = parent.querySelector(".menu-item");
-    //       if (parentMenuitem) {
-    //         parentMenuitem.classList.add("active");
-    //       }
-    //       var parentOfParent = getClosest(parent, ".parent-parent-menu-item");
-    //       if (parentOfParent) {
-    //         parentOfParent.classList.add("active");
-    //       }
-    //     } else {
-    //       var parentOfParent = getClosest(
-    //         matchingMenuItem,
-    //         ".parent-parent-menu-item"
-    //       );
-    //       if (parentOfParent) {
-    //         parentOfParent.classList.add("active");
-    //       }
-    //     }
-    //   }
-    // }
-  }
   return (
     <>
       <header
@@ -154,7 +68,9 @@ export default function Navbar({ logolight, menuClass, scrolled }) {
                 href="#"
                 className={`navbar-toggle ${isMenu ? "open" : ""}`}
                 id="isToggle"
-                onClick={() => toggleMenu()}
+                onClick={() => 
+                  setisMenu(!isMenu)
+                }
               >
                 <div className="lines">
                   <span></span>
@@ -165,20 +81,34 @@ export default function Navbar({ logolight, menuClass, scrolled }) {
             </div>
           </div>
 
-          <ul className="buy-button list-inline mb-0">
-            <li className="list-inline-item ps-1 mb-0">
+          <ul className="buy-button list-inline mb-0 bg-transparent">
+            <li className="list-inline-item ps-1 mb-0 bg-transparent">
               <div
                 id="navigation"
                 style={{ display: isMenu ? "block" : "none" }}
               >
                 <ul className={menuClass}>
-                  <li className={`has-submenu parent-menu-item`}>
-                    <a className={`has-submenu parent-menu-item ${scrolled ? 'text-dark' : 'text-white'}`} href="#">Home</a>
+                  <li className={`has-submenu parent-menu-item bg-transparent`}>
+                    <Link
+                      className={`has-submenu parent-menu-item ${
+                        scrolled ? "text-dark" : "text-white"
+                      }`}
+                      href="/"
+                    >
+                      Home
+                    </Link>
                     <span className="link-bg-white"></span>
                   </li>
 
                   <li className="has-submenu parent-menu-item">
-                  <a className={`has-submenu parent-menu-item ${scrolled ? 'text-dark' : 'text-white'}`} href="#">Pages</a>
+                    <a
+                      className={`has-submenu parent-menu-item ${
+                        scrolled ? "text-dark" : "text-white"
+                      }`}
+                      href="#"
+                    >
+                      Pages
+                    </a>
                     <span className="menu-arrow"></span>
                     <ul className="submenu">
                       <li>
@@ -220,7 +150,14 @@ export default function Navbar({ logolight, menuClass, scrolled }) {
                   </li>
 
                   <li className="has-submenu parent-menu-item">
-                  <a className={`has-submenu parent-menu-item ${scrolled ? 'text-dark' : 'text-white'}`} href="#">Buy</a>
+                    <a
+                      className={`has-submenu parent-menu-item ${
+                        scrolled ? "text-dark" : "text-white"
+                      }`}
+                      href="#"
+                    >
+                      Buy
+                    </a>
                     <span className="menu-arrow"></span>
                     <ul className="submenu">
                       <li>
@@ -239,6 +176,17 @@ export default function Navbar({ logolight, menuClass, scrolled }) {
                         </Link>
                       </li>
                     </ul>
+                  </li>
+
+                  <li className="has-submenu parent-menu-item">
+                    <Link
+                      href="/aboutus"
+                      className={`has-submenu parent-menu-item ${
+                        scrolled ? "text-dark" : "text-white"
+                      }`}
+                    >
+                      About Us
+                    </Link>
                   </li>
                 </ul>
               </div>

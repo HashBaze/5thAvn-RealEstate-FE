@@ -3,12 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 
 import {
-  FiShoppingCart,
-  FiDribbble,
   FiLinkedin,
   FiFacebook,
-  FiInstagram,
-  FiTwitter,
   FiMail,
   FiMapPin,
   FiPhone,
