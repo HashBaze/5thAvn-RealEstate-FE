@@ -1,28 +1,12 @@
 'use client';
-import React, { useEffect, useState } from "react";
 import { Link } from "react-scroll";
 import Navbar from "./Navbar";
 import { FiHexagon, FiMail, FiMapPin, FiPhone } from "react-icons/fi";
 import Footer from "./Footer";
+import UseScroll from "../hooks/UseScroll";
 
 export default function ContactUs() {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const isScrolled = UseScroll();
   return (
     <>
       <Navbar
@@ -178,8 +162,8 @@ export default function ContactUs() {
                     <p className="text-muted">
                       Start working with Towntor that can provide everything
                     </p>
-                    <Link href="tel:+152534-468-854" className="text-primary">
-                      +152 534-468-854
+                    <Link href="tel:+61 0455 474 220" className="text-primary">
+                    (+61) 0455 474 220
                     </Link>
                   </div>
                 </div>
@@ -200,10 +184,10 @@ export default function ContactUs() {
                       Start working with Towntor that can provide everything
                     </p>
                     <Link
-                      href="mailto:contact@example.com"
+                      href="mailto:randy.navaratne@the5thavenue.com.au"
                       className="text-primary"
                     >
-                      contact@example.com
+                      randy.navaratne@the5thavenue.com.au
                     </Link>
                   </div>
                 </div>
@@ -221,8 +205,7 @@ export default function ContactUs() {
                   <div className="mt-4">
                     <h5 className="mb-3">Location</h5>
                     <p className="text-muted">
-                      C/54 Northwest Freeway, Suite 558, <br />
-                      Houston, USA 485
+                    The 5th Avenue Real Estate Waterman Business Centre, Chadstone VIC 3168
                     </p>
                     <Link
                       href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39206.002432144705!2d-95.4973981212445!3d29.709510002925988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c16de81f3ca5%3A0xf43e0b60ae539ac9!2sGerald+D.+Hines+Waterwall+Park!5e0!3m2!1sen!2sin!4v1566305861440!5m2!1sen!2sin"
@@ -240,9 +223,9 @@ export default function ContactUs() {
             </div>
           </div>
 
-          <div className="container-fluid mt-100 mt-60">
-            <div className="row">
-              <div className="col-12 p-0">
+          <div className="container mt-100 mt-60">
+            <div className="row justify-content-center">
+              <div className="col-12 col-lg-8 p-0">
                 <div className="card map border-0">
                   <div className="card-body p-0">
                     <iframe

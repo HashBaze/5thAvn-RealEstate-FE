@@ -11,6 +11,7 @@ import Footer from "./Footer";
 import Searchbar from "./Searchbar";
 import TextAnimation from "./TextAnimation";
 import { TypeAnimation } from "react-type-animation";
+import UseScroll from "../hooks/UseScroll";
 
 export const AboutUs = () => {
   const router = useRouter();
@@ -32,25 +33,7 @@ export const AboutUs = () => {
       desc: "If the distribution of letters and words  is random, the reader will not be distracted from making.",
     },
   ];
-
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
+  const isScrolled = UseScroll();
   const navigateViewPage = (id) => {
     router.push(`/aboutus/viewmember?id=${id}`);
   };

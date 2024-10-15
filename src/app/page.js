@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import "./page.module.css";
 import "./globals.css";
 
@@ -14,26 +13,10 @@ import { WhoWeAre } from "./components/WhoWeAre";
 import { Subscribe } from "./components/Subscribe";
 import { Testimonials } from "./components/Testimonials";
 import Searchbar from "./components/Searchbar";
+import UseScroll from "./hooks/UseScroll";
 
 export default function Home() {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
+  const isScrolled = UseScroll();
   return (
     <div
       className="overflow-hidden"

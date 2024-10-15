@@ -3,8 +3,6 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import { FiSearch, FiUser } from "../assets/icons/vander";
-
 export default function Navbar({ logolight, menuClass, scrolled }) {
   let [isMenu, setisMenu] = useState(false);
 
@@ -100,7 +98,7 @@ export default function Navbar({ logolight, menuClass, scrolled }) {
                     <span className="link-bg-white"></span>
                   </li>
 
-                  <li className="has-submenu parent-menu-item">
+                  {/* <li className="has-submenu parent-menu-item">
                     <a
                       className={`has-submenu parent-menu-item ${
                         scrolled ? "text-dark" : "text-white"
@@ -147,7 +145,7 @@ export default function Navbar({ logolight, menuClass, scrolled }) {
                         </Link>
                       </li>
                     </ul>
-                  </li>
+                  </li> */}
 
                   <li className="has-submenu parent-menu-item">
                     <a
@@ -186,6 +184,17 @@ export default function Navbar({ logolight, menuClass, scrolled }) {
                       }`}
                     >
                       About Us
+                    </Link>
+                  </li>
+
+                  <li className="has-submenu parent-menu-item">
+                    <Link
+                      href="/features"
+                      className={`has-submenu parent-menu-item ${
+                        scrolled ? "text-dark" : "text-white"
+                      }`}
+                    >
+                      Features
                     </Link>
                   </li>
                 </ul>

@@ -1,7 +1,11 @@
 import React from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+
 
 export const WhoWeAre = () => {
+  const router = useRouter();
+
   return (
     <>
       <div className="row justify-content-center mt-100">
@@ -34,8 +38,12 @@ export const WhoWeAre = () => {
               </p>
 
               <div className="row">
-                <button className="btn btn-primary m-auto w-25 btn-contact">
-                  Contact Us
+                <button
+                onClick={()=>{
+                  router.push("/aboutus")
+                }}
+                className="btn btn-primary m-auto w-25 btn-contact">
+                  About Us
                 </button>
               </div>
             </div>
