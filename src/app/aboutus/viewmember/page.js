@@ -18,7 +18,6 @@ export default function page() {
     if (id) {
       teamData.map((data) => {
         if (data.id === parseInt(id)) {
-          console.log(data);
           setMember(data);
         }
       });

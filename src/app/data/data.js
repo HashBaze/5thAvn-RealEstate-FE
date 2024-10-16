@@ -88,7 +88,7 @@ export const clientData = [
 export const teamData = [
   {
     id: 1,
-    image: "/images/aboutus/02.jpeg",
+    image: "/images/aboutus/member-randay.jpeg",
     name: "Randy Navaratne",
     title: "Director",
     description:
@@ -96,7 +96,7 @@ export const teamData = [
   },
   {
     id: 2,
-    image: "/images/aboutus/01.jpg",
+    image: "/images/aboutus/member-pardeep.jpg",
     name: "Pardeep Kaur",
     title: "Sales Consultant",
     description:
@@ -104,7 +104,7 @@ export const teamData = [
   },
   {
     id: 3,
-    image: "/images/aboutus/03.jpg",
+    image: "/images/aboutus/member-anthony.jpg",
     name: "Anthony Abeysena",
     title: "Sales Associate",
     description:
