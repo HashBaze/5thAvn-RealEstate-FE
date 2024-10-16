@@ -1,39 +1,22 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import "./page.module.css";
 import "./globals.css";
 
 import VideoOne from "./components/modalVideo/videoOne";
-import IndexThreeSlider from "./components/indexThreeSlider";
-import Footer from "./components/footer";
-import ScrollTop from "./components/scrollTop";
-import FeaturedProperties from "./components/featuredProperties";
-import Navbar from "./components/navbar";
-import { WhoWeAre } from "./components/whoWeAre";
-import { Subscribe } from "./components/subscribe";
-import { Testimonials } from "./components/testimonials";
-import Searchbar from "./components/searchbar";
+import IndexThreeSlider from "./components/IndexThreeSlider";
+import Footer from "./components/Footer";
+import ScrollTop from "./components/ScrollTop";
+import FeaturedProperties from "./components/FeaturedProperties";
+import Navbar from "./components/Navbar";
+import { WhoWeAre } from "./components/WhoWeAre";
+import { Subscribe } from "./components/Subscribe";
+import { Testimonials } from "./components/Testimonials";
+import Searchbar from "./components/Searchbar";
+import UseScroll from "./hooks/UseScroll";
 
 export default function Home() {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
+  const isScrolled = UseScroll();
   return (
     <div
       className="overflow-hidden"

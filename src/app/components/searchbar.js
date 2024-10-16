@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FiSearch } from "../assets/icons/vander";
-import TextAnimation from "./textAnimation";
+import TextAnimation from "./TextAnimation";
 
 const Searchbar = () => {
   const [isSelect, setIsSelect] = useState("Rent");
@@ -71,7 +71,7 @@ const Searchbar = () => {
 
             <div className="col-6 col-md-3">
               <label htmlFor="validationCustom01" className="form-label">
-                BedRooms
+                Bed Rooms
               </label>
               <div className="mb-lg-0 mb-3 d-flex">
                 <select

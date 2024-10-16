@@ -1,7 +1,10 @@
 import Image from "next/image";
 import React from "react";
+import { useRouter } from "next/navigation";
 
 export const Subscribe = () => {
+  const router = useRouter();
+
   return (
     <>
       <div className="row justify-content-center mt-100">
@@ -18,19 +21,16 @@ export const Subscribe = () => {
                 Subscribe to be stay <br />
                 updated with us
               </p>
-              <div className="row w-50 m-auto">
-                <div className="input-group mb-3">
-                  <input
-                    type="text"
-                    className="form-control w-50"
-                    placeholder="Recipient's username"
-                    aria-label="Recipient's username"
-                    aria-describedby="basic-addon2"
-                  />
-                  <button className="btn btn-primary" type="button">
-                    Email
-                  </button>
-                </div>
+              <div className="row justify-content-center align-items-center">
+                <button
+                  onClick={() => {
+                    router.push("/contactus");
+                  }}
+                  className="btn btn-primary w-25"
+                  type="button"
+                >
+                  Contact Us
+                </button>
               </div>
             </div>
           </div>
@@ -49,7 +49,14 @@ export const Subscribe = () => {
             width={10}
             height={0}
             sizes="50vw"
-            style={{ width: "100%", height: "70vh", zIndex: 0 }}
+            style={{
+              width: "100%",
+              height: "80vh",
+              zIndex: 0,
+              backgroundPosition: "center center",
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+            }}
             className="img-fluid rounded-3"
             alt="%th avenue"
             title="Toavenuewnter"
