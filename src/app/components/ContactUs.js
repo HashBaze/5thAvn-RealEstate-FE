@@ -37,7 +37,6 @@ export default function ContactUs() {
   };
 
   const handleEmailSend = (e) => {
-    console.log(email);
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -45,7 +44,6 @@ export default function ContactUs() {
       setErrors({});
       sendEmailRequest(email.email, email.name, email.messege, email.subject)
         .then((response) => {
-          console.log(response);
           alert("Email sent successfully");
           setEmail({
             email: "",

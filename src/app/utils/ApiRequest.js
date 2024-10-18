@@ -8,7 +8,6 @@ export const ApiRequest = axios.create({
 });
 
 export const sendEmailRequest = async (email, name, message, subject) => {
-  console.log(process.env.NEXT_PUBLIC_API_URL);
   try {
     const response = await ApiRequest.post("/mail/send-company-email", {
       email,
