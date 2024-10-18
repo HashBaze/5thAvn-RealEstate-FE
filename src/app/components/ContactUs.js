@@ -5,7 +5,7 @@ import { FiHexagon, FiMail, FiMapPin, FiPhone } from "react-icons/fi";
 import Footer from "./Footer";
 import UseScroll from "../hooks/UseScroll";
 import { useState } from "react";
-
+import { sendEmailRequest } from "../utils/ApiRequest";
 export default function ContactUs() {
   const [email, setEmail] = useState({
     email: "",
@@ -29,7 +29,7 @@ export default function ContactUs() {
       formErrors.email = "Email address is invalid";
     }
 
-    if (!email.messege.trim()) {
+    if (!email.messege) {
       formErrors.message = "Message is required";
     }
 
@@ -42,7 +42,19 @@ export default function ContactUs() {
       setErrors(validationErrors);
     } else {
       setErrors({});
-      console.log("Form Submitted", email);
+      sendEmailRequest(email.email, email.name, email.messege, email.subject)
+        .then((response) => {
+          alert("Email sent successfully");
+          setEmail({
+            email: "",
+            subject: "",
+            messege: "",
+            name: "",
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   };
 
@@ -122,6 +134,7 @@ export default function ContactUs() {
                           name="name"
                           id="name"
                           type="text"
+                          value={email.name}
                           className="form-control"
                           placeholder="Name :"
                         />
@@ -142,6 +155,7 @@ export default function ContactUs() {
                           }
                           name="email"
                           id="email"
+                          value={email.email}
                           type="email"
                           className="form-control"
                           placeholder="Email :"
@@ -160,6 +174,7 @@ export default function ContactUs() {
                             setEmail({ ...email, subject: e.target.value })
                           }
                           name="subject"
+                          value={email.subject}
                           id="subject"
                           className="form-control"
                           placeholder="Subject :"
@@ -174,11 +189,12 @@ export default function ContactUs() {
                         </label>
                         <textarea
                           onChange={(e) =>
-                            setEmail({ ...email, message: e.target.value })
+                            setEmail({ ...email, messege: e.target.value })
                           }
                           name="comments"
                           id="comments"
                           rows="4"
+                          value={email.messege}
                           className="form-control"
                           placeholder="Message :"
                         ></textarea>
@@ -197,8 +213,6 @@ export default function ContactUs() {
                         <button
                           onClick={handleEmailSend}
                           type="button"
-                          id="submit"
-                          name="send"
                           className="btn btn-primary"
                         >
                           Send Message
