@@ -5,7 +5,7 @@ import { FiHexagon, FiMail, FiMapPin, FiPhone } from "react-icons/fi";
 import Footer from "./Footer";
 import UseScroll from "../hooks/UseScroll";
 import { useState } from "react";
-import { sendEmailRequest } from "../utils/ApiRequest";
+import { sendCompanyEmail } from "../service/mailService";
 export default function ContactUs() {
   const [email, setEmail] = useState({
     email: "",
@@ -42,7 +42,7 @@ export default function ContactUs() {
       setErrors(validationErrors);
     } else {
       setErrors({});
-      sendEmailRequest(email.email, email.name, email.messege, email.subject)
+      sendCompanyEmail(email.email, email.name, email.messege, email.subject)
         .then((response) => {
           alert("Email sent successfully");
           setEmail({
