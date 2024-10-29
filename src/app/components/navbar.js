@@ -189,6 +189,17 @@ export default function Navbar({ logolight, menuClass, scrolled }) {
 
                   <li className="has-submenu parent-menu-item">
                     <Link
+                      href="/blogs"
+                      className={`has-submenu parent-menu-item ${
+                        scrolled ? "text-dark" : "text-white"
+                      }`}
+                    >
+                      Blogs
+                    </Link>
+                  </li>
+
+                  <li className="has-submenu parent-menu-item">
+                    <Link
                       href="/features"
                       className={`has-submenu parent-menu-item ${
                         scrolled ? "text-dark" : "text-white"
