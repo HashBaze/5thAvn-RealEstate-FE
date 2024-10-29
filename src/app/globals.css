@@ -37,3 +37,52 @@
   font-weight: 500;
   margin-bottom: 10px;
 }
+
+
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: #343a40;
+  padding: 15px;
+  color: white;
+  transition: width 0.3s ease;
+}
+.sidebar a {
+  text-decoration: none;
+  color: white;
+  display: block;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+.sidebar a:hover {
+  background-color: #495057;
+}
+.sidebar .nav-item {
+  margin-bottom: 10px;
+}
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+.header {
+  background-color: #007bff;
+  padding: 15px;
+  color: white;
+  text-align: center;
+}
+.sidebar-expanded {
+  width: 60px;
+}
+.sidebar-expanded a {
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.main-content-expanded {
+  margin-left: 60px;
+}

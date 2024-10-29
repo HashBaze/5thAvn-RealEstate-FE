@@ -8,13 +8,15 @@ import { FiFacebook, FiInstagram, FiTwitter } from "../assets/icons/vander";
 import Link from "next/link";
 import { teamData, blogData } from "../data/data";
 import Footer from "./Footer";
-import Searchbar from "./Searchbar";
-import TextAnimation from "./TextAnimation";
 import { TypeAnimation } from "react-type-animation";
 import UseScroll from "../hooks/UseScroll";
+import { useAuth } from "../context/AuthContext";
+import { getRecentBlogs } from "../service/blogService";
 
 export const AboutUs = () => {
   const router = useRouter();
+  const [recentBlogs, setRecentBlogs] = useState([]);
+  const { showLoading, loading } = useAuth();
 
   let aboutData = [
     {
@@ -38,9 +40,21 @@ export const AboutUs = () => {
     router.push(`/aboutus/viewmember?id=${id}`);
   };
 
-  const navigateContact = ()=>{
+  const navigateContact = () => {
     router.push(`/contactus`);
-  }
+  };
+
+  const fetchRecentBlogs = async () => {
+    showLoading(true);
+    getRecentBlogs().then((response) => {
+      setRecentBlogs(response);
+      showLoading(false);
+    });
+  };
+
+  useEffect(() => {
+    fetchRecentBlogs();
+  });
 
   return (
     <>
@@ -326,26 +340,33 @@ export const AboutUs = () => {
           </div>
 
           <div className="row g-4 mt-0">
-            {blogData.slice(0, 3).map((item, index) => {
+            {recentBlogs.slice(0, 3).map((item, index) => {
               return (
                 <div className="col-lg-4 col-md-6" key={index}>
                   <div className="card blog blog-primary shadow rounded-3 overflow-hidden border-0">
                     <div className="card-img blog-image position-relative overflow-hidden rounded-0">
                       <div className="position-relative overflow-hidden">
                         <Image
-                          src={item.image}
+                          src={item.coverImage}
                           width={0}
                           height={0}
                           sizes="100vw"
-                          style={{ width: "100%", height: "auto" }}
+                          style={{
+                            width: "100%",
+                            height: "200px",
+                            objectFit: "cover",
+                          }}
                           className="img-fluid"
-                          alt="Townter"
+                          alt=""
                         />
                         <div className="card-overlay"></div>
                       </div>
 
                       <div className="blog-tag p-3">
-                        <Link href="" className="badge bg-primary">
+                        <Link
+                          href={`/blogs/blog-detail?id=${item._id}`}
+                          className="badge bg-primary"
+                        >
                           {item.tag}
                         </Link>
                       </div>
@@ -354,14 +375,22 @@ export const AboutUs = () => {
                     <div className="card-body content p-0">
                       <div className="p-4">
                         <Link
-                          href={`/blog-detail/${item.id}`}
+                          href={`/blogs/blog-detail?id=${item._id}`}
                           className="title fw-medium fs-5 text-dark"
                         >
                           {item.title}
                         </Link>
-                        <p className="text-muted mt-2">{item.desc}</p>
+                        <p
+                          className="text-muted mt-2 h-50"
+                          dangerouslySetInnerHTML={{
+                            __html:
+                              item.description1.length > 30
+                                ? `${item.description1.substring(0, 100)}...`
+                                : item.description1,
+                          }}
+                        ></p>
 
-                        <Link href="" className="text-dark read-more">
+                        <Link href={`/blogs/blog-detail?id=${item._id}`} className="text-dark read-more">
                           Read More{" "}
                           <i className="mdi mdi-chevron-right align-middle"></i>
                         </Link>
@@ -415,8 +444,9 @@ export const AboutUs = () => {
                         </p>
                       </div>
                       <button
-                      onClick={navigateContact}
-                      className="btn btn-primary mt-4 sm-w-50 lg-w-25">
+                        onClick={navigateContact}
+                        className="btn btn-primary mt-4 sm-w-50 lg-w-25"
+                      >
                         Contact Us
                       </button>
                     </div>
