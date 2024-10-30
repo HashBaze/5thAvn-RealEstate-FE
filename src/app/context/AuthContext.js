@@ -16,13 +16,14 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    console.log(token, isAuthenticated);
 
-    if (token) {
-      setIsAuthenticated(true);
-    } else {
-      setIsAuthenticated(false);
-        router.push("/admin");
+    if (router.pathname === "/admin") {
+      if (token) {
+        setIsAuthenticated(true);
+        router.push("/admin/dashboard");
+      } else {
+        setIsAuthenticated(false);
+      }
     }
   }, [router]);
 
@@ -44,7 +45,15 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, login, logout, showLoading, loading ,isSidebarVisible , toggleSidebar}}
+      value={{
+        isAuthenticated,
+        login,
+        logout,
+        showLoading,
+        loading,
+        isSidebarVisible,
+        toggleSidebar,
+      }}
     >
       {children}
     </AuthContext.Provider>
