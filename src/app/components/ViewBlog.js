@@ -2,12 +2,12 @@
 
 import React, { useState } from "react";
 import UseScroll from "../hooks/UseScroll";
-import Navbar from "./Navbar";
+import Navbar from "./navbar";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { getBlogById, getRecentBlogs } from "../service/blogService";
-import Footer from "./Footer";
+import Footer from "./footer";
 import { useAuth } from "../context/AuthContext";
 import Spinner from "./Spinner";
 

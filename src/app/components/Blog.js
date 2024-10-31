@@ -2,10 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import UseScroll from "../hooks/UseScroll";
-import Navbar from "./Navbar";
+import Navbar from "./navbar";
 import Link from "next/link";
 import Image from "next/image";
-import Footer from "./Footer";
+import Footer from "./footer";
 import ScrollTop from "./ScrollTop";
 import {
   getBlogsByPagination,

@@ -14,13 +14,15 @@ export const metadata = {
   title: "5th Avenue",
   description:
     "5th Avenue is a modern and stylish e-commerce template. It is built on top of Bootstrap 4 and it is fully responsive.",
-  image: "/images/logo/logo.png",
 };
 
 export default function RootLayout({ children }) {
   return (
     <AuthProvider>
       <html lang="en">
+      <head>
+          <link rel="icon" href="/images/logo/logo.png" />
+        </head>
         <body className={league.variable}>{children}</body>
       </html>
     </AuthProvider>

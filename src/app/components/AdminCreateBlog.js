@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import WithAuth from "../hoc/WithAuth";
 import NavBar from "../admin/common/NavBar";
 import SlideBar from "../admin/common/SlideBar";
@@ -22,8 +22,7 @@ const AdminCreateBlog = () => {
 
   const searchParams = useSearchParams();
   const blogId = searchParams.get("blogId");
-
-  const token = localStorage.getItem("token");
+  const [token, setTocken] = useState(null);
   const { toggleSidebar, isSidebarVisible } = useAuth();
   const [uploading, setUploading] = useState(false);
   const [addtionalImages, setAdditionalImages] = useState([]);
@@ -52,7 +51,14 @@ const AdminCreateBlog = () => {
     tags: [],
   });
 
-  useState(() => {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("token");
+      setTocken(storedToken);
+    }
+  }, []);
+
+  useEffect(() => {
     showLoading(true);
     if (blogId) {
       getBlog(blogId, token).then((res) => {
@@ -67,12 +73,11 @@ const AdminCreateBlog = () => {
         setDesc1(res.description1);
         setDesc2(res.description2);
         setAdditionalImages(res.additionalImages);
-        console.log(formData.date);
       });
     } else {
       showLoading(false);
     }
-  }, []);
+  }, [token]);
 
   const changeCoverImage = async (e) => {
     setUploading(true);
@@ -145,7 +150,6 @@ const AdminCreateBlog = () => {
   };
 
   const deleteAdditionalImage = (url) => {
-    console.log("url", url);
     setAdditionalImages((prevImages) =>
       prevImages.filter((img) => img !== url)
     );

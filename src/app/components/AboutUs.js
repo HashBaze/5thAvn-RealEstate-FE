@@ -1,17 +1,18 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Navbar from "./Navbar";
+import Navbar from "./navbar";
 import Image from "next/image";
 import { FiHexagon, FiHome, FiBriefcase, FiKey } from "../assets/icons/vander";
 import { FiFacebook, FiInstagram, FiTwitter } from "../assets/icons/vander";
 import Link from "next/link";
 import { teamData, blogData } from "../data/data";
-import Footer from "./Footer";
+import Footer from "./footer";
 import { TypeAnimation } from "react-type-animation";
 import UseScroll from "../hooks/UseScroll";
 import { useAuth } from "../context/AuthContext";
 import { getRecentBlogs } from "../service/blogService";
+import Spinner from "./Spinner";
 
 export const AboutUs = () => {
   const router = useRouter();
@@ -54,10 +55,11 @@ export const AboutUs = () => {
 
   useEffect(() => {
     fetchRecentBlogs();
-  });
+  }, []);
 
   return (
     <>
+      {loading && <Spinner />}
       <Navbar
         navClass="defaultscroll sticky"
         menuClass="navigation-menu nav-left"
@@ -390,7 +392,10 @@ export const AboutUs = () => {
                           }}
                         ></p>
 
-                        <Link href={`/blogs/blog-detail?id=${item._id}`} className="text-dark read-more">
+                        <Link
+                          href={`/blogs/blog-detail?id=${item._id}`}
+                          className="text-dark read-more"
+                        >
                           Read More{" "}
                           <i className="mdi mdi-chevron-right align-middle"></i>
                         </Link>

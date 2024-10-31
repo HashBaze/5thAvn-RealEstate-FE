@@ -1,22 +1,21 @@
-"use client"; 
+"use client";
 import { useEffect } from "react";
-import { useRouter } from "next/navigation"; 
+import { useRouter } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
 
 const WithAuth = (WrappedComponent) => {
   return (props) => {
     const { isAuthenticated } = useAuth();
     const router = useRouter();
-    
+
     useEffect(() => {
-        const token = localStorage.getItem("token");
-        if (!token) {
-          router.push("/admin");
-        }
+      const token = localStorage.getItem("token");
+      if (!token) {
+        router.push("/admin");
+      }
     }, [router]);
 
-    
-    return isAuthenticated ? <WrappedComponent {...props} /> : null;
+    return <WrappedComponent {...props} />;
   };
 };
 

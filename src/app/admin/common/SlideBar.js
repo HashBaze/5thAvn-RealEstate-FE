@@ -24,18 +24,6 @@ export default function SlideBar({ isVisible }) {
         overflowY: "auto",
       }}
     >
-      {/* Header */}
-      {/* <div
-        className="d-flex justify-content-center align-items-center"
-        style={{
-          height: "100px",
-          borderBottom: "1px solid rgba(255,255,255,0.1)",
-        }}
-      >
-        <h3 className="text-white mb-0">Admin</h3>
-      </div> */}
-
-      {/* Menu List */}
       <div className="p-3 mt-5">
         <button
           onClick={() => router.push("/admin/dashboard")}
@@ -101,6 +89,19 @@ export default function SlideBar({ isVisible }) {
             Create Blog
           </button>
         </div>
+
+        <button
+          onClick={() => router.push("/admin/testimonials")}
+          className="btn w-100 text-start mb-2 text-white mt-2 py-2"
+          style={{
+            backgroundColor: "#004085",
+            transition: "background 0.2s ease",
+          }}
+          onMouseEnter={(e) => (e.target.style.backgroundColor = "#0056b3")}
+          onMouseLeave={(e) => (e.target.style.backgroundColor = "#004085")}
+        >
+          Reviews
+        </button>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navbar";
 import UseScroll from "../hooks/UseScroll";
 import { Link as Link2 } from "react-scroll";
 
@@ -17,7 +17,7 @@ import {
 import Link from "next/link";
 import CountUp from "react-countup";
 import { ClientFeedBacks } from "./ClientFeedBacks";
-import Footer from "./Footer";
+import Footer from "./footer";
 import ScrollTop from "./ScrollTop";
 
 export default function Features() {
