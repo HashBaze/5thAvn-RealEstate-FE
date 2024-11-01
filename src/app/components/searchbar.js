@@ -16,11 +16,12 @@ const Searchbar = () => {
             <div
               className="bg-overlay image-wrap "
               id="hero-images"
-              style={{ backgroundImage: "url('/images/bg/03.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center center",
-              width: "100vw",
-               }}
+              style={{
+                backgroundImage: "url('/images/bg/03.jpg')",
+                backgroundSize: "cover",
+                backgroundPosition: "center center",
+                width: "100vw",
+              }}
             ></div>
             <div className="bg-overlay bg-black opacity-50"></div>
 
@@ -41,11 +42,14 @@ const Searchbar = () => {
         </div>
       </section>
 
-      <form className="card-body text-start container bg-white rounded p-3" style={{
-        position:'relative',
-        top:'-150px',
-        zIndex: 1,
-      }}>
+      <form
+        className="card-body text-start container bg-white rounded p-3"
+        style={{
+          position: "relative",
+          top: "-150px",
+          zIndex: 1,
+        }}
+      >
         <div className="registration-form text-dark text-start">
           <div className="row g-lg-0 p-2 shadow-lg border rounded">
             <div className="row g-lg-0 p-2 row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 mb-3">
@@ -121,7 +125,7 @@ const Searchbar = () => {
             </div>
 
             <div className="col-6 col-md-3">
-            <label htmlFor="validationCustom01" className="form-label">
+              <label htmlFor="validationCustom01" className="form-label">
                 Price
               </label>
               <div className="mb-lg-0 mb-3 d-flex">

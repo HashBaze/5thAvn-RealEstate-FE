@@ -10,6 +10,7 @@ import Footer from "@/app/components/Footer";
 
 export default function page() {
   const searchParams = useSearchParams();
+  
   const id = searchParams.get("id");
 
   const [member, setMember] = useState({});
