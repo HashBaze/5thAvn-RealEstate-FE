@@ -10,7 +10,7 @@ import FeaturedProperties from "./components/FeaturedProperties";
 import UseScroll from "./hooks/UseScroll";
 import Searchbar from "./components/Searchbar";
 import { WhoWeAre } from "./components/WhoWeAre";
-import { Testimonials } from "./components/Testimonials";
+import { Testimonials } from "./components/testimonials";
 import { Subscribe } from "./components/Subscribe";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
