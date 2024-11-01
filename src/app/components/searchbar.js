@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FiSearch } from "../assets/icons/vander";
 import TextAnimation from "./TextAnimation";
 
-const Searchbar = () => {
+const SearchBar = () => {
   const [isSelect, setIsSelect] = useState("Rent");
 
   return (
@@ -189,4 +189,4 @@ const Searchbar = () => {
   );
 };
 
-export default Searchbar;
+export default SearchBar;

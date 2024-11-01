@@ -9,6 +9,7 @@ import { FiFacebook, FiInstagram, FiTwitter } from "react-icons/fi";
 import Footer from "@/app/components/Footer";
 
 export default function page() {
+  
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
 
@@ -81,9 +82,7 @@ export default function page() {
             </ul>
             <section className="container">
               <div className="row row-cols-2 justify-content-center">
-                <p className="text-muted mt-3">
-                  "{member.description}"
-                </p>
+                <p className="text-muted mt-3">"{member.description}"</p>
               </div>
             </section>
           </div>
