@@ -6,7 +6,7 @@ import { teamData } from "@/app/data/data";
 import Image from "next/image";
 import Link from "next/link";
 import { FiFacebook, FiInstagram, FiTwitter } from "react-icons/fi";
-import Footer from "@/app/components/Footer";
+import Footer from "@/app/components/footer";
 
 export default function page() {
   const searchParams = useSearchParams();

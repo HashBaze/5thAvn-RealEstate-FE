@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../admin/common/NavBar";
 import SlideBar from "../admin/common/SlideBar";
-import { useAuth } from "../context/AuthContext";
-import Spinner from "./Spinner";
+import { useAuth } from "../context/authContext";
+import Spinner from "./spinner";
 import WithAuth from "../authUtils/WithAuth";
 import { useRouter } from "next/navigation";
 import {

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import SlideBar from "../admin/common/SlideBar";
 import NavBar from "../admin/common/NavBar";
 import withAuth from "../authUtils/WithAuth";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/authContext";
 
 const AdminDashboard = ()=> {
   const { toggleSidebar, isSidebarVisible } = useAuth();

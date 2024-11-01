@@ -9,7 +9,7 @@ const TinySlider = dynamic(() => import("tiny-slider-react"), { ssr: false });
 import "../../../node_modules/tiny-slider/dist/tiny-slider.css";
 import { getReviewsByStatus } from "../service/testimonialsService";
 
-export default Testimonials = () => {
+const Testimonials = () => {
   const [clientData, setClientData] = useState([]);
 
   useEffect(() => {
@@ -88,3 +88,6 @@ export default Testimonials = () => {
     </div>
   );
 };
+
+
+export default Testimonials;

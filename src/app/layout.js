@@ -2,7 +2,7 @@ import { League_Spartan } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.css";
 import "../app/assets/scss/style.scss";
 import "../app/assets/css/materialdesignicons.min.css";
-import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider } from "./context/authContext";
 
 const league = League_Spartan({
   subsets: ["latin"],

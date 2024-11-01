@@ -4,16 +4,16 @@ import "./page.module.css";
 import "./globals.css";
 
 import VideoOne from "./components/modalVideo/videoOne";
-import IndexThreeSlider from "./components/IndexThreeSlider";
-import ScrollTop from "./components/ScrollTop";
-import FeaturedProperties from "./components/FeaturedProperties";
+import IndexThreeSlider from "./components/indexThreeSlider";
+import ScrollTop from "./components/scrollTop";
+import FeaturedProperties from "./components/featuredProperties";
 import UseScroll from "./hooks/UseScroll";
-import Searchbar from "./components/Searchbar";
-import { WhoWeAre } from "./components/WhoWeAre";
-import { Testimonials } from "./components/testimonials";
-import { Subscribe } from "./components/Subscribe";
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
+import Searchbar from "./components/searchbar";
+import { WhoWeAre } from "./components/whoWeAre";
+import { Subscribe } from "./components/subscribe";
+import Footer from "./components/footer";
+import Navbar from "./components/navbar";
+import Testimonials from "./components/testimonials";
 
 export default function Home() {
   const isScrolled = UseScroll();

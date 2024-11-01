@@ -1,5 +1,5 @@
 'use client';
-import AdminTestimonials from "@/app/components/AdminTestimonials";
+import AdminTestimonials from "@/app/components/adminTestimonials";
 import React from "react";
 
 export default function page() {

@@ -2,19 +2,19 @@
 
 import React, { useEffect, useState } from "react";
 import UseScroll from "../hooks/UseScroll";
-import Navbar from "./Navbar";
+import Navbar from "./navbar";
 import Link from "next/link";
 import Image from "next/image";
-import Footer from "./Footer";
-import ScrollTop from "./ScrollTop";
+import Footer from "./footer";
+import ScrollTop from "./scrollTop";
 import {
   getBlogsByPagination,
   getBlogsByTag,
   getRecentBlogs,
   serchByTags,
 } from "../service/blogService";
-import { useAuth } from "../context/AuthContext";
-import Spinner from "./Spinner";
+import { useAuth } from "../context/authContext";
+import Spinner from "./spinner";
 import { FaSearch } from "react-icons/fa";
 
 export default function Blog() {

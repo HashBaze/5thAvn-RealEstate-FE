@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Navbar from "./Navbar";
+import Navbar from "./navbar";
 import UseScroll from "../hooks/UseScroll";
 import { Link as Link2 } from "react-scroll";
 
@@ -16,9 +16,9 @@ import {
 } from "react-icons/fi";
 import Link from "next/link";
 import CountUp from "react-countup";
-import { ClientFeedBacks } from "./ClientFeedBacks";
-import Footer from "./Footer";
-import ScrollTop from "./ScrollTop";
+import { ClientFeedBacks } from "./clientFeedBacks";
+import Footer from "./footer";
+import ScrollTop from "./scrollTop";
 
 export default function Features() {
   const isScrolled = UseScroll();

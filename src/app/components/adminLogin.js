@@ -3,9 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/authContext";
 import { loginRequest } from "../service/userService";
-import Spinner from "./Spinner";
+import Spinner from "./spinner";
 
 export default function AdminLogin() {
   const { login, showLoading, loading } = useAuth();

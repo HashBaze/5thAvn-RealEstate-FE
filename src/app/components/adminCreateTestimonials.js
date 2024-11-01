@@ -2,14 +2,14 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import WithAuth from "../authUtils/WithAuth";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/authContext";
 import NavBar from "../admin/common/NavBar";
 import SlideBar from "../admin/common/SlideBar";
 import Image from "next/image";
 import { storage } from "../firebase/config";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { MdDelete } from "react-icons/md";
-import Spinner from "./Spinner";
+import Spinner from "./spinner";
 import {
   createReview,
   getOneReview,

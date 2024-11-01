@@ -1,7 +1,7 @@
 import React from "react";
 
 import dynamic from 'next/dynamic';
-const ViewBlog = dynamic(() => import('@/app/components/ViewBlog'), {
+const ViewBlog = dynamic(() => import('@/app/components/viewBlog'), {
   ssr: false
 });
 

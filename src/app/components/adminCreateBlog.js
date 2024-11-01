@@ -4,14 +4,14 @@ import React, { useEffect, useRef } from "react";
 import WithAuth from "../authUtils/WithAuth";
 import NavBar from "../admin/common/NavBar";
 import SlideBar from "../admin/common/SlideBar";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/authContext";
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import { createBlog, getBlog, updateBlog } from "../service/blogService";
 import Swal from "sweetalert2";
 import { storage } from "../firebase/config";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
-import Spinner from "./Spinner";
+import Spinner from "./spinner";
 import { useSearchParams, useRouter } from "next/navigation";
 
 const RichTextEditor = dynamic(() => import("@mantine/rte"), { ssr: false });
