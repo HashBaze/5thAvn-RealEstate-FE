@@ -1,12 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import Navbar from "@/app/components/navbar";
+import Navbar from "@/app/components/Navbar";
 import { teamData } from "@/app/data/data";
 import Image from "next/image";
 import Link from "next/link";
 import { FiFacebook, FiInstagram, FiTwitter } from "react-icons/fi";
-import Footer from "@/app/components/footer";
+import Footer from "@/app/components/Footer";
 
 export default function page() {
   const searchParams = useSearchParams();

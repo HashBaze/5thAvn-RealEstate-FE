@@ -2,10 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import UseScroll from "../hooks/UseScroll";
-import Navbar from "./navbar";
+import Navbar from "./Navbar";
 import Link from "next/link";
 import Image from "next/image";
-import Footer from "./footer";
+import Footer from "./Footer";
 import ScrollTop from "./ScrollTop";
 import {
   getBlogsByPagination,
@@ -188,7 +188,7 @@ export default function Blog() {
                         <div className="card-body content p-0">
                           <div className="p-4">
                             <Link
-                              href={`/blogs/blog-detail?id=${item._id}`}
+                              href={`/blogs/blogDetail?id=${item._id}`}
                               className="title fw-medium fs-5 text-dark"
                             >
                               {item.title}
@@ -207,7 +207,7 @@ export default function Blog() {
                             ></p>
 
                             <Link
-                              href={`/blogs/blog-detail?id=${item._id}`}
+                              href={`/blogs/blogDetail?id=${item._id}`}
                               className="text-dark read-more"
                             >
                               Read More{" "}
@@ -334,7 +334,7 @@ export default function Blog() {
                           />
                           <div className="flex-1 ms-3">
                             <Link
-                              href={`/blogs/blog-detail?id=${item._id}`}
+                              href={`/blogs/blogDetail?id=${item._id}`}
                               className="d-block title text-dark fw-medium"
                             >
                               {item.title}

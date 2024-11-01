@@ -2,12 +2,12 @@
 
 import React, { useState } from "react";
 import UseScroll from "../hooks/UseScroll";
-import Navbar from "./navbar";
+import Navbar from "./Navbar";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { getBlogById, getRecentBlogs } from "../service/blogService";
-import Footer from "./footer";
+import Footer from "./Footer";
 import { useAuth } from "../context/AuthContext";
 import Spinner from "./Spinner";
 
@@ -229,7 +229,7 @@ export default function ViewBlog() {
                             <Link
                               href={`#`}
                               onClick={() => {
-                                window.location.href = `/blogs/blog-detail?id=${item._id}`;
+                                window.location.href = `/blogs/blogDetail?id=${item._id}`;
                               }}
                               className="d-block title text-dark fw-medium"
                             >

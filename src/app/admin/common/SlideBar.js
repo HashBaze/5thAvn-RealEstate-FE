@@ -77,7 +77,7 @@ export default function SlideBar({ isVisible }) {
           </button>
 
           <button
-            onClick={() => router.push("/admin/blogs/create-blog")}
+            onClick={() => router.push("/admin/blogs/createBlog")}
             className="btn mt-1 btn-dark w-100 text-start text-white p-2"
             style={{
               backgroundColor: "#343a40",

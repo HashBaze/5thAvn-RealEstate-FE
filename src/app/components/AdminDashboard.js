@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import SlideBar from "../admin/common/SlideBar";
 import NavBar from "../admin/common/NavBar";
-import withAuth from "../hoc/WithAuth";
+import withAuth from "../authUtils/WithAuth";
 import { useAuth } from "../context/AuthContext";
 
 const AdminDashboard = ()=> {

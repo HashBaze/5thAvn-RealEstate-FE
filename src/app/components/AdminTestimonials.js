@@ -3,7 +3,7 @@ import NavBar from "../admin/common/NavBar";
 import SlideBar from "../admin/common/SlideBar";
 import { useAuth } from "../context/AuthContext";
 import Spinner from "./Spinner";
-import WithAuth from "../hoc/WithAuth";
+import WithAuth from "../authUtils/WithAuth";
 import { useRouter } from "next/navigation";
 import {
   deleteReview,
@@ -118,7 +118,7 @@ const AdminTestimonials = () => {
         <section className="container-fluid">
           <button
             onClick={() => {
-              router.push("/admin/testimonials/create-testimonials");
+              router.push("/admin/testimonials/createTestimonials");
             }}
             className="btn btn-primary"
           >
@@ -185,7 +185,7 @@ const AdminTestimonials = () => {
                       <button
                         onClick={() => {
                           router.push(
-                            `/admin/testimonials/create-testimonials?reviewid=${review._id}`
+                            `/admin/testimonials/createTestimonials?reviewid=${review._id}`
                           );
                         }}
                         className="btn btn-sm text-[20px] btn-outline-primary me-2"

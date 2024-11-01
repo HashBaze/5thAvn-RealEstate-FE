@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import WithAuth from "../hoc/WithAuth";
+import WithAuth from "../authUtils/WithAuth";
 import { useAuth } from "../context/AuthContext";
 import NavBar from "../admin/common/NavBar";
 import SlideBar from "../admin/common/SlideBar";

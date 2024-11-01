@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import WithAuth from "../hoc/WithAuth";
+import WithAuth from "../authUtils/WithAuth";
 import NavBar from "../admin/common/NavBar";
 import SlideBar from "../admin/common/SlideBar";
 import { useAuth } from "../context/AuthContext";
@@ -132,7 +132,7 @@ const AdminBlogView = () => {
         <section className="container">
           <button
             onClick={() => {
-              router.push("/admin/blogs/create-blog");
+              router.push("/admin/blogs/createBlog");
             }}
             className="btn btn-primary"
           >
@@ -187,7 +187,7 @@ const AdminBlogView = () => {
                       <button
                         onClick={() => {
                           router.push(
-                            `/admin/blogs/create-blog?blogId=${blog._id}`
+                            `/admin/blogs/createBlog?blogId=${blog._id}`
                           );
                         }}
                         className="btn btn-sm text-[20px] btn-outline-primary me-2"

@@ -1,13 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Navbar from "./navbar";
+import Navbar from "./Navbar";
 import Image from "next/image";
 import { FiHexagon, FiHome, FiBriefcase, FiKey } from "../assets/icons/vander";
 import { FiFacebook, FiInstagram, FiTwitter } from "../assets/icons/vander";
 import Link from "next/link";
 import { teamData, blogData } from "../data/data";
-import Footer from "./footer";
+import Footer from "./Footer";
 import { TypeAnimation } from "react-type-animation";
 import UseScroll from "../hooks/UseScroll";
 import { useAuth } from "../context/AuthContext";
@@ -38,7 +38,7 @@ export const AboutUs = () => {
   ];
   const isScrolled = UseScroll();
   const navigateViewPage = (id) => {
-    router.push(`/aboutus/viewmember?id=${id}`);
+    router.push(`/aboutus/viewMember?id=${id}`);
   };
 
   const navigateContact = () => {
@@ -366,7 +366,7 @@ export const AboutUs = () => {
 
                       <div className="blog-tag p-3">
                         <Link
-                          href={`/blogs/blog-detail?id=${item._id}`}
+                          href={`/blogs/blogDetail?id=${item._id}`}
                           className="badge bg-primary"
                         >
                           {item.tag}
@@ -377,7 +377,7 @@ export const AboutUs = () => {
                     <div className="card-body content p-0">
                       <div className="p-4">
                         <Link
-                          href={`/blogs/blog-detail?id=${item._id}`}
+                          href={`/blogs/blogDetail?id=${item._id}`}
                           className="title fw-medium fs-5 text-dark"
                         >
                           {item.title}
@@ -393,7 +393,7 @@ export const AboutUs = () => {
                         ></p>
 
                         <Link
-                          href={`/blogs/blog-detail?id=${item._id}`}
+                          href={`/blogs/blogDetail?id=${item._id}`}
                           className="text-dark read-more"
                         >
                           Read More{" "}
