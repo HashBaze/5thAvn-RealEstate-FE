@@ -4,12 +4,12 @@ import React, { useEffect, useState } from "react";
 import WithAuth from "../authUtils/WithAuth";
 import NavBar from "../admin/common/NavBar";
 import SlideBar from "../admin/common/SlideBar";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/authContext";
 import { useRouter } from "next/navigation";
 import { deleteBlog, getBlogs, updateIsShow } from "../service/blogService";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteSweep } from "react-icons/md";
-import Spinner from "./Spinner";
+import Spinner from "./spinner";
 import Swal from "sweetalert2";
 
 const AdminBlogView = () => {

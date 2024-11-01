@@ -1,18 +1,18 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Navbar from "./Navbar";
+import Navbar from "./navbar";
 import Image from "next/image";
 import { FiHexagon, FiHome, FiBriefcase, FiKey } from "../assets/icons/vander";
 import { FiFacebook, FiInstagram, FiTwitter } from "../assets/icons/vander";
 import Link from "next/link";
 import { teamData, blogData } from "../data/data";
-import Footer from "./Footer";
+import Footer from "./footer";
 import { TypeAnimation } from "react-type-animation";
 import UseScroll from "../hooks/UseScroll";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/authContext";
 import { getRecentBlogs } from "../service/blogService";
-import Spinner from "./Spinner";
+import Spinner from "./spinner";
 
 export const AboutUs = () => {
   const router = useRouter();

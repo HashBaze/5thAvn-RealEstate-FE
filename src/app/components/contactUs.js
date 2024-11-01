@@ -1,8 +1,8 @@
 "use client";
 import { Link } from "react-scroll";
-import Navbar from "./Navbar";
+import Navbar from "./navbar";
 import { FiHexagon, FiMail, FiMapPin, FiPhone } from "react-icons/fi";
-import Footer from "./Footer";
+import Footer from "./footer";
 import UseScroll from "../hooks/UseScroll";
 import { useRef, useState } from "react";
 import { sendCompanyEmail } from "../service/mailService";

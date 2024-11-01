@@ -4,14 +4,14 @@ import React, { useEffect, useRef } from "react";
 import WithAuth from "../authUtils/WithAuth";
 import NavBar from "../admin/common/NavBar";
 import SlideBar from "../admin/common/SlideBar";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/authContext";
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import { createBlog, getBlog, updateBlog } from "../service/blogService";
 import Swal from "sweetalert2";
 import { storage } from "../firebase/config";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
-import Spinner from "./Spinner";
+import Spinner from "./spinner";
 import { useSearchParams, useRouter } from "next/navigation";
 
 const RichTextEditor = dynamic(() => import("@mantine/rte"), { ssr: false });
@@ -300,7 +300,7 @@ const AdminCreateBlog = () => {
               <div className="mb-3 col">
                 <div>
                   <label htmlFor="coverPhoto" className="form-label">
-                    Cover Photo
+                    Cover Photo <span className="text-danger">*</span>
                   </label>
                 </div>
                 <input
@@ -338,7 +338,7 @@ const AdminCreateBlog = () => {
               {/* Title */}
               <div className="mb-3 col">
                 <label htmlFor="title" className="form-label">
-                  Title
+                  Title <span className="text-danger">*</span>
                 </label>
                 <input
                   type="text"
@@ -356,7 +356,7 @@ const AdminCreateBlog = () => {
               {/* Author */}
               <div className="mb-3 col">
                 <label htmlFor="author" className="form-label">
-                  Author
+                  Author <span className="text-danger">*</span>
                 </label>
                 <input
                   type="text"
@@ -375,7 +375,7 @@ const AdminCreateBlog = () => {
             {/* Date */}
             <div className="mb-3 w-25">
               <label htmlFor="date" className="form-label">
-                Date
+                Date <span className="text-danger">*</span>
               </label>
               <input
                 type="date"
@@ -578,7 +578,7 @@ const AdminCreateBlog = () => {
             {/* Tags */}
             <div className="mb-3">
               <label htmlFor="tags" className="form-label">
-                Tags (comma separated)
+                Tags (comma separated) <span className="text-danger">*</span>
               </label>
               <input
                 value={formData.tags}

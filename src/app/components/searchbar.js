@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FiSearch } from "../assets/icons/vander";
-import TextAnimation from "./TextAnimation";
+import TextAnimation from "./textAnimation";
 
 const Searchbar = () => {
   const [isSelect, setIsSelect] = useState("Rent");
@@ -16,11 +16,12 @@ const Searchbar = () => {
             <div
               className="bg-overlay image-wrap "
               id="hero-images"
-              style={{ backgroundImage: "url('/images/bg/03.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center center",
-              width: "100vw",
-               }}
+              style={{
+                backgroundImage: "url('/images/bg/03.jpg')",
+                backgroundSize: "cover",
+                backgroundPosition: "center center",
+                width: "100vw",
+              }}
             ></div>
             <div className="bg-overlay bg-black opacity-50"></div>
 
@@ -41,11 +42,14 @@ const Searchbar = () => {
         </div>
       </section>
 
-      <form className="card-body text-start container bg-white rounded p-3" style={{
-        position:'relative',
-        top:'-150px',
-        zIndex: 1,
-      }}>
+      <form
+        className="card-body text-start container bg-white rounded p-3"
+        style={{
+          position: "relative",
+          top: "-150px",
+          zIndex: 1,
+        }}
+      >
         <div className="registration-form text-dark text-start">
           <div className="row g-lg-0 p-2 shadow-lg border rounded">
             <div className="row g-lg-0 p-2 row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 mb-3">
@@ -79,7 +83,6 @@ const Searchbar = () => {
                   aria-label="Default select example"
                   style={{ width: "150px" }}
                 >
-                  <option>dsd</option>
                   <option value="1">any</option>
                   <option value="2">Two</option>
                   <option value="3">Three</option>
@@ -122,7 +125,7 @@ const Searchbar = () => {
             </div>
 
             <div className="col-6 col-md-3">
-            <label htmlFor="validationCustom01" className="form-label">
+              <label htmlFor="validationCustom01" className="form-label">
                 Price
               </label>
               <div className="mb-lg-0 mb-3 d-flex">
@@ -177,7 +180,7 @@ const Searchbar = () => {
             </div>
 
             <div className="row justify-content-end p-3">
-              <button type="submit" className="btn btn-primary col-4">
+              <button type="button" className="btn btn-primary col-4">
                 <FiSearch className="icons" />
                 <span className="ms-2 btn-serch">Search</span>
               </button>

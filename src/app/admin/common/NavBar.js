@@ -1,8 +1,7 @@
 
 import Image from "next/image";
 import React from "react";
-import { useAuth } from "../../context/AuthContext";
-import { FaOptinMonster } from "react-icons/fa";
+import { useAuth } from "../../context/authContext";
 import { TiThMenu } from "react-icons/ti";
 
 
