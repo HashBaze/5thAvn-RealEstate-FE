@@ -15,12 +15,14 @@ export default function page() {
   const [member, setMember] = useState({});
 
   useEffect(() => {
-    if (id) {
-      teamData.map((data) => {
-        if (data.id === parseInt(id)) {
-          setMember(data);
-        }
-      });
+    if (typeof window !== "undefined") {
+      if (id) {
+        teamData.map((data) => {
+          if (data.id === parseInt(id)) {
+            setMember(data);
+          }
+        });
+      }
     }
   }, []);
 
@@ -81,9 +83,7 @@ export default function page() {
             </ul>
             <section className="container">
               <div className="row row-cols-2 justify-content-center">
-                <p className="text-muted mt-3">
-                  "{member.description}"
-                </p>
+                <p className="text-muted mt-3">"{member.description}"</p>
               </div>
             </section>
           </div>

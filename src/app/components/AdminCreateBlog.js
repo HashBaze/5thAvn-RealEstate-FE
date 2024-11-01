@@ -300,7 +300,7 @@ const AdminCreateBlog = () => {
               <div className="mb-3 col">
                 <div>
                   <label htmlFor="coverPhoto" className="form-label">
-                    Cover Photo
+                    Cover Photo <span className="text-danger">*</span>
                   </label>
                 </div>
                 <input
@@ -338,7 +338,7 @@ const AdminCreateBlog = () => {
               {/* Title */}
               <div className="mb-3 col">
                 <label htmlFor="title" className="form-label">
-                  Title
+                  Title <span className="text-danger">*</span>
                 </label>
                 <input
                   type="text"
@@ -356,7 +356,7 @@ const AdminCreateBlog = () => {
               {/* Author */}
               <div className="mb-3 col">
                 <label htmlFor="author" className="form-label">
-                  Author
+                  Author <span className="text-danger">*</span>
                 </label>
                 <input
                   type="text"
@@ -375,7 +375,7 @@ const AdminCreateBlog = () => {
             {/* Date */}
             <div className="mb-3 w-25">
               <label htmlFor="date" className="form-label">
-                Date
+                Date <span className="text-danger">*</span>
               </label>
               <input
                 type="date"
@@ -578,7 +578,7 @@ const AdminCreateBlog = () => {
             {/* Tags */}
             <div className="mb-3">
               <label htmlFor="tags" className="form-label">
-                Tags (comma separated)
+                Tags (comma separated) <span className="text-danger">*</span>
               </label>
               <input
                 value={formData.tags}

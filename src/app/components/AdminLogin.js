@@ -62,7 +62,7 @@ export default function AdminLogin() {
                 className="p-4 bg-white rounded-3 shadow-md mx-auto w-100"
                 style={{ maxWidth: "400px" }}
               >
-                <form>
+                <form onSubmit={handleSubmit}>
                   <Link href="/">
                     <Image
                       src="/images/logo/logo.png"
@@ -99,11 +99,7 @@ export default function AdminLogin() {
 
                   {error && <p className="text-danger">{error}</p>}
 
-                  <button
-                    onClick={handleSubmit}
-                    className="btn btn-primary w-100"
-                    type="button"
-                  >
+                  <button className="btn btn-primary w-100" type="submit">
                     Sign in
                   </button>
                 </form>

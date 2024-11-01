@@ -79,7 +79,6 @@ const Searchbar = () => {
                   aria-label="Default select example"
                   style={{ width: "150px" }}
                 >
-                  <option>dsd</option>
                   <option value="1">any</option>
                   <option value="2">Two</option>
                   <option value="3">Three</option>
@@ -177,7 +176,7 @@ const Searchbar = () => {
             </div>
 
             <div className="row justify-content-end p-3">
-              <button type="submit" className="btn btn-primary col-4">
+              <button type="button" className="btn btn-primary col-4">
                 <FiSearch className="icons" />
                 <span className="ms-2 btn-serch">Search</span>
               </button>
