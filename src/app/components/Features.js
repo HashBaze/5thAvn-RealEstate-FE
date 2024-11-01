@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "./Navbar";
 import UseScroll from "../hooks/UseScroll";
 import { Link as Link2 } from "react-scroll";
 

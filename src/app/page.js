@@ -5,15 +5,15 @@ import "./globals.css";
 
 import VideoOne from "./components/modalVideo/videoOne";
 import IndexThreeSlider from "./components/IndexThreeSlider";
-import Footer from "./components/Footer";
 import ScrollTop from "./components/ScrollTop";
 import FeaturedProperties from "./components/FeaturedProperties";
-import Navbar from "./components/Navbar";
-import { WhoWeAre } from "./components/WhoWeAre";
-import { Subscribe } from "./components/Subscribe";
-import { Testimonials } from "./components/Testimonials";
-import Searchbar from "./components/Searchbar";
 import UseScroll from "./hooks/UseScroll";
+import Searchbar from "./components/Searchbar";
+import { WhoWeAre } from "./components/WhoWeAre";
+import { Testimonials } from "./components/Testimonials";
+import { Subscribe } from "./components/Subscribe";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
 
 export default function Home() {
   const isScrolled = UseScroll();

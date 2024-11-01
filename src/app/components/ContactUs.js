@@ -4,15 +4,46 @@ import Navbar from "./Navbar";
 import { FiHexagon, FiMail, FiMapPin, FiPhone } from "react-icons/fi";
 import Footer from "./Footer";
 import UseScroll from "../hooks/UseScroll";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { sendCompanyEmail } from "../service/mailService";
+import emailjs from "emailjs-com";
+
 export default function ContactUs() {
+  const form = useRef();
   const [email, setEmail] = useState({
     email: "",
     subject: "",
     messege: "",
     name: "",
   });
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .send(
+        "service_s8n2pla",
+        "template_832255o",
+        {
+          from_email: email.email,
+          subject: email.subject,
+          message: email.messege,
+          name: email.name,
+        },
+        "De28oj9VShs97jK7c"
+      )
+      .then(
+        (result) => {
+          alert("Email sent successfully");
+          console.log(result.text);
+          form.current.reset();
+        },
+        (error) => {
+          alert("An error occurred, Please try again");
+          console.error(error.text);
+        }
+      );
+  };
 
   const [errors, setErrors] = useState({});
 
@@ -37,6 +68,7 @@ export default function ContactUs() {
   };
 
   const handleEmailSend = (e) => {
+    e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -120,7 +152,7 @@ export default function ContactUs() {
           <div className="row justify-content-center">
             <div className="col-lg-8">
               <div className="p-4 rounded-3 shadow">
-                <form>
+                <form ref={form} onSubmit={sendEmail}>
                   <div className="row">
                     <div className="col-md-6">
                       <div className="mb-3">
@@ -211,8 +243,8 @@ export default function ContactUs() {
                     <div className="col-12">
                       <div className="d-grid">
                         <button
-                          onClick={handleEmailSend}
-                          type="button"
+                          // onClick={handleEmailSend}
+                          type="submit"
                           className="btn btn-primary"
                         >
                           Send Message

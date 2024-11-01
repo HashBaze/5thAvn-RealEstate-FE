@@ -229,7 +229,7 @@ export default function ViewBlog() {
                             <Link
                               href={`#`}
                               onClick={() => {
-                                window.location.href = `/blogs/blog-detail?id=${item._id}`;
+                                window.location.href = `/blogs/blogDetail?id=${item._id}`;
                               }}
                               className="d-block title text-dark fw-medium"
                             >

@@ -1,49 +1,37 @@
-"use client";
-
 import React, { useEffect, useState } from "react";
-import WithAuth from "../authUtils/WithAuth";
 import NavBar from "../admin/common/NavBar";
 import SlideBar from "../admin/common/SlideBar";
 import { useAuth } from "../context/AuthContext";
+import Spinner from "./Spinner";
+import WithAuth from "../authUtils/WithAuth";
 import { useRouter } from "next/navigation";
-import { deleteBlog, getBlogs, updateIsShow } from "../service/blogService";
+import {
+  deleteReview,
+  getAllReviews,
+  updateIsShow,
+} from "../service/testimonialsService";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteSweep } from "react-icons/md";
-import Spinner from "./Spinner";
 import Swal from "sweetalert2";
 
-const AdminBlogView = () => {
-  const [token, setToken] = useState(null);
+const AdminTestimonials = () => {
   const router = useRouter();
-  const [blogs, setBlogs] = useState([]);
-
   const { toggleSidebar, isSidebarVisible, showLoading, loading } = useAuth();
+  const [reviews, setReviews] = useState([]);
+  const [token, setToken] = useState(null);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const indexOfLastBlog = currentPage * rowsPerPage;
   const indexOfFirstBlog = indexOfLastBlog - rowsPerPage;
-  const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog);
+  const currentBlogs = [].slice(indexOfFirstBlog, indexOfLastBlog);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleRowsPerPageChange = (e) => {
     setRowsPerPage(Number(e.target.value));
     setCurrentPage(1);
-  };
-
-  const updateStatus = (id, status) => {
-    showLoading(true);
-    updateIsShow(id, status, token)
-      .then((response) => {
-        console.log(response);
-        showLoading(false);
-        getAll();
-      })
-      .catch((error) => {
-        console.log(error);
-        showLoading(false);
-      });
   };
 
   useEffect(() => {
@@ -55,11 +43,33 @@ const AdminBlogView = () => {
 
   useEffect(() => {
     if (token) {
-      getAll();
+      fetchreviews();
     }
   }, [token]);
 
-  const handleDelete = (id) => {
+  const fetchreviews = () => {
+    showLoading(true);
+    getAllReviews(token)
+      .then((res) => setReviews(res.reviews))
+      .catch((err) => console.log(err))
+      .finally(() => showLoading(false));
+  };
+
+  const updateStatus = (id, status) => {
+    showLoading(true);
+    updateIsShow(id, status, token)
+      .then((response) => {
+        console.log(response);
+        showLoading(false);
+        fetchreviews();
+      })
+      .catch((error) => {
+        console.log(error);
+        showLoading(false);
+      });
+  };
+
+  const deleteyId = (id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -71,9 +81,9 @@ const AdminBlogView = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         showLoading(true);
-        deleteBlog(id, token)
+        deleteReview(id, token)
           .then((response) => {
-            getAll();
+            fetchreviews();
             Swal.fire({
               title: "Deleted!",
               text: "Your file has been deleted.",
@@ -87,30 +97,6 @@ const AdminBlogView = () => {
       }
     });
   };
-
-  const getAll = () => {
-    showLoading(true);
-    getBlogs(token)
-      .then((response) => {
-        console.log(response);
-        setBlogs(response);
-        showLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-        showLoading(false);
-        router.push("/admin");
-      });
-  };
-
-  function formatDate(dateString) {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-
-    return `${year}-${month}-${day}`;
-  }
 
   return (
     <>
@@ -129,14 +115,14 @@ const AdminBlogView = () => {
           padding: "20px",
         }}
       >
-        <section className="container">
+        <section className="container-fluid">
           <button
             onClick={() => {
-              router.push("/admin/blogs/createBlog");
+              router.push("/admin/testimonials/createTestimonials");
             }}
             className="btn btn-primary"
           >
-            Add Blog
+            Add Testimonials
           </button>
         </section>
 
@@ -146,28 +132,40 @@ const AdminBlogView = () => {
               <thead>
                 <tr className="text-muted text-center">
                   <th>#</th>
-                  <th>Blog Title</th>
-                  <th>Author</th>
-                  <th>Date</th>
-                  <th>IsShow</th>
+                  <th>Picture</th>
+                  <th>Name</th>
+                  <th>Designation</th>
+                  <th>Testimonials</th>
+                  <th>Is Show</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {currentBlogs.map((blog, index) => (
-                  <tr key={blog._id} className="align-middle text-center">
-                    <td className="text-black">{index}</td>
-                    <td className="text-black">
-                      {blog.title.length > 20
-                        ? `${blog.title.slice(0, 20)}...`
-                        : blog.title}
-                    </td>
-
-                    <td className="text-black">{blog.author}</td>
+                {reviews.map((review, index) => (
+                  <tr key={review._id} className="align-middle text-center">
+                    <td className="text-black">{index + 1}</td>
                     <td>
-                      <a className="text-decoration-none text-dark">
-                        {formatDate(blog.date)}
-                      </a>
+                      <img
+                        src={
+                          review.picture
+                            ? review.picture
+                            : "https://placehold.co/600x600?text=NoImage"
+                        }
+                        alt={review.name}
+                        className="img-fluid"
+                        style={{
+                          width: "40px",
+                          height: "40px",
+                          borderRadius: "50%",
+                        }}
+                      />
+                    </td>
+                    <td className="text-black">{review.name}</td>
+                    <td>{review.designation}</td>
+                    <td>
+                      {review.review.length > 20
+                        ? `${review.review.slice(0, 20)}...`
+                        : review.review}
                     </td>
                     <td className="d-flex p-3 justify-content-center align-items-center">
                       <div className="form-check form-switch">
@@ -175,10 +173,10 @@ const AdminBlogView = () => {
                           className="form-check-input border shadow"
                           type="checkbox"
                           role="switch"
-                          id={`flexSwitchCheck${blog._id}`}
-                          checked={blog.isShow}
+                          id={`flexSwitchCheck${review._id}`}
+                          checked={review.isShow}
                           onChange={() => {
-                            updateStatus(blog._id, !blog.isShow);
+                            updateStatus(review._id, !review.isShow);
                           }}
                         />
                       </div>
@@ -187,7 +185,7 @@ const AdminBlogView = () => {
                       <button
                         onClick={() => {
                           router.push(
-                            `/admin/blogs/createBlog?blogId=${blog._id}`
+                            `/admin/testimonials/createTestimonials?reviewid=${review._id}`
                           );
                         }}
                         className="btn btn-sm text-[20px] btn-outline-primary me-2"
@@ -196,7 +194,7 @@ const AdminBlogView = () => {
                       </button>
                       <button
                         onClick={() => {
-                          handleDelete(blog._id);
+                          deleteyId(review._id);
                         }}
                         className="btn text-[20px] btn-sm btn-outline-danger"
                       >
@@ -239,7 +237,7 @@ const AdminBlogView = () => {
                             </button>
                           </li>
                           {Array.from(
-                            { length: Math.ceil(blogs.length / rowsPerPage) },
+                            { length: Math.ceil(reviews.length / rowsPerPage) },
                             (_, index) => (
                               <li
                                 key={index + 1}
@@ -262,7 +260,7 @@ const AdminBlogView = () => {
                               onClick={() => paginate(currentPage + 1)}
                               disabled={
                                 currentPage ===
-                                Math.ceil(blogs.length / rowsPerPage)
+                                Math.ceil([].length / rowsPerPage)
                               }
                             >
                               &raquo;
@@ -282,4 +280,4 @@ const AdminBlogView = () => {
   );
 };
 
-export default WithAuth(AdminBlogView);
+export default WithAuth(AdminTestimonials);

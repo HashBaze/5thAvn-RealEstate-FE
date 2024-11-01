@@ -1,15 +1,22 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-import { clientData } from "../data/data";
 const TinySlider = dynamic(() => import("tiny-slider-react"), { ssr: false });
 import "../../../node_modules/tiny-slider/dist/tiny-slider.css";
+import { getReviewsByStatus } from "../service/testimonialsService";
 
 export const Testimonials = () => {
+  const [clientData, setClientData] = useState([]);
+
+  useEffect(() => {
+    getReviewsByStatus().then((res) => {
+      setClientData(res.reviews);
+    });
+  }, []);
 
   return (
     <div>
@@ -18,9 +25,9 @@ export const Testimonials = () => {
           <div className="section-title text-center mb-4 pb-2">
             <h4 className="title mb-3">Testimonials</h4>
             <p className="text-muted para-desc mb-0 mx-auto">
-              At 5th Avenue, we prioritize your
-              property dreams, offering dedicated service for a seamless buying,
-              selling, or renting experience. Here's what our clients say.
+              At 5th Avenue, we prioritize your property dreams, offering
+              dedicated service for a seamless buying, selling, or renting
+              experience. Here's what our clients say.
             </p>
           </div>
         </div>
@@ -31,6 +38,7 @@ export const Testimonials = () => {
           <div className="tiny-three-item">
             <div style={{ maxWidth: "600px", margin: "0 auto" }}>
               <Carousel
+                key={clientData.length}
                 showThumbs={false}
                 infiniteLoop={true}
                 autoPlay={true}
@@ -43,23 +51,26 @@ export const Testimonials = () => {
                 {clientData.map((item, index) => {
                   return (
                     <div key={index} className="p-5">
-                      <div className="customer-testi text-center">
-                        
+                      <div className="text-center">
                         <ul className="list-unstyled mb-0">
                           <li className="list-inline-item">
                             <Image
-                              src={item.image}
-                              width={50}
-                              height={50}
+                              src={item.picture}
+                              width={0}
+                              height={0}
                               sizes="100vw"
-                              style={{ width: "100%", height: "auto" }}
+                              style={{
+                                objectFit: "cover",
+                                width: "100px",
+                                height: "100px",
+                              }}
                               className="img-fluid avatar avatar-small rounded-circle mx-auto shadow"
                               alt=""
                             />
                           </li>
                         </ul>
                         <small className="text-muted font-italic mt-2">
-                          " {item.desc} "
+                          " {item.review} "
                         </small>
                         <h6 className="text-primary fw-medium mt-3">
                           - {item.name}

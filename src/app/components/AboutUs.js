@@ -12,6 +12,7 @@ import { TypeAnimation } from "react-type-animation";
 import UseScroll from "../hooks/UseScroll";
 import { useAuth } from "../context/AuthContext";
 import { getRecentBlogs } from "../service/blogService";
+import Spinner from "./Spinner";
 
 export const AboutUs = () => {
   const router = useRouter();
@@ -37,7 +38,7 @@ export const AboutUs = () => {
   ];
   const isScrolled = UseScroll();
   const navigateViewPage = (id) => {
-    router.push(`/aboutus/viewmember?id=${id}`);
+    router.push(`/aboutus/viewMember?id=${id}`);
   };
 
   const navigateContact = () => {
@@ -54,10 +55,11 @@ export const AboutUs = () => {
 
   useEffect(() => {
     fetchRecentBlogs();
-  });
+  }, []);
 
   return (
     <>
+      {loading && <Spinner />}
       <Navbar
         navClass="defaultscroll sticky"
         menuClass="navigation-menu nav-left"
@@ -364,7 +366,7 @@ export const AboutUs = () => {
 
                       <div className="blog-tag p-3">
                         <Link
-                          href={`/blogs/blog-detail?id=${item._id}`}
+                          href={`/blogs/blogDetail?id=${item._id}`}
                           className="badge bg-primary"
                         >
                           {item.tag}
@@ -375,7 +377,7 @@ export const AboutUs = () => {
                     <div className="card-body content p-0">
                       <div className="p-4">
                         <Link
-                          href={`/blogs/blog-detail?id=${item._id}`}
+                          href={`/blogs/blogDetail?id=${item._id}`}
                           className="title fw-medium fs-5 text-dark"
                         >
                           {item.title}
@@ -390,7 +392,10 @@ export const AboutUs = () => {
                           }}
                         ></p>
 
-                        <Link href={`/blogs/blog-detail?id=${item._id}`} className="text-dark read-more">
+                        <Link
+                          href={`/blogs/blogDetail?id=${item._id}`}
+                          className="text-dark read-more"
+                        >
                           Read More{" "}
                           <i className="mdi mdi-chevron-right align-middle"></i>
                         </Link>
