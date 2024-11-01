@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import Navbar from "@/app/components/Navbar";
+import Navbar from "@/app/components/navbar";
 import { teamData } from "@/app/data/data";
 import Image from "next/image";
 import Link from "next/link";
