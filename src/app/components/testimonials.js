@@ -1,11 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import dynamic from "next/dynamic";
-import { Carousel } from "react-responsive-carousel";
+import Image from "next/image";import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-
-const TinySlider = dynamic(() => import("tiny-slider-react"), { ssr: false });
 import "../../../node_modules/tiny-slider/dist/tiny-slider.css";
 import { getReviewsByStatus } from "../service/testimonialsService";
 
