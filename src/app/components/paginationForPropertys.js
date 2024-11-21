@@ -1,12 +1,18 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-const PaginationForProperties = ({ pageInfo, totalCount, onPageChange }) => {
+const PaginationForProperties = ({
+  pageInfo,
+  totalCount,
+  onPageChange,
+  isFilterOn,
+  fetchFilter,
+}) => {
   const { hasNextPage, hasPreviousPage, endCursor, startCursor } = pageInfo;
 
-  const itemsPerPage = 10; 
+  const itemsPerPage = 10;
   const totalPages = Math.ceil(totalCount / itemsPerPage);
-
   const [currentPage, setCurrentPage] = useState(1);
+  const [previusPage, setPreviusPage] = useState(hasPreviousPage);
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
@@ -16,14 +22,14 @@ const PaginationForProperties = ({ pageInfo, totalCount, onPageChange }) => {
         first: itemsPerPage,
         after: endCursor,
         last: null,
-        before: null
+        before: null,
       });
     } else if (newPage < currentPage) {
       onPageChange({
         first: null,
         after: null,
         last: itemsPerPage,
-        before: startCursor
+        before: startCursor,
       });
     }
   };
@@ -31,11 +37,21 @@ const PaginationForProperties = ({ pageInfo, totalCount, onPageChange }) => {
   return (
     <nav aria-label="Page navigation example position-relative top-5">
       <ul className="pagination">
-        <li className={`page-item ${!hasPreviousPage ? 'disabled' : ''}`}>
-          <button 
-            className="page-link" 
-            onClick={() => handlePageChange(currentPage - 1)} 
-            disabled={!hasPreviousPage}
+        <li className={`page-item ${previusPage ? "" : "disabled"}`}>
+          <button
+            className="page-link"
+            onClick={() => {
+              if (isFilterOn) {
+                setCurrentPage(currentPage - 1);
+                fetchFilter(currentPage - 1);
+                if (currentPage === 2) {
+                  setPreviusPage(false);
+                }
+              } else {
+                handlePageChange(currentPage - 1);
+              }
+            }}
+            disabled={!previusPage}
           >
             Back
           </button>
@@ -44,7 +60,12 @@ const PaginationForProperties = ({ pageInfo, totalCount, onPageChange }) => {
         {[...Array(totalPages)].map((_, index) => {
           const pageNumber = index + 1;
           return (
-            <li key={pageNumber} className={`page-item ${pageNumber === currentPage ? 'active' : ''}`}>
+            <li
+              key={pageNumber}
+              className={`page-item ${
+                pageNumber === currentPage ? "active" : ""
+              }`}
+            >
               <button
                 className="page-link disabled"
                 onClick={() => handlePageChange(pageNumber)}
@@ -55,10 +76,18 @@ const PaginationForProperties = ({ pageInfo, totalCount, onPageChange }) => {
           );
         })}
 
-        <li className={`page-item ${!hasNextPage ? 'disabled' : ''}`}>
-          <button 
-            className="page-link" 
-            onClick={() => handlePageChange(currentPage + 1)} 
+        <li className={`page-item ${!hasNextPage ? "disabled" : ""}`}>
+          <button
+            className="page-link"
+            onClick={() => {
+              if (isFilterOn) {
+                setCurrentPage(currentPage + 1);
+                fetchFilter(currentPage + 1);
+                setPreviusPage(true);
+              } else {
+                handlePageChange(currentPage + 1);
+              }
+            }}
             disabled={!hasNextPage}
           >
             Next
