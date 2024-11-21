@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import UseScroll from "../hooks/UseScroll";
 import Navbar from "./navbar";
 import Link from "next/link";
@@ -10,20 +10,19 @@ import { FiCamera, FiHeart, FiHome } from "react-icons/fi";
 import Footer from "./footer";
 import ScrollTop from "./scrollTop";
 import PropertyFilterModal from "./propertyFilterModal";
-import { useQuery } from "@apollo/client";
-import { GET_PROPERTIES } from "../service/propertyService";
 import Spinner from "./spinner";
+import { getPropertys } from "../service/propertyService";
+import PaginationForPropertys from "./paginationForPropertys";
 
 export default function PropertyListings() {
-  const offset = 0;
-  const limit = 10;
-
-  const { loading, error, data } = useQuery(GET_PROPERTIES, {
-    variables: { offset, limit },
-  });
+  const [loading, setLoading] = useState(false);
 
   const isScrolled = UseScroll();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [propertyData, setPropertyData] = useState([]);
+  const [pageInfo, setPageInfo] = useState({});
+  const [totalCount, setTotalCount] = useState(0);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -33,6 +32,23 @@ export default function PropertyListings() {
     setIsModalOpen(false);
   };
 
+  useEffect(() => {
+    fetchData({
+      first: 10,
+      after: null,
+    });
+  }, []);
+
+  const fetchData = (data) => {
+    setLoading(true);
+    getPropertys(data).then((data) => {
+      setPropertyData(data.properties.edges);
+      setPageInfo(data.properties.pageInfo);
+      setTotalCount(data.properties.totalCount);
+      setLoading(false);
+      window.scrollTo(0, 0);
+    });
+  };
 
   return (
     <>
@@ -99,14 +115,14 @@ export default function PropertyListings() {
 
             <div className="col-lg-8 col-md-6 col-12">
               <div className="row g-4">
-                {propertyData.slice(0, 1).map((item, index) => {
+                {propertyData.map((item, index) => {
                   return (
                     <div className="col-12" key={index}>
                       <div className="card property property-list border-0 shadow position-relative overflow-hidden rounded-3">
                         <div className="d-md-flex">
                           <div className="property-image position-relative overflow-hidden shadow flex-md-shrink-0 rounded-3 m-2">
                             <Image
-                              src={item.image}
+                              src={item.node.images[0].url}
                               width={0}
                               height={0}
                               sizes="100vw"
@@ -114,85 +130,73 @@ export default function PropertyListings() {
                               className="img-fluid h-100 w-100"
                               alt=""
                             />
-                            <ul className="list-unstyled property-icon">
-                              <li className="">
-                                <Link
-                                  href="#"
-                                  className="btn btn-sm btn-icon btn-pills btn-primary"
-                                >
-                                  <FiHome className="icons" />
-                                </Link>
-                              </li>
-                              <li className="mt-1">
-                                <Link
-                                  href="#"
-                                  className="btn btn-sm btn-icon btn-pills btn-primary"
-                                >
-                                  <FiHeart className="icons" />
-                                </Link>
-                              </li>
-                              <li className="mt-1">
-                                <Link
-                                  href="#"
-                                  className="btn btn-sm btn-icon btn-pills btn-primary"
-                                >
-                                  <FiCamera className="icons" />
-                                </Link>
-                              </li>
-                            </ul>
                           </div>
                           <div className="card-body content p-3">
                             <Link
-                              href={`/propertyListings/viewProperty?id=${item.id}`}
+                              href={`/propertyListings/viewProperty?id=${item.node.id}`}
                               className="title fs-5 text-dark fw-medium"
                             >
-                              {item.title}
+                              {item.node.formattedAddress}
                             </Link>
 
-                            <ul className="list-unstyled mt-3 py-3 border-top border-bottom d-flex align-items-center justify-content-between">
-                              <li className="d-flex align-items-center me-3">
-                                <i className="mdi mdi-arrow-expand-all fs-5 me-2 text-primary"></i>
-                                <span className="text-muted">8000sqf</span>
-                              </li>
+                            <p className="text-muted">
+                              {item.node.listingDetails.__typename}
+                            </p>
 
-                              <li className="d-flex align-items-center me-3">
-                                <i className="mdi mdi-bed fs-5 me-2 text-primary"></i>
-                                <span className="text-muted">4 Beds</span>
-                              </li>
+                            <ul className="list-unstyled border-top border-bottom d-flex align-items-center justify-content-between">
+                              {item.node.landSize && (
+                                <li className="d-flex align-items-center me-3">
+                                  <i className="mdi mdi-arrow-expand-all fs-5 me-2 text-primary"></i>
+                                  <span className="text-muted">
+                                    {item.node.landSize}
+                                  </span>
+                                </li>
+                              )}
 
-                              <li className="d-flex align-items-center">
-                                <i className="mdi mdi-shower fs-5 me-2 text-primary"></i>
-                                <span className="text-muted">4 Baths</span>
-                              </li>
+                              {item.node.listingDetails.garageSpaces && (
+                                <li className="d-flex align-items-center me-3">
+                                  <i className="mdi mdi-car fs-5 me-2 text-primary"></i>
+                                  <span className="text-muted">
+                                    {item.node.listingDetails.garageSpaces}
+                                  </span>
+                                </li>
+                              )}
+
+                              {item.node.listingDetails.bedrooms && (
+                                <li className="d-flex align-items-center me-3">
+                                  <i className="mdi mdi-bed fs-5 me-2 text-primary"></i>
+                                  <span className="text-muted">
+                                    {item.node.listingDetails.bedrooms} Beds
+                                  </span>
+                                </li>
+                              )}
+                              {item.node.listingDetails.bathrooms && (
+                                <li className="d-flex align-items-center">
+                                  <i className="mdi mdi-shower fs-5 me-2 text-primary"></i>
+                                  <span className="text-muted">
+                                    {item.node.listingDetails.bathrooms} Baths
+                                  </span>
+                                </li>
+                              )}
                             </ul>
                             <ul className="list-unstyled d-flex justify-content-between mt-2 mb-0">
-                              <li className="list-inline-item mb-0">
-                                <span className="text-muted">Price</span>
-                                <p className="fw-medium mb-0">$5000</p>
-                              </li>
-                              <li className="list-inline-item mb-0 text-muted">
-                                <span className="text-muted">Rating</span>
-                                <ul className="fw-medium text-warning list-unstyled mb-0">
-                                  <li className="list-inline-item mb-0">
-                                    <i className="mdi mdi-star"></i>
-                                  </li>
-                                  <li className="list-inline-item mb-0">
-                                    <i className="mdi mdi-star"></i>
-                                  </li>
-                                  <li className="list-inline-item mb-0">
-                                    <i className="mdi mdi-star"></i>
-                                  </li>
-                                  <li className="list-inline-item mb-0">
-                                    <i className="mdi mdi-star"></i>
-                                  </li>
-                                  <li className="list-inline-item mb-0">
-                                    <i className="mdi mdi-star"></i>
-                                  </li>
-                                  <li className="list-inline-item mb-0 text-dark">
-                                    5.0(30)
-                                  </li>
-                                </ul>
-                              </li>
+                              {item.node.price != 0 && item.node.price && (
+                                <li className="list-inline-item mb-0">
+                                  <span className="text-muted">Price</span>
+                                  <p className="fw-medium mb-0">
+                                    {item.node.price}
+                                  </p>
+                                </li>
+                              )}
+
+                              {item.node.soldDate && (
+                                <li className="list-inline-item mb-0">
+                                  <span className="text-muted">Sold On</span>
+                                  <p className="fw-medium mb-0">
+                                    {item.node.soldDate} ${" "}
+                                  </p>
+                                </li>
+                              )}
                             </ul>
                           </div>
                         </div>
@@ -204,41 +208,14 @@ export default function PropertyListings() {
 
               <div className="row">
                 <div className="col-12 mt-4 pt-2">
-                  <ul className="pagination justify-content-center mb-0">
-                    <li className="page-item">
-                      <Link
-                        className="page-link"
-                        href="#"
-                        aria-label="Previous"
-                      >
-                        <span aria-hidden="true">
-                          <i className="mdi mdi-chevron-left fs-6"></i>
-                        </span>
-                      </Link>
-                    </li>
-                    <li className="page-item">
-                      <Link className="page-link" href="#">
-                        1
-                      </Link>
-                    </li>
-                    <li className="page-item active">
-                      <Link className="page-link" href="#">
-                        2
-                      </Link>
-                    </li>
-                    <li className="page-item">
-                      <Link className="page-link" href="#">
-                        3
-                      </Link>
-                    </li>
-                    <li className="page-item">
-                      <Link className="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">
-                          <i className="mdi mdi-chevron-right fs-6"></i>
-                        </span>
-                      </Link>
-                    </li>
-                  </ul>
+                  <PaginationForPropertys
+                    pageInfo={pageInfo}
+                    totalCount={totalCount}
+                    onPageChange={(data) => {
+                      console.log(data);
+                      fetchData(data);
+                    }}
+                  />
                 </div>
               </div>
             </div>

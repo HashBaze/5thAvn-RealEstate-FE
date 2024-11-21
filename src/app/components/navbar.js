@@ -164,7 +164,7 @@ export default function Navbar({ logolight, menuClass, scrolled }) {
                         </Link>
                       </li>
                       <li>
-                        <Link href="/index-two" className="sub-menu-item">
+                        <Link href="/propertyListings" className="sub-menu-item">
                           Property
                         </Link>
                       </li>

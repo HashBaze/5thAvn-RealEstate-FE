@@ -1,7 +1,6 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { getToken } from "../service/propertyService";
 
 const AuthContext = createContext(null);
 
@@ -9,10 +8,6 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
-
-  useEffect(() => {
-    // getToken();
-  }, []);
 
   const toggleSidebar = () => {
     setIsSidebarVisible(!isSidebarVisible);

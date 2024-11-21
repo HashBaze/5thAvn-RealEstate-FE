@@ -5,8 +5,6 @@ import "bootstrap/dist/css/bootstrap.css";
 import "../app/assets/scss/style.scss";
 import "../app/assets/css/materialdesignicons.min.css";
 import { AuthProvider } from "./context/authContext";
-import { ApolloProvider } from "@apollo/client";
-import client from "./lib/apolloClient";
 
 const league = League_Spartan({
   subsets: ["latin"],
@@ -17,7 +15,6 @@ const league = League_Spartan({
 export default function RootLayout({ children }) {
   return (
     <AuthProvider>
-      <ApolloProvider client={client}>
         <html lang="en">
           <head>
             <link rel="icon" href="/images/logo/logo.png" />
@@ -31,7 +28,6 @@ export default function RootLayout({ children }) {
           </head>
           <body className={league.variable}>{children}</body>
         </html>
-      </ApolloProvider>
     </AuthProvider>
   );
 }

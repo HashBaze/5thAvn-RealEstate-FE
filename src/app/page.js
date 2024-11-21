@@ -14,9 +14,43 @@ import { Subscribe } from "./components/subscribe";
 import Footer from "./components/footer";
 import Navbar from "./components/navbar";
 import Testimonials from "./components/testimonials";
+import { useEffect, useState } from "react";
+import { getPropertyByFilter, getPropertys } from "./service/propertyService";
+import Spinner from "./components/spinner";
 
 export default function Home() {
   const isScrolled = UseScroll();
+
+  const filer = (data) => {
+    setLoading(true);
+    getPropertyByFilter(data)
+      .then((res) => {
+        setPropertyData(res.edges);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const [loading, setLoading] = useState(false);
+  const [propertyData, setPropertyData] = useState([]);
+
+  const fetchData = (data) => {
+    setLoading(true);
+    getPropertys(data).then((data) => {
+      setPropertyData(data.properties.edges);
+      setLoading(false);
+    });
+  };
+
+  useEffect(() => {
+    fetchData({
+      first: 6,
+      after: null,
+    });
+  }, []);
+
   return (
     <div
       className="overflow-hidden"
@@ -24,6 +58,7 @@ export default function Home() {
         width: "100vw",
       }}
     >
+      {loading && <Spinner />}
       <Navbar
         navClass="defaultscroll sticky"
         menuClass="navigation-menu nav-left"
@@ -95,10 +130,10 @@ export default function Home() {
           </div>
         </div>
 
-        <Searchbar />
+        <Searchbar filter={filer} />
 
         <div className="container">
-          <FeaturedProperties />
+          <FeaturedProperties propertyData={propertyData} />
         </div>
 
         <div className="mt-100">
