@@ -1,67 +1,39 @@
 import React, { useState } from "react";
 import { IoIosCloseCircle } from "react-icons/io";
+import Searchbar from "./searchbar";
+import { FiSearch } from "react-icons/fi";
 
 export default function PropertyFilterModal({ isModalOpen, handleCloseModal }) {
-  const [activeTab, setActiveTab] = React.useState("BUY");
-  const [showAllFeatures, setShowAllFeatures] = useState(false);
-  const [showAllInDoorFeatures, setShowAllInDoorFeatures] = useState(false);
-  const [showAllClimates, setShowAllClimates] = useState(false);
-  const [showAllAccessibility, setShowAllAccessibility] = useState(false);
-
-  const toggleAccessibility = () => {
-    setShowAllAccessibility(!showAllAccessibility);
-  };
-
-  const toggleClimates = () => {
-    setShowAllClimates(!showAllClimates);
-  };
-
-  const toggleFeatures = () => {
-    setShowAllFeatures(!showAllFeatures);
-  };
-
-  const toggleInDoorFeatures = () => {
-    setShowAllInDoorFeatures(!showAllInDoorFeatures);
-  };
-
-  const [formValues, setFormValues] = useState({
-    propertyType: [],
-    priceMin: "",
-    priceMax: "",
-    bedroomsMin: "",
-    bedroomsMax: "",
-    bathrooms: "",
-    carSpaces: "",
-    landSizeMin: "",
-    landSizeMax: "",
-    keywords: "",
-    saleMethod: "",
-    excludeContractOffer: false,
-    outdoorFeatures: [],
-    indoorFeatures: [],
-    climates: [],
-    accessibility: [],
+  const [isSelect, setIsSelect] = useState("Rent");
+  const [formData, setFormData] = useState({
+    bedRoomMin: "",
+    bedRoomMax: "",
+    bathRooms: "",
+    houseCategory: "",
+    suburb: "",
+    priceFrom: "",
+    priceTo: "",
+    airConditioning: false,
+    pool: false,
+    secaurity: false,
   });
 
-  const onCheckboxChange = (type) => {
-    setFormValues((prevValues) => {
-      const propertyType = [...prevValues.propertyType];
-      if (propertyType.includes(type)) {
-        return { ...prevValues, propertyType: propertyType.filter((item) => item !== type) };
-      } else {
-        return { ...prevValues, propertyType: [...propertyType, type] };
-      }
-    });
-    console.log(formValues.propertyType);
-  };
+  const options = [];
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues((prevValues) => ({
-      ...prevValues,
-      [name]: value,
-    }));
-  };
+  for (let value = 50000; value <= 10000000; value += 50000) {
+    if (value > 1000000) {
+      value += 200000;
+    }
+
+    if (value > 3000000) {
+      continue;
+    }
+
+    options.push(value);
+  }
+  options.push(4000000);
+  options.push(5000000);
+  options.push(10000000);
 
   return (
     <>
@@ -80,7 +52,6 @@ export default function PropertyFilterModal({ isModalOpen, handleCloseModal }) {
                 borderRadius: "10px",
                 padding: "0px",
                 boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.1)",
-                height: "90vh",
                 overflowY: "auto",
               }}
             >
@@ -94,1129 +65,337 @@ export default function PropertyFilterModal({ isModalOpen, handleCloseModal }) {
                   <IoIosCloseCircle size={20} />
                 </button>
               </div>
-              <div className="d-flex justify-content-center mt-4">
-                <ul className="nav nav-tabs row justify-content-center">
-                  <li className="col">
-                    <button
-                      className={`nav-link ${
-                        activeTab === "BUY" ? "active" : ""
-                      }`}
-                      onClick={() => setActiveTab("BUY")}
-                    >
-                      Buy
-                    </button>
-                  </li>
-                  <li className="col">
-                    <button
-                      className={`nav-link ${
-                        activeTab === "RENT" ? "active" : ""
-                      }`}
-                      onClick={() => setActiveTab("RENT")}
-                    >
-                      Rent
-                    </button>
-                  </li>
-                  <li className="col">
-                    <button
-                      className={`nav-link ${
-                        activeTab === "SOLD" ? "active" : ""
-                      }`}
-                      onClick={() => setActiveTab("SOLD")}
-                    >
-                      Sold
-                    </button>
-                  </li>
-                </ul>
-              </div>
+              <form
+                className="card-body text-start container bg-white rounded p-3"
+              >
+                <div className="registration-form text-dark text-start">
+                  <div className="row">
+                    <div className="row g-lg-0 p-2 row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 mb-3">
+                      <button
+                        type="button"
+                        onClick={() => setIsSelect("Rent")}
+                        className={`btn ${
+                          isSelect === "Rent" ? "btn-primary" : "bg-transparent"
+                        }`}
+                      >
+                        Rent
+                      </button>
+                      <button
+                        onClick={() => setIsSelect("Sell")}
+                        type="button"
+                        className={`btn ${
+                          isSelect === "Sell" ? "btn-primary" : "bg-transparent"
+                        }`}
+                      >
+                        Sell
+                      </button>
+                    </div>
 
-              <div className="modal-body p-5">
-                <form>
-                  <div className="mb-3">
-                    <label className="form-label">Property Type</label>
-                    <div className="row">
-                      <div className="col-6 col-md-4">
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="allTypes"
-                            checked={formValues.propertyType.includes(
-                              "All types"
-                            )}
-                            onChange={() => onCheckboxChange("All types")}
-                          />
-                          <label
-                            className="form-check-label"
-                          >
-                            All types
-                          </label>
-                        </div>
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="house"
-                            checked={formValues.propertyType.includes("House")}
-                            onChange={() => onCheckboxChange("House")}
-                          />
-                          <label className="form-check-label">
-                            House
-                          </label>
-                        </div>
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="townhouse"
-                            checked={formValues.propertyType.includes(
-                              "Townhouse"
-                            )}
-                            onChange={() => onCheckboxChange("Townhouse")}
-                          />
-                          <label
-                            className="form-check-label"
-                          >
-                            Townhouse
-                          </label>
-                        </div>
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="apartment"
-                            checked={formValues.propertyType.includes(
-                              "Apartment & Unit"
-                            )}
-                            onChange={() =>
-                              onCheckboxChange("Apartment & Unit")
+                    <div className="col-6 col-md-3">
+                      <label
+                        htmlFor="validationCustom01"
+                        className="form-label"
+                      >
+                        Bed Rooms Min
+                      </label>
+                      <div className="mb-lg-0 mb-3 d-flex">
+                        <select
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              bedRoomMin: e.target.value,
+                            })
+                          }
+                          className="form-select"
+                          aria-label="Default select example"
+                          style={{ width: "150px" }}
+                        >
+                          <option>any</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="col-6 col-md-3">
+                      <label
+                        htmlFor="validationCustom01"
+                        className="form-label"
+                      >
+                        Bed Rooms Max
+                      </label>
+                      <div className="mb-lg-0 mb-3 d-flex">
+                        <select
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              bedRoomMax: e.target.value,
+                            })
+                          }
+                          className="form-select"
+                          aria-label="Default select example"
+                          style={{ width: "150px" }}
+                        >
+                          <option>any</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="col-6 col-md-3">
+                      <label
+                        htmlFor="validationCustom01"
+                        className="form-label"
+                      >
+                        House Category
+                      </label>
+                      <div className="mb-lg-0 mb-3 d-flex">
+                        <select
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              houseCategory: e.target.value,
+                            })
+                          }
+                          className="form-select"
+                          aria-label="Default select example"
+                          style={{ width: "150px" }}
+                          value={formData.houseCategory}
+                        >
+                          <option value="any">any</option>
+                          <option value="HOUSE">HOUSE</option>
+                          <option value="APARTMENT">APARTMENT</option>
+                          <option value="TOWNHOUSE">TOWNHOUSE</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="col-6 col-md-3">
+                      <label
+                        htmlFor="validationCustom01"
+                        className="form-label"
+                      >
+                        Suburb
+                      </label>
+                      <div className="mb-lg-0 mb-3 d-flex">
+                        <select
+                          onChange={(e) =>
+                            setFormData({ ...formData, suburb: e.target.value })
+                          }
+                          className="form-select"
+                          aria-label="Default select example"
+                          style={{ width: "150px" }}
+                        >
+                          <option value="any">any</option>
+                          <option value="BENTLEIGH">BENTLEIGH</option>
+                          <option value="BERWICK">BERWICK</option>
+                          <option value="BEVERIDGE">BEVERIDGE</option>
+                          <option value="CHIRNSIDE PARK">CHIRNSIDE PARK</option>
+                          <option value="CLAYTON">CLAYTON</option>
+                          <option value="CLYDE3">CLYDE</option>
+                          <option value="CLYDE NORTH3">CLYDE NORTH</option>
+                          <option value="CRAIGIEBURN">CRAIGIEBURN</option>
+                          <option value="CRANBOURNE NORTH">
+                            CRANBOURNE NORTH
+                          </option>
+                          <option value="CRANBOURNE WEST">
+                            CRANBOURNE WEST
+                          </option>
+                          <option value="DOVETON">DOVETON</option>
+                          <option value="ENDEAVOUR HILLS">
+                            ENDEAVOUR HILLS
+                          </option>
+                          <option value="GLENROY">GLENROY</option>
+                          <option value="HAMPTON PARK">HAMPTON PARK</option>
+                          <option value="HAMPTON">HAMPTON</option>
+                          <option value="Melbourne">Melbourne</option>
+                          <option value="MICKLEHAM">MICKLEHAM</option>
+                          <option value="NARRE WARREN">NARRE WARREN</option>
+                          <option value="NARRE WARREN SOUTH">
+                            NARRE WARREN SOUTH
+                          </option>
+                          <option value="OFFICER">OFFICER</option>
+                          <option value="PAKENHAM">PAKENHAM</option>
+                          <option value="RINGWOOD NORTH">RINGWOOD NORTH</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="row mt-3">
+                      <div className="col-6 col-md-3">
+                        <label
+                          htmlFor="validationCustom01"
+                          className="form-label"
+                        >
+                          Bath Rooms
+                        </label>
+                        <div className="mb-lg-0 mb-3 d-flex">
+                          <select
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                bathRooms: e.target.value,
+                              })
                             }
-                          />
-                          <label
-                            className="form-check-label"
-                          >
-                            Apartment & Unit
-                          </label>
-                        </div>
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="villa"
-                            checked={formValues.propertyType.includes("Villa")}
-                            onChange={() => onCheckboxChange("Villa")}
-                          />
-                          <label className="form-check-label">
-                            Villa
-                          </label>
-                        </div>
-                      </div>
-
-                      {(activeTab === "BUY" || activeTab === "SOLD") && (
-                        <div className="col-6 col-md-4">
-                          <div className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              id="retirementLiving"
-                              checked={formValues.propertyType.includes(
-                                "Retirement Living"
-                              )}
-                              onChange={() =>
-                                onCheckboxChange("Retirement Living")
-                              }
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="retirementLiving"
-                            >
-                              Retirement Living
-                            </label>
-                          </div>
-                          <div className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              id="land"
-                              checked={formValues.propertyType.includes("Land")}
-                              onChange={() => onCheckboxChange("Land")}
-                            />
-                            <label className="form-check-label" htmlFor="land">
-                              Land
-                            </label>
-                          </div>
-                          <div className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              id="acreage"
-                              checked={formValues.propertyType.includes(
-                                "Acreage"
-                              )}
-                              onChange={() => onCheckboxChange("Acreage")}
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="acreage"
-                            >
-                              Acreage
-                            </label>
-                          </div>
-                          <div className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              id="rural"
-                              checked={formValues.propertyType.includes(
-                                "Rural"
-                              )}
-                              onChange={() => onCheckboxChange("Rural")}
-                            />
-                            <label className="form-check-label" htmlFor="rural">
-                              Rural
-                            </label>
-                          </div>
-                          <div className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              id="blockOfUnits"
-                              checked={formValues.propertyType.includes(
-                                "Block Of Units"
-                              )}
-                              onChange={() =>
-                                onCheckboxChange("Block Of Units")
-                              }
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="blockOfUnits"
-                            >
-                              Block Of Units
-                            </label>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  <div className="mb-3">
-                    <label className="form-label">Price</label>
-                    <div className="row">
-                      <div className="col">
-                        <div className="">
-                          <label className="form-label">Sold Date</label>
-                          <select
                             className="form-select"
-                            aria-label="Select number of bedrooms"
+                            aria-label="Default select example"
+                            style={{ width: "150px" }}
                           >
-                            <option value="" disabled selected>
-                              Choose...
-                            </option>
+                            <option value="any">any</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
-                            <option value="5">5+</option>
+                            <option value="5">5</option>
                           </select>
                         </div>
                       </div>
-                      <div className="col">
-                        <div className="">
-                          <label className="form-label">Sold Date</label>
+
+                      <div className="col-6 col-md-3">
+                        <label
+                          htmlFor="validationCustom01"
+                          className="form-label"
+                        >
+                          Price From
+                        </label>
+                        <div className="mb-lg-0 mb-3 d-flex">
                           <select
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                priceFrom: e.target.value,
+                              })
+                            }
                             className="form-select"
-                            aria-label="Select number of bedrooms"
+                            aria-label="Default select example"
+                            style={{ width: "150px" }}
                           >
-                            <option value="" disabled selected>
-                              Choose...
-                            </option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5+</option>
+                            <option value="any"></option>
+
+                            {options.map((value) => (
+                              <option key={value} value={value}>
+                                {value.toLocaleString()} {"$"}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+
+                      <div className="col-6 col-md-3">
+                        <label
+                          htmlFor="validationCustom01"
+                          className="form-label"
+                        >
+                          Price To
+                        </label>
+                        <div className="mb-lg-0 mb-3 d-flex">
+                          <select
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                priceTo: e.target.value,
+                              })
+                            }
+                            className="form-select"
+                            aria-label="Default select example"
+                            style={{ width: "150px" }}
+                          >
+                            <option value="any"></option>
+                            {options.map((value) => (
+                              <option key={value} value={value}>
+                                {value.toLocaleString()} {"$"}
+                              </option>
+                            ))}
                           </select>
                         </div>
                       </div>
                     </div>
 
-                    {(activeTab === "BUY" || activeTab === "SOLD") && (
-                      <div className="form-check mt-2">
+                    <div className="row w-75 mt-3">
+                      <div className="col form-check">
                         <input
-                          className="form-check-input"
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              airConditioning: !formData.airConditioning,
+                            })
+                          }
+                          className="form-check-input shadow"
                           type="checkbox"
-                          id="priceCheck"
-                        />
+                          value=""
+                          id="flexCheckDefault"
+                        ></input>
                         <label
                           className="form-check-label"
-                          htmlFor="priceCheck"
+                          htmlFor="flexCheckDefault"
                         >
-                          Only show properties with a price
+                          Air Conditioning
                         </label>
                       </div>
-                    )}
 
-                    {activeTab === "SOLD" && (
-                      <div className="row mt-3">
-                        <div className="mb-3 col-6">
-                          <label className="form-label">Sold Date</label>
-                          <select
-                            className="form-select"
-                            aria-label="Select number of bedrooms"
-                          >
-                            <option value="" disabled selected>
-                              Choose...
-                            </option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5+</option>
-                          </select>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="row">
-                    <label className="form-label">Bedrooms</label>
-                    <div className="mb-3 col">
-                      <label className="form-label">Min</label>
-                      <select
-                        className="form-select"
-                        aria-label="Select number of bedrooms"
-                      >
-                        <option value="" disabled selected>
-                          Choose...
-                        </option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5+</option>
-                      </select>
-                    </div>
-                    <div className="mb-3 col">
-                      <label className="form-label">Max</label>
-                      <select
-                        className="form-select"
-                        aria-label="Select number of car spaces"
-                      >
-                        <option value="" disabled selected>
-                          Choose...
-                        </option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5+</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="row">
-                    <div className="mb-3 col">
-                      <label className="form-label">Bath Rooms</label>
-                      <select
-                        className="form-select"
-                        aria-label="Select number of bedrooms"
-                      >
-                        <option value="" disabled selected>
-                          Choose...
-                        </option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5+</option>
-                      </select>
-                    </div>
-                    <div className="mb-3 col">
-                      <label className="form-label">Car Spaces</label>
-                      <select
-                        className="form-select"
-                        aria-label="Select number of car spaces"
-                      >
-                        <option value="" disabled selected>
-                          Choose...
-                        </option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5+</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="row">
-                    <label className="form-label">Land Size</label>
-                    <div className="mb-3 col">
-                      <label className="form-label">Min</label>
-                      <select
-                        className="form-select"
-                        aria-label="Select number of bedrooms"
-                      >
-                        <option value="" disabled selected>
-                          Choose...
-                        </option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5+</option>
-                      </select>
-                    </div>
-                    <div className="mb-3 col">
-                      <label className="form-label">Max</label>
-                      <select
-                        className="form-select"
-                        aria-label="Select number of car spaces"
-                      >
-                        <option value="" disabled selected>
-                          Choose...
-                        </option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5+</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="mb-3 row w-75 mt-4">
-                    <div className="form-check col">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="propertyType"
-                        id="allTypes"
-                        value="all"
-                        defaultChecked
-                      />
-                      <label className="form-check-label" htmlFor="allTypes">
-                        All types
-                      </label>
-                    </div>
-                    <div className="form-check col">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="propertyType"
-                        id="newProperty"
-                        value="new"
-                      />
-                      <label className="form-check-label" htmlFor="newProperty">
-                        New
-                      </label>
-                    </div>
-                    <div className="form-check col">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="propertyType"
-                        id="establishedProperty"
-                        value="established"
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="establishedProperty"
-                      >
-                        Established
-                      </label>
-                    </div>
-                  </div>
-
-                  <hr />
-
-                  <div className="container mb-3">
-                    <label className="form-label">Outdoor Features</label>
-                    <div className="row">
-                      {/* Initial 4 items */}
-                      <div className="col-md-6">
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="swimmingPool"
-                            value="swimmingPool"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="swimmingPool"
-                          >
-                            Swimming Pool
-                          </label>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="garage"
-                            value="garage"
-                          />
-                          <label className="form-check-label" htmlFor="garage">
-                            Garage
-                          </label>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="balcony"
-                            value="balcony"
-                          />
-                          <label className="form-check-label" htmlFor="balcony">
-                            Balcony
-                          </label>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="outdoorArea"
-                            value="outdoorArea"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="outdoorArea"
-                          >
-                            Outdoor Area
-                          </label>
-                        </div>
-                      </div>
-
-                      {/* Hidden items initially */}
-                      {showAllFeatures && (
-                        <>
-                          <div className="col-md-6">
-                            <div className="form-check">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                id="undercoverParking"
-                                value="undercoverParking"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="undercoverParking"
-                              >
-                                Undercover Parking
-                              </label>
-                            </div>
-                          </div>
-                          <div className="col-md-6">
-                            <div className="form-check">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                id="shed"
-                                value="shed"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="shed"
-                              >
-                                Shed
-                              </label>
-                            </div>
-                          </div>
-                          <div className="col-md-6">
-                            <div className="form-check">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                id="fullyFenced"
-                                value="fullyFenced"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="fullyFenced"
-                              >
-                                Fully Fenced
-                              </label>
-                            </div>
-                          </div>
-                          <div className="col-md-6">
-                            <div className="form-check">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                id="outdoorSpa"
-                                value="outdoorSpa"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="outdoorSpa"
-                              >
-                                Outdoor Spa
-                              </label>
-                            </div>
-                          </div>
-                          <div className="col-md-6">
-                            <div className="form-check">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                id="tennisCourt"
-                                value="tennisCourt"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="tennisCourt"
-                              >
-                                Tennis Court
-                              </label>
-                            </div>
-                          </div>
-                        </>
-                      )}
-                    </div>
-
-                    {/* Toggle button */}
-                    <a type="button" className="" onClick={toggleFeatures}>
-                      {showAllFeatures
-                        ? "Show fewer outdoor features..."
-                        : "Show more outdoor features..."}
-                    </a>
-                  </div>
-
-                  <hr />
-
-                  <div className="container mb-3">
-                    <label className="form-label">Indoor Features</label>
-                    <div className="row">
-                      {/* Initial 4 items */}
-                      <div className="col-md-6">
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="ensuite"
-                            value="ensuite"
-                          />
-                          <label className="form-check-label" htmlFor="ensuite">
-                            Ensuite
-                          </label>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="dishwasher"
-                            value="dishwasher"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="dishwasher"
-                          >
-                            Dishwasher
-                          </label>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="study"
-                            value="study"
-                          />
-                          <label className="form-check-label" htmlFor="study">
-                            Study
-                          </label>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="builtInRobes"
-                            value="builtInRobes"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="builtInRobes"
-                          >
-                            Built in Robes
-                          </label>
-                        </div>
-                      </div>
-
-                      {/* Hidden items initially */}
-                      {showAllInDoorFeatures && (
-                        <>
-                          <div className="col-md-6">
-                            <div className="form-check">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                id="alarmSystem"
-                                value="alarmSystem"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="alarmSystem"
-                              >
-                                Alarm System
-                              </label>
-                            </div>
-                          </div>
-                          <div className="col-md-6">
-                            <div className="form-check">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                id="broadband"
-                                value="broadband"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="broadband"
-                              >
-                                Broadband
-                              </label>
-                            </div>
-                          </div>
-                          <div className="col-md-6">
-                            <div className="form-check">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                id="floorboards"
-                                value="floorboards"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="floorboards"
-                              >
-                                Floorboards
-                              </label>
-                            </div>
-                          </div>
-                          <div className="col-md-6">
-                            <div className="form-check">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                id="gym"
-                                value="gym"
-                              />
-                              <label className="form-check-label" htmlFor="gym">
-                                Gym
-                              </label>
-                            </div>
-                          </div>
-                          <div className="col-md-6">
-                            <div className="form-check">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                id="rumpusRoom"
-                                value="rumpusRoom"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="rumpusRoom"
-                              >
-                                Rumpus Room
-                              </label>
-                            </div>
-                          </div>
-                          <div className="col-md-6">
-                            <div className="form-check">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                id="workshop"
-                                value="workshop"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="workshop"
-                              >
-                                Workshop
-                              </label>
-                            </div>
-                          </div>
-                        </>
-                      )}
-                    </div>
-
-                    {/* Toggle button */}
-                    <a
-                      type="button"
-                      className=""
-                      onClick={toggleInDoorFeatures}
-                    >
-                      {showAllInDoorFeatures
-                        ? "Show fewer indoor features..."
-                        : "Show more indoor features..."}
-                    </a>
-                  </div>
-
-                  <hr />
-
-                  <div className="container mb-3">
-                    <label className="form-label">
-                      Climate Control & Energy
-                    </label>
-                    <div className="row">
-                      {/* Initial 4 items */}
-                      <div className="col-md-6">
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="airConditioning"
-                            value="airConditioning"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="airConditioning"
-                          >
-                            Air Conditioning
-                          </label>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="solarPanels"
-                            value="solarPanels"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="solarPanels"
-                          >
-                            Solar Panels
-                          </label>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="heating"
-                            value="heating"
-                          />
-                          <label className="form-check-label" htmlFor="heating">
-                            Heating
-                          </label>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="fireplace"
-                            value="fireplace"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="fireplace"
-                          >
-                            Fireplace
-                          </label>
-                        </div>
-                      </div>
-
-                      {/* Hidden items initially */}
-                      {showAllClimates && (
-                        <>
-                          <div className="col-md-6">
-                            <div className="form-check">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                id="highEnergyEfficiency"
-                                value="highEnergyEfficiency"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="highEnergyEfficiency"
-                              >
-                                High Energy Efficiency
-                              </label>
-                            </div>
-                          </div>
-                          <div className="col-md-6">
-                            <div className="form-check">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                id="waterTank"
-                                value="waterTank"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="waterTank"
-                              >
-                                Water Tank
-                              </label>
-                            </div>
-                          </div>
-                          <div className="col-md-6">
-                            <div className="form-check">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                id="solarHotWater"
-                                value="solarHotWater"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="solarHotWater"
-                              >
-                                Solar Hot Water
-                              </label>
-                            </div>
-                          </div>
-                        </>
-                      )}
-                    </div>
-
-                    <a type="button" className="" onClick={toggleClimates}>
-                      {showAllClimates
-                        ? "Show fewer Climates features..."
-                        : "Show more Climates features..."}
-                    </a>
-                  </div>
-
-                  <hr />
-
-                  <div className="container mb-3">
-                    <label className="form-label">Accessibility Features</label>
-                    <div className="row">
-                      {/* Initial 4 items */}
-                      <div className="col-md-6">
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="singleStorey"
-                            value="singleStorey"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="singleStorey"
-                          >
-                            Single Storey
-                          </label>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="stepFreeEntry"
-                            value="stepFreeEntry"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="stepFreeEntry"
-                          >
-                            Step Free Entry
-                          </label>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="wideDoorways"
-                            value="wideDoorways"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="wideDoorways"
-                          >
-                            Wide Doorways
-                          </label>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="elevator"
-                            value="elevator"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="elevator"
-                          >
-                            Elevator
-                          </label>
-                        </div>
-                      </div>
-
-                      {/* Hidden items initially */}
-                      {showAllAccessibility && (
-                        <>
-                          <div className="col-md-6">
-                            <div className="form-check">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                id="rollInShower"
-                                value="rollInShower"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="rollInShower"
-                              >
-                                Roll in Shower
-                              </label>
-                            </div>
-                          </div>
-                          <div className="col-md-6">
-                            <div className="form-check">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                id="bathroomGrabRails"
-                                value="bathroomGrabRails"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="bathroomGrabRails"
-                              >
-                                Bathroom Grab Rails
-                              </label>
-                            </div>
-                          </div>
-                          <div className="col-md-6">
-                            <div className="form-check">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                id="accessibleParking"
-                                value="accessibleParking"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="accessibleParking"
-                              >
-                                Accessible Parking
-                              </label>
-                            </div>
-                          </div>
-                        </>
-                      )}
-                    </div>
-
-                    <a type="button" className="" onClick={toggleAccessibility}>
-                      {showAllAccessibility
-                        ? "Show fewer Accessibility features..."
-                        : "Show more Accessibility features..."}
-                    </a>
-                  </div>
-
-                  <hr />
-
-                  <div className="container mb-3">
-                    <label className="form-label">Keywords</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Air con, pool, garage, solar, ensuite..."
-                      aria-label="Add specific property features to your search"
-                    />
-                  </div>
-
-                  <hr />
-
-                  {activeTab === "BUY" && (
-                    <div class="container mb-3">
-                      <label class="form-label">Sale Method</label>
-                      <div class="form-check">
+                      <div className="col form-check">
                         <input
-                          class="form-check-input"
-                          type="radio"
-                          name="saleMethod"
-                          id="allTypesin"
-                          value="allTypesin"
-                        />
-                        <label class="form-check-label" for="allTypesin">
-                          All types
+                          onChange={(e) =>
+                            setFormData({ ...formData, pool: !formData.pool })
+                          }
+                          className="form-check-input shadow"
+                          type="checkbox"
+                          value=""
+                          id="flexCheckDefault"
+                        ></input>
+                        <label
+                          className="form-check-label"
+                          htmlFor="flexCheckChecked"
+                        >
+                          Pool
                         </label>
                       </div>
-                      <div class="form-check">
+
+                      <div className="col form-check">
                         <input
-                          class="form-check-input"
-                          type="radio"
-                          name="saleMethod"
-                          id="privateTreaty"
-                          value="privateTreaty"
-                        />
-                        <label class="form-check-label" for="privateTreaty">
-                          Private treaty sale
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="radio"
-                          name="saleMethod"
-                          id="auction"
-                          value="auction"
-                        />
-                        <label class="form-check-label" for="auction">
-                          Auction
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              secaurity: !formData.secaurity,
+                            })
+                          }
+                          className="form-check-input shadow"
+                          type="checkbox"
+                          value=""
+                          id="flexCheckDefault"
+                        ></input>
+                        <label
+                          className="form-check-label"
+                          htmlFor="flexCheckChecked"
+                        >
+                          Security
                         </label>
                       </div>
                     </div>
-                  )}
 
-                  {(activeTab === "BUY" || activeTab === "RENT") && (
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="excludeContractOffer"
-                      />
-                      <label
-                        class="form-check-label"
-                        for="excludeContractOffer"
+                    <div className="row justify-content-end p-3">
+                      <button
+                        onClick={() => {
+                          // formData.isSelected = isSelect;
+                          // filter(formData);
+                        }}
+                        type="button"
+                        className="btn btn-primary col-4"
                       >
-                        Exclude properties under contract/offer
-                      </label>
+                        <FiSearch className="icons" />
+                        <span className="ms-2 btn-serch">Search</span>
+                      </button>
                     </div>
-                  )}
-                </form>
-              </div>
-              {/* )} */}
-
-              <div className="modal-footer d-flex justify-content-between">
-                <button
-                  type="button"
-                  className="btn"
-                  onClick={handleCloseModal}
-                >
-                  Clear filters
-                </button>
-                <button type="button" className="btn btn-primary">
-                  Search
-                </button>
-              </div>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>

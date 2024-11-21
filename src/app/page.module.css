@@ -165,3 +165,9 @@ a.secondary {
 }
 
 
+.tiny-slide-three {
+  display: flex;
+}
+.tiny-slide {
+  min-width: 100%;
+}
