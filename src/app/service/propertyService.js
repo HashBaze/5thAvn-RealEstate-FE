@@ -14,3 +14,9 @@ export const getPropertyByFilter = async (data) => {
   const response = await ApiRequest.post("/graphql/get-by-filter", data, {});
   return response;
 };
+
+
+export const getPropertyByFilterPagination = async (data) => {
+  const response = await ApiRequest.post("/graphql/get-by-filter-pagination", data, {});
+  return response;
+};

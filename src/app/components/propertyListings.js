@@ -5,13 +5,14 @@ import UseScroll from "../hooks/UseScroll";
 import Navbar from "./navbar";
 import Link from "next/link";
 import Image from "next/image";
-import { propertyData } from "../data/data";
-import { FiCamera, FiHeart, FiHome } from "react-icons/fi";
 import Footer from "./footer";
 import ScrollTop from "./scrollTop";
 import PropertyFilterModal from "./propertyFilterModal";
 import Spinner from "./spinner";
-import { getPropertys } from "../service/propertyService";
+import {
+  getPropertyByFilterPagination,
+  getPropertys,
+} from "../service/propertyService";
 import PaginationForPropertys from "./paginationForPropertys";
 
 export default function PropertyListings() {
@@ -23,6 +24,21 @@ export default function PropertyListings() {
   const [propertyData, setPropertyData] = useState([]);
   const [pageInfo, setPageInfo] = useState({});
   const [totalCount, setTotalCount] = useState(0);
+  const [isFilterOn, setIsFilterOn] = useState(false);
+  const [filterData, setFilterData] = useState({
+    bedRoomMin: "",
+    bedRoomMax: "",
+    bathRooms: "",
+    houseCategory: "any",
+    suburb: "",
+    priceFrom: "",
+    priceTo: "",
+    airConditioning: false,
+    pool: false,
+    secaurity: false,
+    page: 2,
+    isSelected: "Rent",
+  });
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -45,6 +61,23 @@ export default function PropertyListings() {
       setPropertyData(data.properties.edges);
       setPageInfo(data.properties.pageInfo);
       setTotalCount(data.properties.totalCount);
+      setLoading(false);
+      window.scrollTo(0, 0);
+    });
+  };
+
+  const fetchDataByFilter = () => {
+    setIsFilterOn(true);
+    fetchFilter(1);
+  };
+
+  const fetchFilter = (pageIndex) => {
+    filterData.page = pageIndex;
+    setLoading(true);
+    getPropertyByFilterPagination(filterData).then((data) => {
+      setPropertyData(data.edges);
+      setPageInfo(data.pageinfo);
+      setTotalCount(data.pageinfo.totalItems);
       setLoading(false);
       window.scrollTo(0, 0);
     });
@@ -122,7 +155,7 @@ export default function PropertyListings() {
                         <div className="d-md-flex">
                           <div className="property-image position-relative overflow-hidden shadow flex-md-shrink-0 rounded-3 m-2">
                             <Image
-                              src={item.node.images[0].url}
+                              src={item.node.thumbnailSquare}
                               width={0}
                               height={0}
                               sizes="100vw"
@@ -184,7 +217,7 @@ export default function PropertyListings() {
                                 <li className="list-inline-item mb-0">
                                   <span className="text-muted">Price</span>
                                   <p className="fw-medium mb-0">
-                                    {item.node.price}
+                                    {item.node.price} $
                                   </p>
                                 </li>
                               )}
@@ -211,6 +244,8 @@ export default function PropertyListings() {
                   <PaginationForPropertys
                     pageInfo={pageInfo}
                     totalCount={totalCount}
+                    isFilterOn={isFilterOn}
+                    fetchFilter={fetchFilter}
                     onPageChange={(data) => {
                       console.log(data);
                       fetchData(data);
@@ -228,6 +263,8 @@ export default function PropertyListings() {
         isModalOpen={isModalOpen}
         handleOpenModal={handleOpenModal}
         handleCloseModal={handleCloseModal}
+        fetchDataByFilter={fetchDataByFilter}
+        setFilterData={setFilterData}
       />
     </>
   );

@@ -1,21 +1,27 @@
 import React, { useState } from "react";
 import { IoIosCloseCircle } from "react-icons/io";
-import Searchbar from "./searchbar";
 import { FiSearch } from "react-icons/fi";
 
-export default function PropertyFilterModal({ isModalOpen, handleCloseModal }) {
+export default function PropertyFilterModal({
+  isModalOpen,
+  handleCloseModal,
+  fetchDataByFilter,
+  setFilterData,
+}) {
   const [isSelect, setIsSelect] = useState("Rent");
   const [formData, setFormData] = useState({
     bedRoomMin: "",
     bedRoomMax: "",
     bathRooms: "",
-    houseCategory: "",
+    houseCategory: "any",
     suburb: "",
     priceFrom: "",
     priceTo: "",
     airConditioning: false,
     pool: false,
     secaurity: false,
+    page: 1,
+    isSelected: "Rent",
   });
 
   const options = [];
@@ -65,15 +71,23 @@ export default function PropertyFilterModal({ isModalOpen, handleCloseModal }) {
                   <IoIosCloseCircle size={20} />
                 </button>
               </div>
-              <form
-                className="card-body text-start container bg-white rounded p-3"
-              >
+              <form className="card-body text-start container bg-white rounded p-3">
                 <div className="registration-form text-dark text-start">
                   <div className="row">
                     <div className="row g-lg-0 p-2 row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 mb-3">
                       <button
                         type="button"
-                        onClick={() => setIsSelect("Rent")}
+                        onClick={() => {
+                          setIsSelect("Rent");
+                          setFormData({
+                            ...formData,
+                            isSelected: "Rent",
+                          });
+                          setFilterData({
+                            ...formData,
+                            isSelected: "Rent",
+                          });
+                        }}
                         className={`btn ${
                           isSelect === "Rent" ? "btn-primary" : "bg-transparent"
                         }`}
@@ -81,7 +95,17 @@ export default function PropertyFilterModal({ isModalOpen, handleCloseModal }) {
                         Rent
                       </button>
                       <button
-                        onClick={() => setIsSelect("Sell")}
+                        onClick={() => {
+                          setIsSelect("Sell");
+                          setFormData({
+                            ...formData,
+                            isSelected: "Sell",
+                          });
+                          setFilterData({
+                            ...formData,
+                            isSelected: "Sell",
+                          });
+                        }}
                         type="button"
                         className={`btn ${
                           isSelect === "Sell" ? "btn-primary" : "bg-transparent"
@@ -100,12 +124,16 @@ export default function PropertyFilterModal({ isModalOpen, handleCloseModal }) {
                       </label>
                       <div className="mb-lg-0 mb-3 d-flex">
                         <select
-                          onChange={(e) =>
+                          onChange={(e) => {
                             setFormData({
                               ...formData,
                               bedRoomMin: e.target.value,
-                            })
-                          }
+                            });
+                            setFilterData({
+                              ...formData,
+                              bedRoomMin: e.target.value,
+                            });
+                          }}
                           className="form-select"
                           aria-label="Default select example"
                           style={{ width: "150px" }}
@@ -129,12 +157,16 @@ export default function PropertyFilterModal({ isModalOpen, handleCloseModal }) {
                       </label>
                       <div className="mb-lg-0 mb-3 d-flex">
                         <select
-                          onChange={(e) =>
+                          onChange={(e) => {
                             setFormData({
                               ...formData,
                               bedRoomMax: e.target.value,
-                            })
-                          }
+                            });
+                            setFilterData({
+                              ...formData,
+                              bedRoomMax: e.target.value,
+                            });
+                          }}
                           className="form-select"
                           aria-label="Default select example"
                           style={{ width: "150px" }}
@@ -158,12 +190,20 @@ export default function PropertyFilterModal({ isModalOpen, handleCloseModal }) {
                       </label>
                       <div className="mb-lg-0 mb-3 d-flex">
                         <select
-                          onChange={(e) =>
+                          onChange={(e) => {
                             setFormData({
                               ...formData,
                               houseCategory: e.target.value,
-                            })
-                          }
+                            });
+                            setFilterData({
+                              ...formData,
+                              houseCategory: e.target.value,
+                            });
+                            // setFilterData({
+                            //   ...formData,
+                            //   page: 2,
+                            // });
+                          }}
                           className="form-select"
                           aria-label="Default select example"
                           style={{ width: "150px" }}
@@ -186,9 +226,16 @@ export default function PropertyFilterModal({ isModalOpen, handleCloseModal }) {
                       </label>
                       <div className="mb-lg-0 mb-3 d-flex">
                         <select
-                          onChange={(e) =>
-                            setFormData({ ...formData, suburb: e.target.value })
-                          }
+                          onChange={(e) => {
+                            setFormData({
+                              ...formData,
+                              suburb: e.target.value,
+                            });
+                            setFilterData({
+                              ...formData,
+                              suburb: e.target.value,
+                            });
+                          }}
                           className="form-select"
                           aria-label="Default select example"
                           style={{ width: "150px" }}
@@ -238,12 +285,16 @@ export default function PropertyFilterModal({ isModalOpen, handleCloseModal }) {
                         </label>
                         <div className="mb-lg-0 mb-3 d-flex">
                           <select
-                            onChange={(e) =>
+                            onChange={(e) => {
                               setFormData({
                                 ...formData,
                                 bathRooms: e.target.value,
-                              })
-                            }
+                              });
+                              setFilterData({
+                                ...formData,
+                                bathRooms: e.target.value,
+                              });
+                            }}
                             className="form-select"
                             aria-label="Default select example"
                             style={{ width: "150px" }}
@@ -267,12 +318,16 @@ export default function PropertyFilterModal({ isModalOpen, handleCloseModal }) {
                         </label>
                         <div className="mb-lg-0 mb-3 d-flex">
                           <select
-                            onChange={(e) =>
+                            onChange={(e) => {
                               setFormData({
                                 ...formData,
                                 priceFrom: e.target.value,
-                              })
-                            }
+                              });
+                              setFilterData({
+                                ...formData,
+                                priceFrom: e.target.value,
+                              });
+                            }}
                             className="form-select"
                             aria-label="Default select example"
                             style={{ width: "150px" }}
@@ -297,12 +352,16 @@ export default function PropertyFilterModal({ isModalOpen, handleCloseModal }) {
                         </label>
                         <div className="mb-lg-0 mb-3 d-flex">
                           <select
-                            onChange={(e) =>
+                            onChange={(e) => {
                               setFormData({
                                 ...formData,
                                 priceTo: e.target.value,
-                              })
-                            }
+                              });
+                              setFilterData({
+                                ...formData,
+                                priceTo: e.target.value,
+                              });
+                            }}
                             className="form-select"
                             aria-label="Default select example"
                             style={{ width: "150px" }}
@@ -383,8 +442,8 @@ export default function PropertyFilterModal({ isModalOpen, handleCloseModal }) {
                     <div className="row justify-content-end p-3">
                       <button
                         onClick={() => {
-                          // formData.isSelected = isSelect;
-                          // filter(formData);
+                          formData.isSelected = isSelect;
+                          fetchDataByFilter();
                         }}
                         type="button"
                         className="btn btn-primary col-4"
