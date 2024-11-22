@@ -14,8 +14,11 @@ import {
   getPropertys,
 } from "../service/propertyService";
 import PaginationForPropertys from "./paginationForPropertys";
+import { useSearchParams } from "next/navigation";
 
 export default function PropertyListings() {
+  const searchParams = useSearchParams();
+  const type = searchParams.get("type");
   const [loading, setLoading] = useState(false);
 
   const isScrolled = UseScroll();
@@ -37,7 +40,7 @@ export default function PropertyListings() {
     pool: false,
     secaurity: false,
     page: 2,
-    isSelected: "Rent",
+    isSelected: "Sale",
   });
 
   const handleOpenModal = () => {
@@ -49,11 +52,19 @@ export default function PropertyListings() {
   };
 
   useEffect(() => {
-    fetchData({
-      first: 10,
-      after: null,
-    });
-  }, []);
+    if(type == 'Sale'){
+      fetchData({
+        first: 10,
+        after: null,
+      });
+    } else {
+      filterData.isSelected = type;
+      filterData.houseCategory = "HOUSE"
+      setIsFilterOn(true);
+      fetchFilter(1);
+    }
+    
+  }, [type]);
 
   const fetchData = (data) => {
     setLoading(true);
@@ -148,95 +159,101 @@ export default function PropertyListings() {
 
             <div className="col-lg-8 col-md-6 col-12">
               <div className="row g-4">
-                {propertyData.map((item, index) => {
-                  return (
-                    <div className="col-12" key={index}>
-                      <div className="card property property-list border-0 shadow position-relative overflow-hidden rounded-3">
-                        <div className="d-md-flex">
-                          <div className="property-image position-relative overflow-hidden shadow flex-md-shrink-0 rounded-3 m-2">
-                            <Image
-                              src={item.node.thumbnailSquare}
-                              width={0}
-                              height={0}
-                              sizes="100vw"
-                              style={{ width: "100%", height: "auto" }}
-                              className="img-fluid h-100 w-100"
-                              alt=""
-                            />
-                          </div>
-                          <div className="card-body content p-3">
-                            <Link
-                              href={`/propertyListings/viewProperty?id=${item.node.id}`}
-                              className="title fs-5 text-dark fw-medium"
-                            >
-                              {item.node.formattedAddress}
-                            </Link>
+                {propertyData.length > 0 ? (
+                  propertyData.map((item, index) => {
+                    return (
+                      <div className="col-12" key={index}>
+                        <div className="card property property-list border-0 shadow position-relative overflow-hidden rounded-3">
+                          <div className="d-md-flex">
+                            <div className="property-image position-relative overflow-hidden shadow flex-md-shrink-0 rounded-3 m-2">
+                              <Image
+                                src={item.node.thumbnailSquare}
+                                width={0}
+                                height={0}
+                                sizes="100vw"
+                                style={{ width: "100%", height: "auto" }}
+                                className="img-fluid h-100 w-100"
+                                alt=""
+                              />
+                            </div>
+                            <div className="card-body content p-3">
+                              <Link
+                                href={`/propertyListings/viewProperty?id=${item.node.id}`}
+                                className="title fs-5 text-dark fw-medium"
+                              >
+                                {item.node.formattedAddress}
+                              </Link>
 
-                            <p className="text-muted">
-                              {item.node.listingDetails.__typename}
-                            </p>
+                              <p className="text-muted">
+                                {item.node.listingDetails.__typename}
+                              </p>
 
-                            <ul className="list-unstyled border-top border-bottom d-flex align-items-center justify-content-between">
-                              {item.node.landSize && (
-                                <li className="d-flex align-items-center me-3">
-                                  <i className="mdi mdi-arrow-expand-all fs-5 me-2 text-primary"></i>
-                                  <span className="text-muted">
-                                    {item.node.landSize}
-                                  </span>
-                                </li>
-                              )}
+                              <ul className="list-unstyled border-top border-bottom d-flex align-items-center justify-content-between">
+                                {item.node.landSize && (
+                                  <li className="d-flex align-items-center me-3">
+                                    <i className="mdi mdi-arrow-expand-all fs-5 me-2 text-primary"></i>
+                                    <span className="text-muted">
+                                      {item.node.landSize}
+                                    </span>
+                                  </li>
+                                )}
 
-                              {item.node.listingDetails.garageSpaces && (
-                                <li className="d-flex align-items-center me-3">
-                                  <i className="mdi mdi-car fs-5 me-2 text-primary"></i>
-                                  <span className="text-muted">
-                                    {item.node.listingDetails.garageSpaces}
-                                  </span>
-                                </li>
-                              )}
+                                {item.node.listingDetails.garageSpaces && (
+                                  <li className="d-flex align-items-center me-3">
+                                    <i className="mdi mdi-car fs-5 me-2 text-primary"></i>
+                                    <span className="text-muted">
+                                      {item.node.listingDetails.garageSpaces}
+                                    </span>
+                                  </li>
+                                )}
 
-                              {item.node.listingDetails.bedrooms && (
-                                <li className="d-flex align-items-center me-3">
-                                  <i className="mdi mdi-bed fs-5 me-2 text-primary"></i>
-                                  <span className="text-muted">
-                                    {item.node.listingDetails.bedrooms} Beds
-                                  </span>
-                                </li>
-                              )}
-                              {item.node.listingDetails.bathrooms && (
-                                <li className="d-flex align-items-center">
-                                  <i className="mdi mdi-shower fs-5 me-2 text-primary"></i>
-                                  <span className="text-muted">
-                                    {item.node.listingDetails.bathrooms} Baths
-                                  </span>
-                                </li>
-                              )}
-                            </ul>
-                            <ul className="list-unstyled d-flex justify-content-between mt-2 mb-0">
-                              {item.node.price != 0 && item.node.price && (
-                                <li className="list-inline-item mb-0">
-                                  <span className="text-muted">Price</span>
-                                  <p className="fw-medium mb-0">
-                                    {item.node.price} $
-                                  </p>
-                                </li>
-                              )}
+                                {item.node.listingDetails.bedrooms && (
+                                  <li className="d-flex align-items-center me-3">
+                                    <i className="mdi mdi-bed fs-5 me-2 text-primary"></i>
+                                    <span className="text-muted">
+                                      {item.node.listingDetails.bedrooms} Beds
+                                    </span>
+                                  </li>
+                                )}
+                                {item.node.listingDetails.bathrooms && (
+                                  <li className="d-flex align-items-center">
+                                    <i className="mdi mdi-shower fs-5 me-2 text-primary"></i>
+                                    <span className="text-muted">
+                                      {item.node.listingDetails.bathrooms} Baths
+                                    </span>
+                                  </li>
+                                )}
+                              </ul>
+                              <ul className="list-unstyled d-flex justify-content-between mt-2 mb-0">
+                                {item.node.price != 0 && item.node.price && (
+                                  <li className="list-inline-item mb-0">
+                                    <span className="text-muted">Price</span>
+                                    <p className="fw-medium mb-0">
+                                      {item.node.price} $
+                                    </p>
+                                  </li>
+                                )}
 
-                              {item.node.soldDate && (
-                                <li className="list-inline-item mb-0">
-                                  <span className="text-muted">Sold On</span>
-                                  <p className="fw-medium mb-0">
-                                    {item.node.soldDate} ${" "}
-                                  </p>
-                                </li>
-                              )}
-                            </ul>
+                                {item.node.soldDate && (
+                                  <li className="list-inline-item mb-0">
+                                    <span className="text-muted">Sold On</span>
+                                    <p className="fw-medium mb-0">
+                                      {item.node.soldDate} ${" "}
+                                    </p>
+                                  </li>
+                                )}
+                              </ul>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })
+                ) : (
+                  <div>
+                    <h1 className="text-center">No Property Found</h1>
+                  </div>
+                )}
               </div>
 
               <div className="row">
