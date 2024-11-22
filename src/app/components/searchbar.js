@@ -8,7 +8,7 @@ const Searchbar = ({ filter }) => {
     bedRoomMin: "",
     bedRoomMax: "",
     bathRooms: "",
-    houseCategory: "HOUSE",
+    houseCategory: "any",
     suburb: "",
     priceFrom: "",
     priceTo: "",

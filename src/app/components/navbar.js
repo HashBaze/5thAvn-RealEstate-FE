@@ -159,17 +159,17 @@ export default function Navbar({ logolight, menuClass, scrolled }) {
                     <span className="menu-arrow"></span>
                     <ul className="submenu">
                       <li>
-                        <Link href="/" className="sub-menu-item">
+                        <Link href="/propertyListings?type=Rent" className="sub-menu-item">
                           Rent
                         </Link>
                       </li>
                       <li>
-                        <Link href="/propertyListings" className="sub-menu-item">
+                        <Link href="/propertyListings?type=Sall" className="sub-menu-item">
                           Property
                         </Link>
                       </li>
                       <li>
-                        <Link href="/index-three" className="sub-menu-item">
+                        <Link href="/propertyListings?type=Land" className="sub-menu-item">
                           Land
                         </Link>
                       </li>
