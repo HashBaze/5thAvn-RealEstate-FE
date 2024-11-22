@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { IoIosCloseCircle } from "react-icons/io";
 import { FiSearch } from "react-icons/fi";
+import { propertyType } from "../data/data";
 
 export default function PropertyFilterModal({
   isModalOpen,
@@ -8,7 +9,8 @@ export default function PropertyFilterModal({
   fetchDataByFilter,
   setFilterData,
 }) {
-  const [isSelect, setIsSelect] = useState("Rent");
+
+  const [isSelect, setIsSelect] = useState(propertyType.RENT);
   const [formData, setFormData] = useState({
     bedRoomMin: "",
     bedRoomMax: "",
@@ -21,7 +23,7 @@ export default function PropertyFilterModal({
     pool: false,
     secaurity: false,
     page: 1,
-    isSelected: "Rent",
+    isSelected: propertyType.RENT,
   });
 
   const options = [];
@@ -78,14 +80,14 @@ export default function PropertyFilterModal({
                       <button
                         type="button"
                         onClick={() => {
-                          setIsSelect("Rent");
+                          setIsSelect(propertyType.RENT);
                           setFormData({
                             ...formData,
-                            isSelected: "Rent",
+                            isSelected: propertyType.RENT,
                           });
                           setFilterData({
                             ...formData,
-                            isSelected: "Rent",
+                            isSelected: propertyType.RENT,
                           });
                         }}
                         className={`btn ${
@@ -96,22 +98,22 @@ export default function PropertyFilterModal({
                       </button>
                       <button
                         onClick={() => {
-                          setIsSelect("Sell");
+                          setIsSelect(propertyType.SALE);
                           setFormData({
                             ...formData,
-                            isSelected: "Sell",
+                            isSelected: propertyType.SALE,
                           });
                           setFilterData({
                             ...formData,
-                            isSelected: "Sell",
+                            isSelected: propertyType.SALE,
                           });
                         }}
                         type="button"
                         className={`btn ${
-                          isSelect === "Sell" ? "btn-primary" : "bg-transparent"
+                          isSelect === propertyType.SALE ? "btn-primary" : "bg-transparent"
                         }`}
                       >
-                        Sell
+                        Sale
                       </button>
                     </div>
 

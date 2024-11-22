@@ -19,7 +19,6 @@ import { useSearchParams } from "next/navigation";
 export default function PropertyListings() {
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
-  console.log(type);
   const [loading, setLoading] = useState(false);
 
   const isScrolled = UseScroll();
@@ -41,7 +40,7 @@ export default function PropertyListings() {
     pool: false,
     secaurity: false,
     page: 2,
-    isSelected: "Rent",
+    isSelected: "Sale",
   });
 
   const handleOpenModal = () => {
@@ -53,7 +52,7 @@ export default function PropertyListings() {
   };
 
   useEffect(() => {
-    if(type == 'Sall'){
+    if(type == 'Sale'){
       fetchData({
         first: 10,
         after: null,
@@ -61,6 +60,7 @@ export default function PropertyListings() {
     } else {
       filterData.isSelected = type;
       filterData.houseCategory = "HOUSE"
+      setIsFilterOn(true);
       fetchFilter(1);
     }
     

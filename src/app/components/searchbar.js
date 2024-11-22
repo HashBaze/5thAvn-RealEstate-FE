@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { FiSearch } from "../assets/icons/vander";
 import TextAnimation from "./textAnimation";
+import { propertyType } from "../data/data";
 
 const Searchbar = ({ filter }) => {
+
+  
+
+
   const [isSelect, setIsSelect] = useState("Rent");
   const [formData, setFormData] = useState({
     bedRoomMin: "",
@@ -84,25 +89,25 @@ const Searchbar = ({ filter }) => {
             <div className="row g-lg-0 p-2 row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 mb-3">
               <button
                 type="button"
-                onClick={() => setIsSelect("Rent")}
+                onClick={() => setIsSelect(propertyType.RENT)}
                 className={`btn ${
-                  isSelect === "Rent" ? "btn-primary" : "bg-transparent"
+                  isSelect === propertyType.RENT ? "btn-primary" : "bg-transparent"
                 }`}
               >
                 Rent
               </button>
               <button
-                onClick={() => setIsSelect("Sell")}
+                onClick={() => setIsSelect(propertyType.SALE)}
                 type="button"
                 className={`btn ${
-                  isSelect === "Sell" ? "btn-primary" : "bg-transparent"
+                  isSelect === propertyType.SALE ? "btn-primary" : "bg-transparent"
                 }`}
               >
-                Sell
+                Sale
               </button>
             </div>
 
-            <div className="col-6 col-md-3">
+            <div className="col-3 col-md-3">
               <label htmlFor="validationCustom01" className="form-label">
                 Bed Rooms Min
               </label>
@@ -125,7 +130,7 @@ const Searchbar = ({ filter }) => {
               </div>
             </div>
 
-            <div className="col-6 col-md-3">
+            <div className="col-3 col-md-3">
               <label htmlFor="validationCustom01" className="form-label">
                 Bed Rooms Max
               </label>
@@ -148,7 +153,7 @@ const Searchbar = ({ filter }) => {
               </div>
             </div>
 
-            <div className="col-6 col-md-3">
+            <div className="col-3 col-md-3">
               <label htmlFor="validationCustom01" className="form-label">
                 House Category
               </label>
@@ -170,7 +175,7 @@ const Searchbar = ({ filter }) => {
               </div>
             </div>
 
-            <div className="col-6 col-md-3">
+            <div className="col-3 col-md-3">
               <label htmlFor="validationCustom01" className="form-label">
                 Suburb
               </label>
