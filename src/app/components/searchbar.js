@@ -4,10 +4,6 @@ import TextAnimation from "./textAnimation";
 import { propertyType } from "../data/data";
 
 const Searchbar = ({ filter }) => {
-
-  
-
-
   const [isSelect, setIsSelect] = useState("Rent");
   const [formData, setFormData] = useState({
     bedRoomMin: "",
@@ -85,13 +81,15 @@ const Searchbar = ({ filter }) => {
         }}
       >
         <div className="registration-form text-dark text-start">
-          <div className="row g-lg-0 p-2 shadow-lg border rounded">
+          <div className="row g-lg-0 p-2 shadow-lg border rounded p-3">
             <div className="row g-lg-0 p-2 row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 mb-3">
               <button
                 type="button"
                 onClick={() => setIsSelect(propertyType.RENT)}
                 className={`btn ${
-                  isSelect === propertyType.RENT ? "btn-primary" : "bg-transparent"
+                  isSelect === propertyType.RENT
+                    ? "btn-primary"
+                    : "bg-transparent"
                 }`}
               >
                 Rent
@@ -100,7 +98,9 @@ const Searchbar = ({ filter }) => {
                 onClick={() => setIsSelect(propertyType.SALE)}
                 type="button"
                 className={`btn ${
-                  isSelect === propertyType.SALE ? "btn-primary" : "bg-transparent"
+                  isSelect === propertyType.SALE
+                    ? "btn-primary"
+                    : "bg-transparent"
                 }`}
               >
                 Sale
@@ -215,75 +215,73 @@ const Searchbar = ({ filter }) => {
               </div>
             </div>
 
-            <div className="row mt-3">
-              <div className="col-6 col-md-3">
-                <label htmlFor="validationCustom01" className="form-label">
-                  Bath Rooms
-                </label>
-                <div className="mb-lg-0 mb-3 d-flex">
-                  <select
-                    onChange={(e) =>
-                      setFormData({ ...formData, bathRooms: e.target.value })
-                    }
-                    className="form-select"
-                    aria-label="Default select example"
-                    style={{ width: "150px" }}
-                  >
-                    <option value="any">any</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                  </select>
-                </div>
+            <div className="col-4 col-md-3 mt-2">
+              <label htmlFor="validationCustom01" className="form-label">
+                Bath Rooms
+              </label>
+              <div className="mb-lg-0 mb-3 d-flex">
+                <select
+                  onChange={(e) =>
+                    setFormData({ ...formData, bathRooms: e.target.value })
+                  }
+                  className="form-select"
+                  aria-label="Default select example"
+                  style={{ width: "150px" }}
+                >
+                  <option value="any">any</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
               </div>
+            </div>
 
-              <div className="col-6 col-md-3">
-                <label htmlFor="validationCustom01" className="form-label">
-                  Price From
-                </label>
-                <div className="mb-lg-0 mb-3 d-flex">
-                  <select
-                    onChange={(e) =>
-                      setFormData({ ...formData, priceFrom: e.target.value })
-                    }
-                    className="form-select"
-                    aria-label="Default select example"
-                    style={{ width: "150px" }}
-                  >
-                    <option value="any"></option>
+            <div className="col-4 col-md-3 mt-2">
+              <label htmlFor="validationCustom01" className="form-label">
+                Price From
+              </label>
+              <div className="mb-lg-0 mb-3 d-flex">
+                <select
+                  onChange={(e) =>
+                    setFormData({ ...formData, priceFrom: e.target.value })
+                  }
+                  className="form-select"
+                  aria-label="Default select example"
+                  style={{ width: "150px" }}
+                >
+                  <option value="any"></option>
 
-                    {options.map((value) => (
-                      <option key={value} value={value}>
-                        {value.toLocaleString()} {"$"}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+                  {options.map((value) => (
+                    <option key={value} value={value}>
+                      {value.toLocaleString()} {"$"}
+                    </option>
+                  ))}
+                </select>
               </div>
+            </div>
 
-              <div className="col-6 col-md-3">
-                <label htmlFor="validationCustom01" className="form-label">
-                  Price To
-                </label>
-                <div className="mb-lg-0 mb-3 d-flex">
-                  <select
-                    onChange={(e) =>
-                      setFormData({ ...formData, priceTo: e.target.value })
-                    }
-                    className="form-select"
-                    aria-label="Default select example"
-                    style={{ width: "150px" }}
-                  >
-                    <option value="any"></option>
-                    {options.map((value) => (
-                      <option key={value} value={value}>
-                        {value.toLocaleString()} {"$"}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+            <div className="col-4 col-md-3 mt-2">
+              <label htmlFor="validationCustom01" className="form-label">
+                Price To
+              </label>
+              <div className="mb-lg-0 mb-3 d-flex">
+                <select
+                  onChange={(e) =>
+                    setFormData({ ...formData, priceTo: e.target.value })
+                  }
+                  className="form-select"
+                  aria-label="Default select example"
+                  style={{ width: "150px" }}
+                >
+                  <option value="any"></option>
+                  {options.map((value) => (
+                    <option key={value} value={value}>
+                      {value.toLocaleString()} {"$"}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
 
@@ -336,7 +334,6 @@ const Searchbar = ({ filter }) => {
                 </label>
               </div>
             </div>
-
             <div className="row justify-content-end p-3">
               <button
                 onClick={() => {
