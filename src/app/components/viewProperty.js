@@ -143,11 +143,18 @@ export default function ViewProperty() {
                   </div>
                 </div>
 
-                <div className="d-flex mt-3">
-                  <Link href="#" className="btn btn-primary w-100 me-2">
-                    WhatsApp
-                  </Link>
-                </div>
+                {property.vendors &&
+                  property.vendors[0]?.contact?.phoneNumbers?.[0]
+                    ?.phoneNumber && (
+                    <div className="d-flex mt-3">
+                      <Link
+                      className="btn btn-primary w-100 me-2"
+                        href={`tel:${property.vendors[0].contact.phoneNumbers[0].phoneNumber}`}
+                      >
+                        Contact
+                      </Link>
+                    </div>
+                  )}
               </div>
             </div>
           </div>
