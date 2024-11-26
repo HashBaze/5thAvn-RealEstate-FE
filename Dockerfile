@@ -1,0 +1,41 @@
+# Base image
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Define build arguments
+ARG NEXT_PUBLIC_API_URL
+ARG NEXT_FIREBASE_API_KEY
+ARG NEXT_FIREBASE_AUTH_DOMAIN
+ARG NEXT_FIREBASE_PROJECT_ID
+ARG NEXT_BUCKET
+ARG NEXT_FIREBASE_MESSAGING_SENDER_ID
+ARG NEXT_FIREBASE_APP_ID
+
+# Set environment variables
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+ENV NEXT_FIREBASE_API_KEY=$NEXT_FIREBASE_API_KEY
+ENV NEXT_FIREBASE_AUTH_DOMAIN=$NEXT_FIREBASE_AUTH_DOMAIN
+ENV NEXT_FIREBASE_PROJECT_ID=$NEXT_FIREBASE_PROJECT_ID
+ENV NEXT_BUCKET=$NEXT_BUCKET
+ENV NEXT_FIREBASE_MESSAGING_SENDER_ID=$NEXT_FIREBASE_MESSAGING_SENDER_ID
+ENV NEXT_FIREBASE_APP_ID=$NEXT_FIREBASE_APP_ID
+
+# Copy package.json and package-lock.json
+COPY package.json package-lock.json ./
+
+# Install dependencies
+RUN npm ci --production
+
+# Copy the rest of the application
+COPY . .
+
+# Build the Next.js application
+RUN npm run build
+
+# Expose port 3000
+EXPOSE 3000
+
+# Start the application
+CMD ["npm", "start"]
