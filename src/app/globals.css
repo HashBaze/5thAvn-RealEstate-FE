@@ -15,11 +15,11 @@
   }
 
   .who-we-are-main-text {
-    font-size: 12px;
+    font-size: 15px;
   }
 
   .who-we-are-p {
-    font-size: 10px;
+    font-size: 13px;
   }
 
   .btn-serch{
@@ -61,3 +61,4 @@
 .custom-modal::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }
+

@@ -9,7 +9,6 @@ export default function PropertyFilterModal({
   fetchDataByFilter,
   setFilterData,
 }) {
-
   const [isSelect, setIsSelect] = useState(propertyType.RENT);
   const [formData, setFormData] = useState({
     bedRoomMin: "",
@@ -73,7 +72,7 @@ export default function PropertyFilterModal({
                   <IoIosCloseCircle size={20} />
                 </button>
               </div>
-              <form className="card-body text-start container bg-white rounded p-3">
+              <form className="card-body text-start container bg-white rounded p-3 w-100">
                 <div className="registration-form text-dark text-start">
                   <div className="row">
                     <div className="row g-lg-0 p-2 row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 mb-3">
@@ -110,7 +109,9 @@ export default function PropertyFilterModal({
                         }}
                         type="button"
                         className={`btn ${
-                          isSelect === propertyType.SALE ? "btn-primary" : "bg-transparent"
+                          isSelect === propertyType.SALE
+                            ? "btn-primary"
+                            : "bg-transparent"
                         }`}
                       >
                         Sale
@@ -201,10 +202,6 @@ export default function PropertyFilterModal({
                               ...formData,
                               houseCategory: e.target.value,
                             });
-                            // setFilterData({
-                            //   ...formData,
-                            //   page: 2,
-                            // });
                           }}
                           className="form-select"
                           aria-label="Default select example"
@@ -277,183 +274,200 @@ export default function PropertyFilterModal({
                       </div>
                     </div>
 
-                    <div className="row mt-3">
-                      <div className="col-6 col-md-3">
-                        <label
-                          htmlFor="validationCustom01"
-                          className="form-label"
-                        >
-                          Bath Rooms
-                        </label>
-                        <div className="mb-lg-0 mb-3 d-flex">
-                          <select
-                            onChange={(e) => {
-                              setFormData({
-                                ...formData,
-                                bathRooms: e.target.value,
-                              });
-                              setFilterData({
-                                ...formData,
-                                bathRooms: e.target.value,
-                              });
-                            }}
-                            className="form-select"
-                            aria-label="Default select example"
-                            style={{ width: "150px" }}
-                          >
-                            <option value="any">any</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      <div className="col-6 col-md-3">
-                        <label
-                          htmlFor="validationCustom01"
-                          className="form-label"
-                        >
-                          Price From
-                        </label>
-                        <div className="mb-lg-0 mb-3 d-flex">
-                          <select
-                            onChange={(e) => {
-                              setFormData({
-                                ...formData,
-                                priceFrom: e.target.value,
-                              });
-                              setFilterData({
-                                ...formData,
-                                priceFrom: e.target.value,
-                              });
-                            }}
-                            className="form-select"
-                            aria-label="Default select example"
-                            style={{ width: "150px" }}
-                          >
-                            <option value="any"></option>
-
-                            {options.map((value) => (
-                              <option key={value} value={value}>
-                                {value.toLocaleString()} {"$"}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                      </div>
-
-                      <div className="col-6 col-md-3">
-                        <label
-                          htmlFor="validationCustom01"
-                          className="form-label"
-                        >
-                          Price To
-                        </label>
-                        <div className="mb-lg-0 mb-3 d-flex">
-                          <select
-                            onChange={(e) => {
-                              setFormData({
-                                ...formData,
-                                priceTo: e.target.value,
-                              });
-                              setFilterData({
-                                ...formData,
-                                priceTo: e.target.value,
-                              });
-                            }}
-                            className="form-select"
-                            aria-label="Default select example"
-                            style={{ width: "150px" }}
-                          >
-                            <option value="any"></option>
-                            {options.map((value) => (
-                              <option key={value} value={value}>
-                                {value.toLocaleString()} {"$"}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="row w-75 mt-3">
-                      <div className="col form-check">
-                        <input
-                          onChange={(e) =>
-                            setFormData({
-                              ...formData,
-                              airConditioning: !formData.airConditioning,
-                            })
-                          }
-                          className="form-check-input shadow"
-                          type="checkbox"
-                          value=""
-                          id="flexCheckDefault"
-                        ></input>
-                        <label
-                          className="form-check-label"
-                          htmlFor="flexCheckDefault"
-                        >
-                          Air Conditioning
-                        </label>
-                      </div>
-
-                      <div className="col form-check">
-                        <input
-                          onChange={(e) =>
-                            setFormData({ ...formData, pool: !formData.pool })
-                          }
-                          className="form-check-input shadow"
-                          type="checkbox"
-                          value=""
-                          id="flexCheckDefault"
-                        ></input>
-                        <label
-                          className="form-check-label"
-                          htmlFor="flexCheckChecked"
-                        >
-                          Pool
-                        </label>
-                      </div>
-
-                      <div className="col form-check">
-                        <input
-                          onChange={(e) =>
-                            setFormData({
-                              ...formData,
-                              secaurity: !formData.secaurity,
-                            })
-                          }
-                          className="form-check-input shadow"
-                          type="checkbox"
-                          value=""
-                          id="flexCheckDefault"
-                        ></input>
-                        <label
-                          className="form-check-label"
-                          htmlFor="flexCheckChecked"
-                        >
-                          Security
-                        </label>
-                      </div>
-                    </div>
-
-                    <div className="row justify-content-end p-3">
-                      <button
-                        onClick={() => {
-                          formData.isSelected = isSelect;
-                          fetchDataByFilter();
-                        }}
-                        type="button"
-                        className="btn btn-primary col-4"
+                    <div className="col-6 col-md-3">
+                      <label
+                        htmlFor="validationCustom01"
+                        className="form-label"
                       >
-                        <FiSearch className="icons" />
-                        <span className="ms-2 btn-serch">Search</span>
-                      </button>
+                        Bath Rooms
+                      </label>
+                      <div className="mb-lg-0 mb-3 d-flex">
+                        <select
+                          onChange={(e) => {
+                            setFormData({
+                              ...formData,
+                              bathRooms: e.target.value,
+                            });
+                            setFilterData({
+                              ...formData,
+                              bathRooms: e.target.value,
+                            });
+                          }}
+                          className="form-select"
+                          aria-label="Default select example"
+                          style={{ width: "150px" }}
+                        >
+                          <option value="any">any</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                        </select>
+                      </div>
                     </div>
+
+                    <div className="col-6 col-md-3">
+                      <label
+                        htmlFor="validationCustom01"
+                        className="form-label"
+                      >
+                        Price From
+                      </label>
+                      <div className="mb-lg-0 mb-3 d-flex">
+                        <select
+                          onChange={(e) => {
+                            setFormData({
+                              ...formData,
+                              priceFrom: e.target.value,
+                            });
+                            setFilterData({
+                              ...formData,
+                              priceFrom: e.target.value,
+                            });
+                          }}
+                          className="form-select"
+                          aria-label="Default select example"
+                          style={{ width: "150px" }}
+                        >
+                          <option value="any"></option>
+
+                          {options.map((value) => (
+                            <option key={value} value={value}>
+                              {value.toLocaleString()} {"$"}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="col-6 col-md-3">
+                      <label
+                        htmlFor="validationCustom01"
+                        className="form-label"
+                      >
+                        Price To
+                      </label>
+                      <div className="mb-lg-0 mb-3 d-flex">
+                        <select
+                          onChange={(e) => {
+                            setFormData({
+                              ...formData,
+                              priceTo: e.target.value,
+                            });
+                            setFilterData({
+                              ...formData,
+                              priceTo: e.target.value,
+                            });
+                          }}
+                          className="form-select"
+                          aria-label="Default select example"
+                          style={{ width: "150px" }}
+                        >
+                          <option value="any"></option>
+                          {options.map((value) => (
+                            <option key={value} value={value}>
+                              {value.toLocaleString()} {"$"}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="row w-75 mt-3">
+                    <div className="col form-check">
+                      <input
+                        onChange={(e) =>{
+                          setFormData({
+                            ...formData,
+                            airConditioning: !formData.airConditioning,
+                          })
+
+                          setFilterData({
+                            ...formData,
+                            airConditioning: !formData.airConditioning,
+                          });
+                        }
+                         
+                        }
+                        className="form-check-input shadow"
+                        type="checkbox"
+                        value=""
+                        id="flexCheckDefault"
+                      ></input>
+                      <label
+                        className="form-check-label"
+                        htmlFor="flexCheckDefault"
+                      >
+                        Air&nbsp;Conditioning
+                      </label>
+                    </div>
+
+                    <div className="col form-check">
+                      <input
+                        onChange={(e) => {
+                          setFormData({ ...formData, pool: !formData.pool });
+
+                          setFilterData({
+                            ...formData,
+                            pool: !formData.pool,
+                          });
+                        }}
+                        className="form-check-input shadow"
+                        type="checkbox"
+                        value=""
+                        id="flexCheckDefault"
+                      ></input>
+                      <label
+                        className="form-check-label"
+                        htmlFor="flexCheckChecked"
+                      >
+                        Pool
+                      </label>
+                    </div>
+
+                    <div className="col form-check">
+                      <input
+                        onChange={(e) =>{
+                          setFormData({
+                            ...formData,
+                            secaurity: !formData.secaurity,
+                          })
+
+                          setFilterData({
+                            ...formData,
+                            secaurity: !formData.secaurity,
+                          });
+                        }
+                          
+                        }
+                        className="form-check-input shadow"
+                        type="checkbox"
+                        value=""
+                        id="flexCheckDefault"
+                      ></input>
+                      <label
+                        className="form-check-label"
+                        htmlFor="flexCheckChecked"
+                      >
+                        Security
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="row justify-content-end p-3">
+                    <button
+                      onClick={() => {
+                        formData.isSelected = isSelect;
+                        fetchDataByFilter();
+                      }}
+                      type="button"
+                      className="btn btn-primary col-4"
+                    >
+                      <FiSearch className="icons" />
+                      <span className="ms-2 btn-serch">Search</span>
+                    </button>
                   </div>
                 </div>
               </form>

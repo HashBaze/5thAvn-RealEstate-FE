@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { useRouter } from "next/navigation";
+import './../assets/css/subscribe.css';
 
 export const Subscribe = () => {
   const router = useRouter();
@@ -26,7 +27,7 @@ export const Subscribe = () => {
                   onClick={() => {
                     router.push("/contactus");
                   }}
-                  className="btn btn-primary w-25"
+                  className="btn btn-primary w-25 w-md-25"
                   type="button"
                 >
                   Contact Us
@@ -53,9 +54,7 @@ export const Subscribe = () => {
               width: "100%",
               height: "80vh",
               zIndex: 0,
-              backgroundPosition: "center center",
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
+              objectFit: "cover",
             }}
             className="img-fluid rounded-3"
             alt="%th avenue"

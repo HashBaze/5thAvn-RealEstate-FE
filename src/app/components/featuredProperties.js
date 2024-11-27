@@ -100,7 +100,17 @@ export default function FuaturedProperties({ propertyData }) {
             );
           })
         ) : (
-          <div className="col-12 text-center">No Properties Found</div>
+          <div className="d-flex flex-column justify-content-center">
+            <Image
+            className="img-fluid m-auto"
+              src="/images/no-data.png"
+              width={200}
+              height={200}
+              sizes="100vw"
+              alt="no data"
+            />
+            <p className="text-center">No Data Found</p>
+          </div>
         )}
 
         <div className="col-12 mt-4 pt-2">

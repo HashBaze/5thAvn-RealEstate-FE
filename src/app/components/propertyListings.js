@@ -52,18 +52,17 @@ export default function PropertyListings() {
   };
 
   useEffect(() => {
-    if(type == 'Sale'){
+    if (type == "Sale") {
       fetchData({
         first: 10,
         after: null,
       });
     } else {
       filterData.isSelected = type;
-      filterData.houseCategory = "HOUSE"
+      filterData.houseCategory = "HOUSE";
       setIsFilterOn(true);
       fetchFilter(1);
     }
-    
   }, [type]);
 
   const fetchData = (data) => {
@@ -140,7 +139,7 @@ export default function PropertyListings() {
       <section className="section">
         <div className="container">
           <div className="row g-4">
-            <div className="col-lg-4 col-md-6 col-12">
+            <div className="col-lg-4 col-md-12 col-12">
               <div className="card bg-white p-4 rounded-3 shadow sticky-bar">
                 <div>
                   <h6 className="mb-0">Search Properties</h6>
@@ -157,7 +156,7 @@ export default function PropertyListings() {
               </div>
             </div>
 
-            <div className="col-lg-8 col-md-6 col-12">
+            <div className="col-lg-8 col-md-12 col-12">
               <div className="row g-4">
                 {propertyData.length > 0 ? (
                   propertyData.map((item, index) => {
@@ -251,7 +250,17 @@ export default function PropertyListings() {
                   })
                 ) : (
                   <div>
-                    <h1 className="text-center">No Property Found</h1>
+                    <div className="d-flex flex-column justify-content-center">
+                      <Image
+                        className="img-fluid m-auto"
+                        src="/images/no-data.png"
+                        width={200}
+                        height={200}
+                        sizes="100vw"
+                        alt="no data"
+                      />
+                      <p className="text-center">No Data Found</p>
+                    </div>
                   </div>
                 )}
               </div>

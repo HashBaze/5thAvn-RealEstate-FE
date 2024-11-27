@@ -82,7 +82,7 @@ const Searchbar = ({ filter }) => {
       >
         <div className="registration-form text-dark text-start">
           <div className="row g-lg-0 p-2 shadow-lg border rounded p-3">
-            <div className="row g-lg-0 p-2 row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 mb-3">
+            <div className="d-flex g-lg-0 p-2 mb-3">
               <button
                 type="button"
                 onClick={() => setIsSelect(propertyType.RENT)}
@@ -107,7 +107,7 @@ const Searchbar = ({ filter }) => {
               </button>
             </div>
 
-            <div className="col-3 col-md-3">
+            <div className="col-6 col-md-3">
               <label htmlFor="validationCustom01" className="form-label">
                 Bed Rooms Min
               </label>
@@ -130,7 +130,7 @@ const Searchbar = ({ filter }) => {
               </div>
             </div>
 
-            <div className="col-3 col-md-3">
+            <div className="col-6 col-md-3">
               <label htmlFor="validationCustom01" className="form-label">
                 Bed Rooms Max
               </label>
@@ -153,7 +153,7 @@ const Searchbar = ({ filter }) => {
               </div>
             </div>
 
-            <div className="col-3 col-md-3">
+            <div className="col-6 col-md-3">
               <label htmlFor="validationCustom01" className="form-label">
                 House Category
               </label>
@@ -175,7 +175,7 @@ const Searchbar = ({ filter }) => {
               </div>
             </div>
 
-            <div className="col-3 col-md-3">
+            <div className="col-6 col-md-3">
               <label htmlFor="validationCustom01" className="form-label">
                 Suburb
               </label>
@@ -215,7 +215,7 @@ const Searchbar = ({ filter }) => {
               </div>
             </div>
 
-            <div className="col-4 col-md-3 mt-2">
+            <div className="col-6 col-md-3 mt-2">
               <label htmlFor="validationCustom01" className="form-label">
                 Bath Rooms
               </label>
@@ -238,7 +238,7 @@ const Searchbar = ({ filter }) => {
               </div>
             </div>
 
-            <div className="col-4 col-md-3 mt-2">
+            <div className="col-6 col-md-3 mt-2">
               <label htmlFor="validationCustom01" className="form-label">
                 Price From
               </label>
@@ -262,7 +262,7 @@ const Searchbar = ({ filter }) => {
               </div>
             </div>
 
-            <div className="col-4 col-md-3 mt-2">
+            <div className="col-6 col-md-3 mt-2">
               <label htmlFor="validationCustom01" className="form-label">
                 Price To
               </label>
@@ -300,7 +300,7 @@ const Searchbar = ({ filter }) => {
                   id="flexCheckDefault"
                 ></input>
                 <label className="form-check-label" htmlFor="flexCheckDefault">
-                  Air Conditioning
+                  Air&nbsp;Conditioning
                 </label>
               </div>
 
