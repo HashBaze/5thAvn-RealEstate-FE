@@ -1,0 +1,16 @@
+@media (max-width: 440px) {
+    h4{
+        font-size: 25px;
+    }
+
+    .typewrite{
+        font-size: 30px;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .heading {
+      font-size: 30px;
+    }
+  }

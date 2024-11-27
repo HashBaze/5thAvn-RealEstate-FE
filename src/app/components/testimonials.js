@@ -48,7 +48,7 @@ const Testimonials = () => {
                   return (
                     <div key={index} className="p-5">
                       <div className="text-center">
-                        <ul className="list-unstyled mb-0">
+                        <ul className="list-unstyled mb-3">
                           <li className="list-inline-item">
                             <Image
                               src={item.picture}
@@ -57,15 +57,15 @@ const Testimonials = () => {
                               sizes="100vw"
                               style={{
                                 objectFit: "cover",
-                                width: "100px",
-                                height: "100px",
+                                width: "200px",
+                                height: "200px",
                               }}
                               className="img-fluid avatar avatar-small rounded-circle mx-auto shadow"
                               alt=""
                             />
                           </li>
                         </ul>
-                        <small className="text-muted font-italic mt-2">
+                        <small className="text-muted font-italic mt-3">
                           " {item.review} "
                         </small>
                         <h6 className="text-primary fw-medium mt-3">

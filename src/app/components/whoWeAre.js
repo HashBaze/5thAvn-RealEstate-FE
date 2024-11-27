@@ -60,10 +60,15 @@ export const WhoWeAre = () => {
           ></div>
           <Image
             src="/images/who-we-are.jpg"
-            width={0}
+            width={10}
             height={0}
-            sizes="100vw"
-            style={{ width: "100%", height: "auto", zIndex: 0 }}
+            sizes="50vw"
+            style={{
+              width: "100%",
+              height: "80vh",
+              zIndex: 0,
+              objectFit: "cover",
+            }}
             className="img-fluid rounded-3"
             alt="%th avenue"
             title="Toavenuewnter"
