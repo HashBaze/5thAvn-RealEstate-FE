@@ -1,0 +1,39 @@
+/* General adjustments for text and layout */
+.txt-subscribe {
+    font-size: 1.5rem; /* Base font size for desktop */
+  }
+  
+  .btn {
+    font-size: 1rem;
+  }
+  
+  /* Responsive styles for mobile devices */
+  @media (max-width: 768px) {
+    .txt-subscribe {
+      font-size: 1.2rem; /* Smaller font size for mobile */
+      margin-bottom: 1rem;
+    }
+  
+    .btn {
+      width: 75%; /* Button takes more width on mobile */
+      font-size: 0.9rem; /* Slightly smaller text for mobile */
+    }
+  }
+  
+  /* Extra small devices */
+  @media (max-width: 576px) {
+    .txt-subscribe {
+      font-size: 1rem;
+    }
+  
+    .btn {
+      width: 90%; /* Full width for smaller devices */
+      font-size: 0.85rem;
+    }
+
+    .img-fluid {
+      width: 100%;
+      height: auto;
+    }
+  }
+  

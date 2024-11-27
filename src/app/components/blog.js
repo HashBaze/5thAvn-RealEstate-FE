@@ -16,6 +16,7 @@ import {
 import { useAuth } from "../context/authContext";
 import Spinner from "./spinner";
 import { FaSearch } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
 
 export default function Blog() {
   const isScrolled = UseScroll();
@@ -32,7 +33,7 @@ export default function Blog() {
   function formatDate(dateString) {
     const date = new Date(dateString);
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-indexed
+    const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");
 
     return `${year}-${month}-${day}`;
@@ -85,6 +86,7 @@ export default function Blog() {
     await serchByTags(req).then((response) => {
       setBlogDta(response);
       showLoading(false);
+      window.scrollTo(0, 0);
     });
   };
 
@@ -282,38 +284,7 @@ export default function Blog() {
 
             <div className="col-lg-4 col-md-6 col-12">
               <div className="card bg-white p-4 rounded-3 shadow sticky-bar">
-                <div>
-                  <h6 className="pt-2 pb-2 bg-light rounded-3 text-center">
-                    Search
-                  </h6>
-
-                  <div className="search-bar mt-4">
-                    <div
-                      id="itemSearch2"
-                      className="menu-search d-flex gap-2 mb-0"
-                    >
-                      <form className="w-75">
-                        <input
-                          value={serchTags}
-                          type="text"
-                          className="form-control rounded-3 border"
-                          name="s"
-                          id="searchItem2"
-                          placeholder="Search..."
-                          onChange={handleChnageSerch}
-                        />
-                      </form>
-                      <button
-                        onClick={handleSerch}
-                        type="button"
-                        className="btn"
-                      >
-                        <FaSearch />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-4 pt-2">
+                <div className="pt-2">
                   <h6 className="pt-2 pb-2 bg-light rounded-3 text-center">
                     Recent Post
                   </h6>
@@ -349,13 +320,62 @@ export default function Blog() {
                   </div>
                 </div>
 
-                <div className="mt-4 pt-2 text-center">
-                  <h6 className="pt-2 pb-2 bg-light rounded-3">Tags Cloud</h6>
-                  <ul className="tagcloud list-unstyled mt-4">
+                <div className="mt-5">
+                  <h6 className="pt-2 pb-2 bg-light rounded-3 text-center">
+                    Search
+                  </h6>
+
+                  <div className="search-bar">
+                    <div
+                      id="itemSearch2"
+                      className="menu-search row mt-4"
+                    >
+                      <form className="col-10">
+                        <div class="input-group mb-3 ">
+                          <input
+                            value={serchTags}
+                            type="text"
+                            className="form-control rounded-3 border"
+                            name="s"
+                            id="searchItem2"
+                            placeholder="Search..."
+                            onChange={handleChnageSerch}
+                            readOnly={true}
+                          />
+                          <button
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setSerchTags([]);
+                            }}
+                            className="btn w-25 btn-sm border bg-transparent"
+                            type="button"
+                            id="button-addon2"
+                          >
+                            <IoMdClose />
+                          </button>
+                        </div>
+                      </form>
+                      <button
+                        onClick={handleSerch}
+                        type="button"
+                        className="btn p-2 h-50 col"
+                      >
+                        <FaSearch />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-1 pt-2">
+                  <small className="text-dark">
+                    Select Tags to filter blogs
+                  </small>
+                  <ul className="tagcloud list-unstyled mt-2">
                     {tags.map((tag, index) => (
                       <li key={index} className="list-inline-item m-1">
                         <Link
-                          onClick={() => {
+                          onClick={(e) => {
+                            e.preventDefault();
                             setSerchTags((prevTags) => {
                               if (!prevTags.includes(tag)) {
                                 return [...prevTags, tag];
