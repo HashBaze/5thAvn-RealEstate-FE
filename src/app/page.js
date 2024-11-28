@@ -15,7 +15,11 @@ import Footer from "./components/footer";
 import Navbar from "./components/navbar";
 import Testimonials from "./components/testimonials";
 import { useEffect, useState } from "react";
-import { getPropertyByFilter, getPropertys } from "./service/propertyService";
+import {
+  getAllSuburb,
+  getPropertyByFilter,
+  getPropertys,
+} from "./service/propertyService";
 import Spinner from "./components/spinner";
 
 export default function Home() {
@@ -35,6 +39,7 @@ export default function Home() {
 
   const [loading, setLoading] = useState(false);
   const [propertyData, setPropertyData] = useState([]);
+  const [suburb, setSuburb] = useState([]);
 
   const fetchData = (data) => {
     setLoading(true);
@@ -48,6 +53,9 @@ export default function Home() {
     fetchData({
       first: 6,
       after: null,
+    });
+    getAllSuburb().then((data) => {
+      setSuburb(data);
     });
   }, []);
 
@@ -130,10 +138,10 @@ export default function Home() {
           </div>
         </div>
 
-        <Searchbar filter={filer} />
+        <Searchbar filter={filer} suburb={suburb}/>
 
         <div className="container">
-          <FeaturedProperties propertyData={propertyData} />
+          <FeaturedProperties propertyData={propertyData}  />
         </div>
 
         <div className="mt-100">

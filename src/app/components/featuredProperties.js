@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function FuaturedProperties({ propertyData }) {
+export default function FuaturedProperties({ propertyData  }) {
   return (
     <>
       <div className="row justify-content-center">

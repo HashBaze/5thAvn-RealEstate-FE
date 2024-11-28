@@ -3,7 +3,7 @@ import { FiSearch } from "../assets/icons/vander";
 import TextAnimation from "./textAnimation";
 import { propertyType } from "../data/data";
 
-const Searchbar = ({ filter }) => {
+const Searchbar = ({ filter, suburb }) => {
   const [isSelect, setIsSelect] = useState("Rent");
   const [formData, setFormData] = useState({
     bedRoomMin: "",
@@ -189,28 +189,11 @@ const Searchbar = ({ filter }) => {
                   style={{ width: "150px" }}
                 >
                   <option value="any">any</option>
-                  <option value="BENTLEIGH">BENTLEIGH</option>
-                  <option value="BERWICK">BERWICK</option>
-                  <option value="BEVERIDGE">BEVERIDGE</option>
-                  <option value="CHIRNSIDE PARK">CHIRNSIDE PARK</option>
-                  <option value="CLAYTON">CLAYTON</option>
-                  <option value="CLYDE3">CLYDE</option>
-                  <option value="CLYDE NORTH3">CLYDE NORTH</option>
-                  <option value="CRAIGIEBURN">CRAIGIEBURN</option>
-                  <option value="CRANBOURNE NORTH">CRANBOURNE NORTH</option>
-                  <option value="CRANBOURNE WEST">CRANBOURNE WEST</option>
-                  <option value="DOVETON">DOVETON</option>
-                  <option value="ENDEAVOUR HILLS">ENDEAVOUR HILLS</option>
-                  <option value="GLENROY">GLENROY</option>
-                  <option value="HAMPTON PARK">HAMPTON PARK</option>
-                  <option value="HAMPTON">HAMPTON</option>
-                  <option value="Melbourne">Melbourne</option>
-                  <option value="MICKLEHAM">MICKLEHAM</option>
-                  <option value="NARRE WARREN">NARRE WARREN</option>
-                  <option value="NARRE WARREN SOUTH">NARRE WARREN SOUTH</option>
-                  <option value="OFFICER">OFFICER</option>
-                  <option value="PAKENHAM">PAKENHAM</option>
-                  <option value="RINGWOOD NORTH">RINGWOOD NORTH</option>
+                  {suburb.map((value) => (
+                    <option key={value} value={value}>
+                      {value}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
