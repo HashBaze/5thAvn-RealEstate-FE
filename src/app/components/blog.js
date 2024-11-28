@@ -29,6 +29,7 @@ export default function Blog() {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [totalPages, setTotalPages] = useState(0);
+  const [error, setError] = useState("");
 
   function formatDate(dateString) {
     const date = new Date(dateString);
@@ -53,12 +54,6 @@ export default function Blog() {
       });
   };
 
-  const handleChnageSerch = (e) => {
-    if (e.target.value == " ") {
-      fetchBlogsByPagination(page, limit);
-    }
-  };
-
   const fetchRecentBlogs = async () => {
     showLoading(true);
     getRecentBlogs().then((response) => {
@@ -78,6 +73,10 @@ export default function Blog() {
   };
 
   const handleSerch = async () => {
+    if (serchTags.length == 0) {
+      setError("Please select tags to search");
+      return;
+    }
     showLoading(true);
     const req = {
       tags: serchTags,
@@ -321,54 +320,14 @@ export default function Blog() {
                 </div>
 
                 <div className="mt-5">
-                  <h6 className="pt-2 pb-2 bg-light rounded-3 text-center">
-                    Search
+                  <h6 className="pt-2 pb-2 rounded-3 text-center">
+                    Filter By Tags
                   </h6>
-
-                  <div className="search-bar">
-                    <div
-                      id="itemSearch2"
-                      className="menu-search row mt-4"
-                    >
-                      <form className="col-10">
-                        <div class="input-group mb-3 ">
-                          <input
-                            value={serchTags}
-                            type="text"
-                            className="form-control rounded-3 border"
-                            name="s"
-                            id="searchItem2"
-                            placeholder="Search..."
-                            onChange={handleChnageSerch}
-                            readOnly={true}
-                          />
-                          <button
-                            onClick={(e) => {
-                              e.preventDefault();
-                              setSerchTags([]);
-                            }}
-                            className="btn w-25 btn-sm border bg-transparent"
-                            type="button"
-                            id="button-addon2"
-                          >
-                            <IoMdClose />
-                          </button>
-                        </div>
-                      </form>
-                      <button
-                        onClick={handleSerch}
-                        type="button"
-                        className="btn p-2 h-50 col"
-                      >
-                        <FaSearch />
-                      </button>
-                    </div>
-                  </div>
                 </div>
 
                 <div className="mt-1 pt-2">
                   <small className="text-dark">
-                    Select Tags to filter blogs
+                    Select Tags and Search blogs
                   </small>
                   <ul className="tagcloud list-unstyled mt-2">
                     {tags.map((tag, index) => (
@@ -376,21 +335,42 @@ export default function Blog() {
                         <Link
                           onClick={(e) => {
                             e.preventDefault();
+                            setError("");
                             setSerchTags((prevTags) => {
-                              if (!prevTags.includes(tag)) {
+                              if (prevTags.includes(tag)) {
+                                return prevTags.filter(
+                                  (existingTag) => existingTag !== tag
+                                );
+                              } else {
                                 return [...prevTags, tag];
                               }
-                              return prevTags;
                             });
                           }}
                           href=""
-                          className="rounded-3 fw-medium text-dark inline-block py-2 px-3"
+                          className={`rounded-3 fw-medium text-dark inline-block py-2 px-3 ${
+                            serchTags.includes(tag) ? "bg-primary" : ""
+                          }`}
                         >
-                          {tag}
+                          {tag} {serchTags.includes(tag) ? <IoMdClose /> : ""}
                         </Link>
                       </li>
                     ))}
                   </ul>
+                  {error && (
+                    <small className="text-danger">
+                      Please select tags to search
+                    </small>
+                  )}
+
+                  <div className="bg-primary mt-2 rounded-3 text-center">
+                    <button
+                      onClick={handleSerch}
+                      type="button"
+                      className="btn col"
+                    >
+                      <FaSearch /> <small>Search</small>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

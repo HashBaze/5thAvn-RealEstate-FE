@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { IoIosCloseCircle } from "react-icons/io";
 import { FiSearch } from "react-icons/fi";
-import { propertyType } from "../data/data";
 
 export default function PropertyFilterModal({
   isModalOpen,
   handleCloseModal,
   fetchDataByFilter,
   setFilterData,
+  type,
 }) {
-  const [isSelect, setIsSelect] = useState(propertyType.RENT);
   const [formData, setFormData] = useState({
     bedRoomMin: "",
     bedRoomMax: "",
@@ -22,7 +21,7 @@ export default function PropertyFilterModal({
     pool: false,
     secaurity: false,
     page: 1,
-    isSelected: propertyType.RENT,
+    isSelected: type,
   });
 
   const options = [];
@@ -75,146 +74,111 @@ export default function PropertyFilterModal({
               <form className="card-body text-start container bg-white rounded p-3 w-100">
                 <div className="registration-form text-dark text-start">
                   <div className="row">
-                    <div className="row g-lg-0 p-2 row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 mb-3">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setIsSelect(propertyType.RENT);
-                          setFormData({
-                            ...formData,
-                            isSelected: propertyType.RENT,
-                          });
-                          setFilterData({
-                            ...formData,
-                            isSelected: propertyType.RENT,
-                          });
-                        }}
-                        className={`btn ${
-                          isSelect === "Rent" ? "btn-primary" : "bg-transparent"
-                        }`}
-                      >
-                        Rent
-                      </button>
-                      <button
-                        onClick={() => {
-                          setIsSelect(propertyType.SALE);
-                          setFormData({
-                            ...formData,
-                            isSelected: propertyType.SALE,
-                          });
-                          setFilterData({
-                            ...formData,
-                            isSelected: propertyType.SALE,
-                          });
-                        }}
-                        type="button"
-                        className={`btn ${
-                          isSelect === propertyType.SALE
-                            ? "btn-primary"
-                            : "bg-transparent"
-                        }`}
-                      >
-                        Sale
-                      </button>
-                    </div>
-
-                    <div className="col-6 col-md-3">
-                      <label
-                        htmlFor="validationCustom01"
-                        className="form-label"
-                      >
-                        Bed Rooms Min
-                      </label>
-                      <div className="mb-lg-0 mb-3 d-flex">
-                        <select
-                          onChange={(e) => {
-                            setFormData({
-                              ...formData,
-                              bedRoomMin: e.target.value,
-                            });
-                            setFilterData({
-                              ...formData,
-                              bedRoomMin: e.target.value,
-                            });
-                          }}
-                          className="form-select"
-                          aria-label="Default select example"
-                          style={{ width: "150px" }}
+                    {type != "Land" && (
+                      <div className="col-6 col-md-3">
+                        <label
+                          htmlFor="validationCustom01"
+                          className="form-label"
                         >
-                          <option>any</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select>
+                          Bed Rooms Min
+                        </label>
+                        <div className="mb-lg-0 mb-3 d-flex">
+                          <select
+                            onChange={(e) => {
+                              setFormData({
+                                ...formData,
+                                bedRoomMin: e.target.value,
+                              });
+                              setFilterData({
+                                ...formData,
+                                bedRoomMin: e.target.value,
+                              });
+                            }}
+                            className="form-select"
+                            aria-label="Default select example"
+                            style={{ width: "150px" }}
+                            value={formData.bedRoomMin}
+                          >
+                            <option>any</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
+                        </div>
                       </div>
-                    </div>
+                    )}
 
-                    <div className="col-6 col-md-3">
-                      <label
-                        htmlFor="validationCustom01"
-                        className="form-label"
-                      >
-                        Bed Rooms Max
-                      </label>
-                      <div className="mb-lg-0 mb-3 d-flex">
-                        <select
-                          onChange={(e) => {
-                            setFormData({
-                              ...formData,
-                              bedRoomMax: e.target.value,
-                            });
-                            setFilterData({
-                              ...formData,
-                              bedRoomMax: e.target.value,
-                            });
-                          }}
-                          className="form-select"
-                          aria-label="Default select example"
-                          style={{ width: "150px" }}
+                    {type != "Land" && (
+                      <div className="col-6 col-md-3">
+                        <label
+                          htmlFor="validationCustom01"
+                          className="form-label"
                         >
-                          <option>any</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select>
+                          Bed Rooms Max
+                        </label>
+                        <div className="mb-lg-0 mb-3 d-flex">
+                          <select
+                            onChange={(e) => {
+                              setFormData({
+                                ...formData,
+                                bedRoomMax: e.target.value,
+                              });
+                              setFilterData({
+                                ...formData,
+                                bedRoomMax: e.target.value,
+                              });
+                            }}
+                            className="form-select"
+                            aria-label="Default select example"
+                            style={{ width: "150px" }}
+                            value={formData.bedRoomMax}
+                          >
+                            <option>any</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
+                        </div>
                       </div>
-                    </div>
+                    )}
 
-                    <div className="col-6 col-md-3">
-                      <label
-                        htmlFor="validationCustom01"
-                        className="form-label"
-                      >
-                        House Category
-                      </label>
-                      <div className="mb-lg-0 mb-3 d-flex">
-                        <select
-                          onChange={(e) => {
-                            setFormData({
-                              ...formData,
-                              houseCategory: e.target.value,
-                            });
-                            setFilterData({
-                              ...formData,
-                              houseCategory: e.target.value,
-                            });
-                          }}
-                          className="form-select"
-                          aria-label="Default select example"
-                          style={{ width: "150px" }}
-                          value={formData.houseCategory}
+                    {type != "Land" && (
+                      <div className="col-6 col-md-3">
+                        <label
+                          htmlFor="validationCustom01"
+                          className="form-label"
                         >
-                          <option value="any">any</option>
-                          <option value="HOUSE">HOUSE</option>
-                          <option value="APARTMENT">APARTMENT</option>
-                          <option value="TOWNHOUSE">TOWNHOUSE</option>
-                        </select>
+                          House Category
+                        </label>
+                        <div className="mb-lg-0 mb-3 d-flex">
+                          <select
+                            onChange={(e) => {
+                              setFormData({
+                                ...formData,
+                                houseCategory: e.target.value,
+                              });
+                              setFilterData({
+                                ...formData,
+                                houseCategory: e.target.value,
+                              });
+                            }}
+                            className="form-select"
+                            aria-label="Default select example"
+                            style={{ width: "150px" }}
+                            value={formData.houseCategory}
+                          >
+                            <option value="any">any</option>
+                            <option value="HOUSE">HOUSE</option>
+                            <option value="APARTMENT">APARTMENT</option>
+                            <option value="TOWNHOUSE">TOWNHOUSE</option>
+                          </select>
+                        </div>
                       </div>
-                    </div>
+                    )}
 
                     <div className="col-6 col-md-3">
                       <label
@@ -238,6 +202,7 @@ export default function PropertyFilterModal({
                           className="form-select"
                           aria-label="Default select example"
                           style={{ width: "150px" }}
+                          value={formData.suburb}
                         >
                           <option value="any">any</option>
                           <option value="BENTLEIGH">BENTLEIGH</option>
@@ -274,38 +239,41 @@ export default function PropertyFilterModal({
                       </div>
                     </div>
 
-                    <div className="col-6 col-md-3">
-                      <label
-                        htmlFor="validationCustom01"
-                        className="form-label"
-                      >
-                        Bath Rooms
-                      </label>
-                      <div className="mb-lg-0 mb-3 d-flex">
-                        <select
-                          onChange={(e) => {
-                            setFormData({
-                              ...formData,
-                              bathRooms: e.target.value,
-                            });
-                            setFilterData({
-                              ...formData,
-                              bathRooms: e.target.value,
-                            });
-                          }}
-                          className="form-select"
-                          aria-label="Default select example"
-                          style={{ width: "150px" }}
+                    {type != "Land" && (
+                      <div className="col-6 col-md-3">
+                        <label
+                          htmlFor="validationCustom01"
+                          className="form-label"
                         >
-                          <option value="any">any</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select>
+                          Bath Rooms
+                        </label>
+                        <div className="mb-lg-0 mb-3 d-flex">
+                          <select
+                            onChange={(e) => {
+                              setFormData({
+                                ...formData,
+                                bathRooms: e.target.value,
+                              });
+                              setFilterData({
+                                ...formData,
+                                bathRooms: e.target.value,
+                              });
+                            }}
+                            className="form-select"
+                            aria-label="Default select example"
+                            style={{ width: "150px" }}
+                            value={formData.bathRooms}
+                          >
+                            <option value="any">any</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
+                        </div>
                       </div>
-                    </div>
+                    )}
 
                     <div className="col-6 col-md-3">
                       <label
@@ -329,6 +297,7 @@ export default function PropertyFilterModal({
                           className="form-select"
                           aria-label="Default select example"
                           style={{ width: "150px" }}
+                          value={formData.priceFrom}
                         >
                           <option value="any"></option>
 
@@ -363,6 +332,7 @@ export default function PropertyFilterModal({
                           className="form-select"
                           aria-label="Default select example"
                           style={{ width: "150px" }}
+                          value={formData.priceTo}
                         >
                           <option value="any"></option>
                           {options.map((value) => (
@@ -373,93 +343,162 @@ export default function PropertyFilterModal({
                         </select>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="row w-75 mt-3">
-                    <div className="col form-check">
-                      <input
-                        onChange={(e) =>{
-                          setFormData({
-                            ...formData,
-                            airConditioning: !formData.airConditioning,
-                          })
-
-                          setFilterData({
-                            ...formData,
-                            airConditioning: !formData.airConditioning,
-                          });
-                        }
-                         
-                        }
-                        className="form-check-input shadow"
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      ></input>
+                    <div className="col-6 col-md-3">
                       <label
-                        className="form-check-label"
-                        htmlFor="flexCheckDefault"
+                        htmlFor="validationCustom01"
+                        className="form-label"
                       >
-                        Air&nbsp;Conditioning
+                        Land Category
                       </label>
-                    </div>
-
-                    <div className="col form-check">
-                      <input
-                        onChange={(e) => {
-                          setFormData({ ...formData, pool: !formData.pool });
-
-                          setFilterData({
-                            ...formData,
-                            pool: !formData.pool,
-                          });
-                        }}
-                        className="form-check-input shadow"
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      ></input>
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexCheckChecked"
-                      >
-                        Pool
-                      </label>
-                    </div>
-
-                    <div className="col form-check">
-                      <input
-                        onChange={(e) =>{
-                          setFormData({
-                            ...formData,
-                            secaurity: !formData.secaurity,
-                          })
-
-                          setFilterData({
-                            ...formData,
-                            secaurity: !formData.secaurity,
-                          });
-                        }
-                          
-                        }
-                        className="form-check-input shadow"
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      ></input>
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexCheckChecked"
-                      >
-                        Security
-                      </label>
+                      <div className="mb-lg-0 mb-3 d-flex">
+                        <select
+                          onChange={(e) => {
+                            setFormData({
+                              ...formData,
+                              LandCategory: e.target.value,
+                            });
+                            setFilterData({
+                              ...formData,
+                              LandCategory: e.target.value,
+                            });
+                          }}
+                          className="form-select"
+                          aria-label="Default select example"
+                          style={{ width: "150px" }}
+                        >
+                          <option selected={true} value="any">any</option>
+                        </select>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="row justify-content-end p-3">
+
+
+                  {type != "Land" && (
+                    <div className="row w-75 mt-3">
+                      <div className="col form-check">
+                        <input
+                          onChange={(e) => {
+                            const updatedAirConditioning =
+                              !formData.airConditioning;
+                            setFormData({
+                              ...formData,
+                              airConditioning: updatedAirConditioning,
+                            });
+
+                            setFilterData({
+                              ...formData,
+                              airConditioning: updatedAirConditioning,
+                            });
+                          }}
+                          className="form-check-input shadow"
+                          type="checkbox"
+                          checked={formData.airConditioning}
+                          id="flexCheckDefault"
+                        />
+
+                        <label
+                          className="form-check-label"
+                          htmlFor="flexCheckDefault"
+                        >
+                          Air&nbsp;Conditioning
+                        </label>
+                      </div>
+
+                      <div className="col form-check">
+                        <input
+                          onChange={(e) => {
+                            const updatedPool = !formData.pool;
+                            setFormData({ ...formData, pool: updatedPool });
+                            setFilterData({ ...formData, pool: updatedPool });
+                          }}
+                          className="form-check-input shadow"
+                          type="checkbox"
+                          checked={formData.pool}
+                          id="flexCheckDefault"
+                        />
+
+                        <label
+                          className="form-check-label"
+                          htmlFor="flexCheckChecked"
+                        >
+                          Pool
+                        </label>
+                      </div>
+
+                      <div className="col form-check">
+                        <input
+                          onChange={(e) => {
+                            const updatedSecaurity = !formData.secaurity;
+                            setFormData({
+                              ...formData,
+                              secaurity: updatedSecaurity,
+                            });
+
+                            setFilterData({
+                              ...formData,
+                              secaurity: updatedSecaurity,
+                            });
+                          }}
+                          className="form-check-input shadow"
+                          type="checkbox"
+                          checked={formData.secaurity}
+                          id="flexCheckDefault"
+                        />
+
+                        <label
+                          className="form-check-label"
+                          htmlFor="flexCheckChecked"
+                        >
+                          Security
+                        </label>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="row justify-content-between p-3">
                     <button
                       onClick={() => {
-                        formData.isSelected = isSelect;
+                        setFormData({
+                          bedRoomMin: "",
+                          bedRoomMax: "",
+                          bathRooms: "",
+                          houseCategory: "any",
+                          suburb: "",
+                          priceFrom: "",
+                          priceTo: "",
+                          airConditioning: false,
+                          pool: false,
+                          secaurity: false,
+                          page: 1,
+                          isSelected: type,
+                        });
+                        setFilterData({
+                          bedRoomMin: "",
+                          bedRoomMax: "",
+                          bathRooms: "",
+                          houseCategory: "any",
+                          suburb: "",
+                          priceFrom: "",
+                          priceTo: "",
+                          airConditioning: false,
+                          pool: false,
+                          secaurity: false,
+                          page: 1,
+                          isSelected: type,
+                        });
+                        fetchDataByFilter();
+                      }}
+                      type="button"
+                      className="btn btn-secondary col-4"
+                    >
+                      <span className="ms-2 btn-serch">Clear</span>
+                    </button>
+                    <button
+                      onClick={() => {
+                        console.log(type);
+                        formData.isSelected = type;
                         fetchDataByFilter();
                       }}
                       type="button"
