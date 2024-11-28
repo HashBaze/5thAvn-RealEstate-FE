@@ -40,7 +40,7 @@ export default function PropertyListings() {
     pool: false,
     secaurity: false,
     page: 2,
-    isSelected: "Sale",
+    isSelected: type,
   });
 
   const handleOpenModal = () => {
@@ -59,7 +59,6 @@ export default function PropertyListings() {
       });
     } else {
       filterData.isSelected = type;
-      filterData.houseCategory = "HOUSE";
       setIsFilterOn(true);
       fetchFilter(1);
     }
@@ -114,7 +113,13 @@ export default function PropertyListings() {
                   Grid view Listing
                 </p>
                 <h5 className="heading fw-semibold mb-0 sub-heading text-white title-dark">
-                  Property Listing
+                  {type === "Sale"
+                    ? "For Sale"
+                    : type === "Rent"
+                    ? "For Rent"
+                    : type === "Land"
+                    ? "Lands"
+                    : ""}
                 </h5>
               </div>
             </div>
@@ -146,6 +151,87 @@ export default function PropertyListings() {
                 </div>
 
                 <div className="mt-4">
+                  <ul className="d-flex flex-column">
+                    <li className="list-inline-item mb-1">
+                      {filterData.bathRooms && (
+                        <span className="text-dark me-2 ms-1">
+                          Bathrooms:{" "}
+                          <span className="text-muted">
+                            {filterData.bathRooms}
+                          </span>
+                        </span>
+                      )}
+                    </li>
+                    <li className="list-inline-item mb-1">
+                      {filterData.bedRoomMin && filterData.bedRoomMax && (
+                        <span className="text-dark me-2">
+                          Bedrooms:{" "}
+                          <span className="text-muted">
+                            {filterData.bedRoomMin} - {filterData.bedRoomMax}
+                          </span>
+                        </span>
+                      )}
+                    </li>
+                    <li className="list-inline-item mb-1">
+                      {filterData.houseCategory &&
+                        filterData.houseCategory != "any" && (
+                          <span className="text-dark me-2">
+                            House Category:{" "}
+                            <span className="text-secondary">
+                              {filterData.houseCategory}
+                            </span>
+                          </span>
+                        )}
+                    </li>
+                    <li className="list-inline-item mb-1">
+                      {filterData.suburb && (
+                        <span className="text-dark me-2">
+                          Suburb:{" "}
+                          <span className="text-muted">
+                            {filterData.suburb}
+                          </span>
+                        </span>
+                      )}
+                    </li>
+                    <li className="list-inline-item mb-1">
+                      {filterData.priceFrom &&
+                        filterData.priceFrom != "any" &&
+                        filterData.priceTo &&
+                        filterData.priceTo != "any" && (
+                          <span className="text-dark me-2">
+                            Price:{" "}
+                            <span className="text-muted">
+                              {filterData.priceFrom} - {filterData.priceTo}
+                            </span>
+                          </span>
+                        )}
+                    </li>
+                    <li className="list-inline-item mb-1">
+                      {filterData.airConditioning && (
+                        <span className="text-dark me-2">
+                          Air Conditioning:{" "}
+                          <span className="text-muted">Yes</span>
+                        </span>
+                      )}
+                    </li>
+                    <li className="list-inline-item mb-1">
+                      {filterData.pool && (
+                        <span className="text-dark me-2">
+                          Pool: <span className="text-muted">Yes</span>
+                        </span>
+                      )}
+                    </li>
+                    <li className="list-inline-item mb-1">
+                      {filterData.secaurity && (
+                        <span className="text-dark me-2">
+                          Secaurity: <span className="text-muted">Yes</span>
+                        </span>
+                      )}
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="">
                   <button
                     onClick={handleOpenModal}
                     className="btn btn-primary w-100"
@@ -273,7 +359,6 @@ export default function PropertyListings() {
                     isFilterOn={isFilterOn}
                     fetchFilter={fetchFilter}
                     onPageChange={(data) => {
-                      console.log(data);
                       fetchData(data);
                     }}
                   />
@@ -291,6 +376,7 @@ export default function PropertyListings() {
         handleCloseModal={handleCloseModal}
         fetchDataByFilter={fetchDataByFilter}
         setFilterData={setFilterData}
+        type={type}
       />
     </>
   );

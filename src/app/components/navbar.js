@@ -90,7 +90,7 @@ export default function Navbar({ menuClass, scrolled }) {
                         setIsOpen(!isOpen);
                       }}
                     >
-                      Buy
+                      Listing
                     </a>
                     <span className="menu-arrow"></span>
                     {isMobile && isOpen && (
