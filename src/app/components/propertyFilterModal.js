@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoIosCloseCircle } from "react-icons/io";
 import { FiSearch } from "react-icons/fi";
+import { getAllSuburb } from "../service/propertyService";
 
 export default function PropertyFilterModal({
   isModalOpen,
@@ -23,6 +24,7 @@ export default function PropertyFilterModal({
     page: 1,
     isSelected: type,
   });
+  const [suburb, setSuburb] = useState([]);
 
   const options = [];
 
@@ -40,6 +42,12 @@ export default function PropertyFilterModal({
   options.push(4000000);
   options.push(5000000);
   options.push(10000000);
+
+  useEffect(() => {
+    getAllSuburb().then((data) => {
+      setSuburb(data);
+    });
+  }, []);
 
   return (
     <>
@@ -205,36 +213,11 @@ export default function PropertyFilterModal({
                           value={formData.suburb}
                         >
                           <option value="any">any</option>
-                          <option value="BENTLEIGH">BENTLEIGH</option>
-                          <option value="BERWICK">BERWICK</option>
-                          <option value="BEVERIDGE">BEVERIDGE</option>
-                          <option value="CHIRNSIDE PARK">CHIRNSIDE PARK</option>
-                          <option value="CLAYTON">CLAYTON</option>
-                          <option value="CLYDE3">CLYDE</option>
-                          <option value="CLYDE NORTH3">CLYDE NORTH</option>
-                          <option value="CRAIGIEBURN">CRAIGIEBURN</option>
-                          <option value="CRANBOURNE NORTH">
-                            CRANBOURNE NORTH
-                          </option>
-                          <option value="CRANBOURNE WEST">
-                            CRANBOURNE WEST
-                          </option>
-                          <option value="DOVETON">DOVETON</option>
-                          <option value="ENDEAVOUR HILLS">
-                            ENDEAVOUR HILLS
-                          </option>
-                          <option value="GLENROY">GLENROY</option>
-                          <option value="HAMPTON PARK">HAMPTON PARK</option>
-                          <option value="HAMPTON">HAMPTON</option>
-                          <option value="Melbourne">Melbourne</option>
-                          <option value="MICKLEHAM">MICKLEHAM</option>
-                          <option value="NARRE WARREN">NARRE WARREN</option>
-                          <option value="NARRE WARREN SOUTH">
-                            NARRE WARREN SOUTH
-                          </option>
-                          <option value="OFFICER">OFFICER</option>
-                          <option value="PAKENHAM">PAKENHAM</option>
-                          <option value="RINGWOOD NORTH">RINGWOOD NORTH</option>
+                          {suburb.map((value) => (
+                            <option key={value} value={value}>
+                              {value}
+                            </option>
+                          ))}
                         </select>
                       </div>
                     </div>
@@ -343,37 +326,38 @@ export default function PropertyFilterModal({
                         </select>
                       </div>
                     </div>
-
-                    <div className="col-6 col-md-3">
-                      <label
-                        htmlFor="validationCustom01"
-                        className="form-label"
-                      >
-                        Land Category
-                      </label>
-                      <div className="mb-lg-0 mb-3 d-flex">
-                        <select
-                          onChange={(e) => {
-                            setFormData({
-                              ...formData,
-                              LandCategory: e.target.value,
-                            });
-                            setFilterData({
-                              ...formData,
-                              LandCategory: e.target.value,
-                            });
-                          }}
-                          className="form-select"
-                          aria-label="Default select example"
-                          style={{ width: "150px" }}
+                    {type == "Land" && (
+                      <div className="col-6 col-md-3">
+                        <label
+                          htmlFor="validationCustom01"
+                          className="form-label"
                         >
-                          <option selected={true} value="any">any</option>
-                        </select>
+                          Land Category
+                        </label>
+                        <div className="mb-lg-0 mb-3 d-flex">
+                          <select
+                            onChange={(e) => {
+                              setFormData({
+                                ...formData,
+                                LandCategory: e.target.value,
+                              });
+                              setFilterData({
+                                ...formData,
+                                LandCategory: e.target.value,
+                              });
+                            }}
+                            className="form-select"
+                            aria-label="Default select example"
+                            style={{ width: "150px" }}
+                          >
+                            <option selected={true} value="any">
+                              any
+                            </option>
+                          </select>
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
-
-
 
                   {type != "Land" && (
                     <div className="row w-75 mt-3">
