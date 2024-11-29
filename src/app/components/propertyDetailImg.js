@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -7,25 +8,26 @@ import Lightbox from "react-18-image-lightbox";
 import "../../../node_modules/react-18-image-lightbox/style.css";
 
 export default function PropertyDetailImg({ images }) {
-  let [currentImageIndex, setCurrentImageIndex] = useState();
-  let [open, setIsOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0); 
+  const [open, setIsOpen] = useState(false);
 
-  let handleMovePrev = () => {
+  const handleMovePrev = () => {
     setCurrentImageIndex(
       (prevIndex) => (prevIndex + images.length - 1) % images.length
     );
   };
 
-  let handleMoveNext = () => {
+  const handleMoveNext = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
-  let handleImageClick = (index) => {
+  const handleImageClick = (index) => {
     setCurrentImageIndex(index);
     setIsOpen(true);
   };
 
-  let currentImage = images[0].url;
+  const currentImage = images[0]?.url;
+
   return (
     <div className="row g-2">
       <div className="col position-relative">
@@ -42,10 +44,10 @@ export default function PropertyDetailImg({ images }) {
             sizes="100vh"
             style={{ width: "100%", height: "70vh", objectFit: "cover" }}
             className="img-fluid rounded-3 shadow"
-            alt=""
+            alt="Property"
           />
         </Link>
-        {images.length !== 1 && (
+        {images.length > 1 && (
           <div
             className="position-absolute bottom-0 bg-opacity-50 rounded-1 end-0"
             style={{
@@ -76,14 +78,11 @@ export default function PropertyDetailImg({ images }) {
 
       {open && (
         <Lightbox
-          onImageLoad={() => {
-            images[currentImageIndex].url;
-          }}
           mainSrc={images[currentImageIndex].url}
           prevSrc={
-            images[(currentImageIndex + images.length - 1) % images.length]
+            images[(currentImageIndex + images.length - 1) % images.length].url
           }
-          nextSrc={images[currentImageIndex + 1]}
+          nextSrc={images[(currentImageIndex + 1) % images.length].url}
           onCloseRequest={() => setIsOpen(false)}
           onMovePrevRequest={handleMovePrev}
           onMoveNextRequest={handleMoveNext}

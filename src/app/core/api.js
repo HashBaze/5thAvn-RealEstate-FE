@@ -21,7 +21,6 @@ class ApiRequest {
   }
 
   async post(url, data, config) {
-    console.log(config);
     try {
       const response = await this.api.post(url, data, config);
       return response.data;
