@@ -53,7 +53,9 @@ const PaginationForProperties = ({
             }}
             disabled={!previusPage}
           >
-            Back
+            <span aria-hidden="true">
+              <i className="mdi mdi-chevron-left fs-6"></i>
+            </span>
           </button>
         </li>
 
@@ -90,7 +92,9 @@ const PaginationForProperties = ({
             }}
             disabled={!hasNextPage}
           >
-            Next
+            <span aria-hidden="true">
+              <i className="mdi mdi-chevron-right fs-6"></i>
+            </span>
           </button>
         </li>
       </ul>
