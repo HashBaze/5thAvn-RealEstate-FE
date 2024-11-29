@@ -37,7 +37,7 @@ const PaginationForProperties = ({
   return (
     <nav aria-label="Page navigation example position-relative top-5">
       <ul className="pagination">
-        <li className={`page-item ${previusPage ? "" : "disabled"}`}>
+        <li className={`page-item ${currentPage == 1 ? "disabled" : ""}`}>
           <button
             className="page-link"
             onClick={() => {
@@ -69,8 +69,13 @@ const PaginationForProperties = ({
               }`}
             >
               <button
-                className="page-link disabled"
-                onClick={() => handlePageChange(pageNumber)}
+                className={`page-link ${
+                  pageNumber === currentPage ? "active" : ""
+                }`}
+                onClick={() =>{ fetchFilter(pageNumber)
+                  setCurrentPage(pageNumber);
+                  setPreviusPage(true);
+                }}
               >
                 {pageNumber}
               </button>
