@@ -1,5 +1,5 @@
 "use client";
-import { Link } from "react-scroll";
+
 import Navbar from "./navbar";
 import { FiHexagon, FiMail, FiMapPin, FiPhone } from "react-icons/fi";
 import Footer from "./footer";
@@ -7,9 +7,12 @@ import UseScroll from "../hooks/UseScroll";
 import { useRef, useState } from "react";
 import { sendCompanyEmail } from "../service/mailService";
 import emailjs from "emailjs-com";
+import Swal from "sweetalert2";
+import Link from "next/link";
 
 export default function ContactUs() {
   const form = useRef();
+
   const [email, setEmail] = useState({
     email: "",
     subject: "",
@@ -19,30 +22,40 @@ export default function ContactUs() {
 
   const sendEmail = (e) => {
     e.preventDefault();
+    const validationErrors = validate();
 
-    emailjs
-      .send(
-        "service_s8n2pla",
-        "template_832255o",
-        {
-          from_email: email.email,
-          subject: email.subject,
-          message: email.messege,
-          name: email.name,
-        },
-        "De28oj9VShs97jK7c"
-      )
-      .then(
-        (result) => {
-          alert("Email sent successfully");
-          console.log(result.text);
-          form.current.reset();
-        },
-        (error) => {
-          alert("An error occurred, Please try again");
-          console.error(error.text);
-        }
-      );
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+    } else {
+      setErrors({});
+      emailjs
+        .send(
+          "service_s8n2pla",
+          "template_832255o",
+          {
+            from_email: email.email,
+            subject: email.subject,
+            message: email.messege,
+            name: email.name,
+          },
+          "De28oj9VShs97jK7c"
+        )
+        .then(
+          (result) => {
+            Swal.fire({
+              icon: "success",
+              title: "Email sent successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            form.current.reset();
+          },
+          (error) => {
+            alert("An error occurred, Please try again");
+            console.error(error.text);
+          }
+        );
+    }
   };
 
   const [errors, setErrors] = useState({});

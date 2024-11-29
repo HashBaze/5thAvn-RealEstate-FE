@@ -115,7 +115,7 @@ export default function FuaturedProperties({ propertyData  }) {
 
         <div className="col-12 mt-4 pt-2">
           <div className="text-center">
-            <Link href="/propertyListings" className="mt-3 fs-6 text-primary">
+            <Link href="/propertyListings?type=Sale" className="mt-3 fs-6 text-primary">
               View More Properties{" "}
               <i className="mdi mdi-arrow-right align-middle"></i>
             </Link>
