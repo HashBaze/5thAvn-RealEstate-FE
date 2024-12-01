@@ -38,7 +38,7 @@ export default function Footer() {
                     <ul className="list-unstyled social-icon foot-social-icon mb-0 mt-4">
                       <li className="list-inline-item">
                         <Link
-                          href="http://linkedin.com/company/shreethemes"
+                          href="https://www.linkedin.com/in/randy-navaratne-70021310/?originalSubdomain=au"
                           target="_blank"
                           className="rounded-3"
                         >
@@ -47,7 +47,7 @@ export default function Footer() {
                       </li>
                       <li className="list-inline-item">
                         <Link
-                          href="https://www.facebook.com/shreethemes"
+                          href="https://web.facebook.com/5thavenueRealEstate?_rdc=1&_rdr#"
                           target="_blank"
                           className="rounded-3"
                         >

@@ -184,6 +184,19 @@ export default function Navbar({ menuClass, scrolled }) {
                       Features
                     </Link>
                   </li>
+
+                  <li className="has-submenu parent-menu-item">
+                    <Link
+                      href="/contactus"
+                      className={
+                        `has-submenu parent-menu-item ${
+                          scrolled ? "text-dark" : "text-white"
+                        }` + (isMenu ? "text-dark" : "")
+                      }
+                    >
+                      Contact Us
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </li>

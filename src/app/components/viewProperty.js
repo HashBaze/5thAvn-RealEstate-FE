@@ -172,7 +172,7 @@ export default function ViewProperty() {
               </div>
             </div>
           </div>
-          {/* <ProprtySlider /> */}
+          <ProprtySlider />
         </div>
       </section>
       <Footer />
