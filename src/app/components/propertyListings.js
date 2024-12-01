@@ -72,16 +72,9 @@ export default function PropertyListings() {
   };
 
   useEffect(() => {
-    if (type == "Sale") {
-      fetchData({
-        first: 10,
-        after: null,
-      });
-    } else {
-      formData.isSelected = type;
-      setIsFilterOn(true);
-      fetchFilter(1);
-    }
+    formData.isSelected = type;
+    setIsFilterOn(true);
+    fetchFilter(1);
     getAllSuburb().then((data) => {
       setSuburb(data);
     });
@@ -581,31 +574,33 @@ export default function PropertyListings() {
                 )}
 
                 <div className="mt-2 d-flex justify-content-between">
-                 {!isMobile && (<button
-                    onClick={()=>{
-                      setFormData({
-                        bedRoomMin: "",
-                        bedRoomMax: "",
-                        bathRooms: "",
-                        houseCategory: "any",
-                        suburb: "",
-                        priceFrom: "",
-                        priceTo: "",
-                        airConditioning: false,
-                        pool: false,
-                        secaurity: false,
-                        page: 2,
-                        isSelected: type,
-                      });
-                      fetchData({
-                        first: 10,
-                        after: null,
-                      });
-                    }}
-                    className="btn btn-secondary btn-sm w-25"
-                  >
-                    Clear
-                  </button>)} 
+                  {!isMobile && (
+                    <button
+                      onClick={() => {
+                        setFormData({
+                          bedRoomMin: "",
+                          bedRoomMax: "",
+                          bathRooms: "",
+                          houseCategory: "any",
+                          suburb: "",
+                          priceFrom: "",
+                          priceTo: "",
+                          airConditioning: false,
+                          pool: false,
+                          secaurity: false,
+                          page: 2,
+                          isSelected: type,
+                        });
+                        fetchData({
+                          first: 10,
+                          after: null,
+                        });
+                      }}
+                      className="btn btn-secondary btn-sm w-25"
+                    >
+                      Clear
+                    </button>
+                  )}
                   <button
                     onClick={isMobile ? setIsModalOpen : fetchDataByFilter}
                     className="btn ms-2 btn-primary w-100"
