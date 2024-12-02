@@ -189,7 +189,9 @@ export default function Blog() {
                         <div className="card-body content p-0">
                           <div className="p-4">
                             <Link
-                              href={`/blogs/blogDetail?id=${item._id}`}
+                              href={`/blogs/blogDetail?blog=${item.title
+                                .toLowerCase()
+                                .replace(/\s+/g, "-")}-${item._id}`}
                               className="title fw-medium fs-5 text-dark"
                             >
                               {item.title}
@@ -304,7 +306,9 @@ export default function Blog() {
                           />
                           <div className="flex-1 ms-3">
                             <Link
-                              href={`/blogs/blogDetail?id=${item._id}`}
+                              href={`/blogs/blogDetail?blog=${item.title
+                                .toLowerCase()
+                                .replace(/\s+/g, "-")}-${item._id}`}
                               className="d-block title text-dark fw-medium"
                             >
                               {item.title}

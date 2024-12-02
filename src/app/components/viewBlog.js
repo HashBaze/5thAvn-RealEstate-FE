@@ -14,7 +14,8 @@ import Spinner from "./spinner";
 export default function ViewBlog() {
   const { loading, showLoading } = useAuth();
   const searchParams = useSearchParams();
-  const id = searchParams.get("id");
+  let id = searchParams.get("blog");
+  id = id.split("-").pop();
   const [blog, setBlog] = useState({});
   const [tags, setTags] = useState([]);
   const [additionalImage, setAdditionalImages] = useState([]);
