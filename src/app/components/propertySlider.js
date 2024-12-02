@@ -3,14 +3,12 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { FiHome, FiHeart, FiCamera } from "../assets/icons/vander";
 
 const TinySlider = dynamic(() => import("tiny-slider-react"), { ssr: false });
 import "tiny-slider/dist/tiny-slider.css";
 import { getPropertys } from "../service/propertyService";
 
 export default function PropertySlider() {
-  const [isClient, setIsClient] = useState(false);
   const [propertyData, setPropertyData] = useState([]);
 
   const fetchData = (data) => {
@@ -25,7 +23,6 @@ export default function PropertySlider() {
       after: null,
     });
   }, []);
-
 
   const settings = {
     container: ".tiny-slide-three",
@@ -52,7 +49,6 @@ export default function PropertySlider() {
     },
   };
 
-
   return (
     <div className="row">
       <div className="col-12">
@@ -78,7 +74,9 @@ export default function PropertySlider() {
                   </div>
                   <div className="card-body content p-4">
                     <Link
-                      href={`/propertyListings/viewProperty?id=${item.node.id}`}
+                      href={`/propertyListings/sale/viewProperty?property=${item.node.formattedAddress
+                        .toLowerCase()
+                        .replace(/\s+/g, "-")}-${item.node.id}`}
                       className="title fs-5 text-dark fw-medium"
                     >
                       {item.node.headline}

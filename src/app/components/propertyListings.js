@@ -16,7 +16,6 @@ import {
 } from "../service/propertyService";
 import PaginationForPropertys from "./paginationForPropertys";
 import { useSearchParams } from "next/navigation";
-import { FiSearch } from "react-icons/fi";
 
 export default function PropertyListings() {
   const options = [];
@@ -632,7 +631,9 @@ export default function PropertyListings() {
                             </div>
                             <div className="card-body content p-3">
                               <Link
-                                href={`/propertyListings/viewProperty?id=${item.node.id}`}
+                                href={`/propertyListings/${type.toLocaleLowerCase()}/viewProperty?property=${item.node.formattedAddress
+                                  .toLowerCase()
+                                  .replace(/\s+/g, "-")}-${item.node.id}`}
                                 className="title fs-5 text-dark fw-medium"
                               >
                                 {item.node.formattedAddress}
