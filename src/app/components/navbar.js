@@ -31,10 +31,16 @@ export default function Navbar({ menuClass, scrolled }) {
         <div className="container">
           <Image
             src="/images/logo/logo.png"
+            style={{
+              cursor: "pointer",
+            }}
             width={132}
             height={50}
             className="logo-light-mode mt-2"
-            alt=""
+            alt="LOGO"
+            onClick={() => {
+              window.location.href = "/";
+            }}
           />
 
           <div className="menu-extras">

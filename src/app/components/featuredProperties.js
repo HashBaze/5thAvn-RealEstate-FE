@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function FuaturedProperties({ propertyData  }) {
+export default function FuaturedProperties({ propertyData }) {
   return (
     <>
       <div className="row justify-content-center">
@@ -40,10 +40,12 @@ export default function FuaturedProperties({ propertyData  }) {
                   </div>
                   <div className="card-body content p-4">
                     <Link
-                      href={`/propertyListings/viewProperty?id=${item.node.id}`}
+                      href={`/propertyListings/sale/viewProperty?property=${item.node.formattedAddress
+                        .toLowerCase()
+                        .replace(/\s+/g, "-")}-${item.node.id}`}
                       className="title fs-5 text-dark fw-medium"
                     >
-                      {item.node.headline}
+                      {item.node.formattedAddress}
                     </Link>
 
                     <ul className="list-unstyled border-top border-bottom d-flex align-items-center justify-content-between">
@@ -102,7 +104,7 @@ export default function FuaturedProperties({ propertyData  }) {
         ) : (
           <div className="d-flex flex-column justify-content-center">
             <Image
-            className="img-fluid m-auto"
+              className="img-fluid m-auto"
               src="/images/no-data.png"
               width={200}
               height={200}
@@ -115,7 +117,10 @@ export default function FuaturedProperties({ propertyData  }) {
 
         <div className="col-12 mt-4 pt-2">
           <div className="text-center">
-            <Link href="/propertyListings?type=Sale" className="mt-3 fs-6 text-primary">
+            <Link
+              href="/propertyListings?type=Sale"
+              className="mt-3 fs-6 text-primary"
+            >
               View More Properties{" "}
               <i className="mdi mdi-arrow-right align-middle"></i>
             </Link>

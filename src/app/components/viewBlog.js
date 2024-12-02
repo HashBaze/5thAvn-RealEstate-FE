@@ -14,7 +14,8 @@ import Spinner from "./spinner";
 export default function ViewBlog() {
   const { loading, showLoading } = useAuth();
   const searchParams = useSearchParams();
-  const id = searchParams.get("id");
+  let id = searchParams.get("blog");
+  id = id.split("-").pop();
   const [blog, setBlog] = useState({});
   const [tags, setTags] = useState([]);
   const [additionalImage, setAdditionalImages] = useState([]);
@@ -155,18 +156,20 @@ export default function ViewBlog() {
                       __html: blog.description2,
                     }}
                   ></p>
-                  <div className="p-1 w-100">
-                    <iframe
-                      style={{
-                        height: "400px",
-                      }}
-                      className="w-100"
-                      src={link}
-                      frameBorder="0"
-                      allowFullScreen
-                      title="YouTube Video"
-                    ></iframe>
-                  </div>
+                  {blog.youtubeLink && (
+                    <div className="p-1 w-100">
+                      <iframe
+                        style={{
+                          height: "400px",
+                        }}
+                        className="w-100"
+                        src={link}
+                        frameBorder="0"
+                        allowFullScreen
+                        title="YouTube Video"
+                      ></iframe>
+                    </div>
+                  )}
                   <p
                     className="text-muted mt-2 h-50"
                     dangerouslySetInnerHTML={{

@@ -3,16 +3,14 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./navbar";
 import PropertyDetailImg from "./propertyDetailImg";
-import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import ProprtySlider from "./propertySlider";
 import Footer from "./footer";
 import { getProperty } from "../service/propertyService";
 import Spinner from "./spinner";
 
-export default function ViewProperty() {
-  const searchParams = useSearchParams();
-  const id = searchParams.get("id");
+export default function ViewProperty({type , id}) {
+  
   const [loading, setLoading] = useState(false);
   const [images, setImages] = React.useState([]);
   const [property, setProperty] = React.useState({
@@ -38,6 +36,9 @@ export default function ViewProperty() {
     getProperty(id).then((response) => {
       setProperty(response.property);
       setImages(response.property.images);
+      setLoading(false);
+    }).catch((error) => {
+      console.error(error);
       setLoading(false);
     });
   }, [id]);
