@@ -210,7 +210,9 @@ export default function Blog() {
                             ></p>
 
                             <Link
-                              href={`/blogs/blogDetail?id=${item._id}`}
+                              href={`/blogs/blogDetail?blog=${item.title
+                                .toLowerCase()
+                                .replace(/\s+/g, "-")}-${item._id}`}
                               className="text-dark read-more"
                             >
                               Read More{" "}
