@@ -6,21 +6,20 @@ import dynamic from "next/dynamic";
 
 const TinySlider = dynamic(() => import("tiny-slider-react"), { ssr: false });
 import "tiny-slider/dist/tiny-slider.css";
-import { getPropertys } from "../service/propertyService";
+import { getPropertyByFilter } from "../service/propertyService";
 
 export default function PropertySlider() {
   const [propertyData, setPropertyData] = useState([]);
 
   const fetchData = (data) => {
-    getPropertys(data).then((data) => {
-      setPropertyData(data.properties.edges);
+    getPropertyByFilter(data).then((data) => {
+      setPropertyData(data.edges);
     });
   };
 
   useEffect(() => {
     fetchData({
-      first: 6,
-      after: null,
+      isSelected: "Sale",
     });
   }, []);
 
@@ -54,7 +53,7 @@ export default function PropertySlider() {
       <div className="col-12">
         <div className="tiny-slide-three">
           <TinySlider settings={settings}>
-            {propertyData.map((item, index) => (
+            {propertyData.slice(0, 6).map((item, index) => (
               <div className="tiny-slide" key={index}>
                 <div className="card property border-0 shadow position-relative overflow-hidden rounded-3 m-3">
                   <div className="property-image position-relative overflow-hidden shadow">

@@ -37,6 +37,7 @@ export default function PropertyListings() {
 
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
+  const status = searchParams.get("status");
 
   const [loading, setLoading] = useState(false);
   const isScrolled = UseScroll();
@@ -60,6 +61,7 @@ export default function PropertyListings() {
     secaurity: false,
     page: 2,
     isSelected: type,
+    status: status,
   });
 
   const handleOpenModal = () => {
@@ -72,12 +74,13 @@ export default function PropertyListings() {
 
   useEffect(() => {
     formData.isSelected = type;
+    formData.status = status;
     setIsFilterOn(true);
     fetchFilter(1);
     getAllSuburb().then((data) => {
       setSuburb(data);
     });
-  }, [type]);
+  }, [type, status]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -116,6 +119,50 @@ export default function PropertyListings() {
       setLoading(false);
       window.scrollTo(0, 0);
     });
+  };
+
+  const getOrdinalSuffix = (day) => {
+    if (day > 3 && day < 21) return "th"; // 4th to 20th
+    switch (day % 10) {
+      case 1:
+        return "st";
+      case 2:
+        return "nd";
+      case 3:
+        return "rd";
+      default:
+        return "th";
+    }
+  };
+
+  const getFormattedDate = (dateString) => {
+    let date = new Date(dateString);
+
+    const dayName = dateString.toLocaleString("en-US", { weekday: "long" });
+    const day = dateString.getDate();
+    const monthName = dateString.toLocaleString("en-US", { month: "long" });
+    const year = dateString.getFullYear();
+    const startTime = dateString.toLocaleString("en-US", {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
+
+    const endTime = new Date(
+      dateString.getTime() + 30 * 60 * 1000
+    ).toLocaleString("en-US", {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
+
+    const formattedDate = `${dayName}, ${day
+      .toString()
+      .padStart(2, "0")}${getOrdinalSuffix(
+      day
+    )} ${monthName} ${startTime} to ${endTime}`;
+
+    return formattedDate;
   };
 
   return (
@@ -630,18 +677,26 @@ export default function PropertyListings() {
                               />
                             </div>
                             <div className="card-body content p-3">
-                              <Link
-                                href={`/propertyListings/${type.toLocaleLowerCase()}/viewProperty?property=${item.node.formattedAddress
-                                  .toLowerCase()
-                                  .replace(/\s+/g, "-")}-${item.node.id}`}
-                                className="title fs-5 text-dark fw-medium"
+                              <div>
+                                <Link
+                                  href={`/propertyListings/${type.toLocaleLowerCase()}/viewProperty?property=${item.node.formattedAddress
+                                    .toLowerCase()
+                                    .replace(/\s+/g, "-")}-${item.node.id}`}
+                                  className="title fs-5 text-dark fw-medium"
+                                >
+                                  {item.node.headline
+                                    ? item.node.headline
+                                    : "N/A"}
+                                </Link>
+                              </div>
+                              <small
+                                className="text-secondary"
+                                style={{
+                                  fontSize: "0.8rem",
+                                }}
                               >
                                 {item.node.formattedAddress}
-                              </Link>
-
-                              <p className="text-muted">
-                                {item.node.listingDetails.__typename}
-                              </p>
+                              </small>
 
                               <ul className="list-unstyled border-top border-bottom d-flex align-items-center justify-content-between">
                                 {item.node.landSize && (
@@ -680,23 +735,116 @@ export default function PropertyListings() {
                                 )}
                               </ul>
                               <ul className="list-unstyled d-flex justify-content-between mt-2 mb-0">
-                                {item.node.price != 0 && item.node.price && (
+                                {item.node.price != 0 &&
+                                  item.node.price &&
+                                  item.node.status === "SOLD" && (
+                                    <li className="list-inline-item mb-0">
+                                      <p className="fw-medium mb-0">
+                                        <span
+                                          className="bg-primary p-2 rounded text-white"
+                                          style={{
+                                            fontSize: "0.8rem",
+                                          }}
+                                        >
+                                          {item.node.status}
+                                        </span>{" "}
+                                        &nbsp; - &nbsp; ${item.node.price}
+                                      </p>
+                                    </li>
+                                  )}
+
+                                {type == "Land" && (
                                   <li className="list-inline-item mb-0">
-                                    <span className="text-muted">Price</span>
-                                    <p className="fw-medium mb-0">
-                                      {item.node.price} $
-                                    </p>
+                                    <span
+                                      style={{
+                                        fontSize: "0.8rem",
+                                      }}
+                                    >
+                                      <span
+                                        className={`p-2 text-white rounded ${
+                                          item.node.status === "ACTIVE"
+                                            ? "bg-success"
+                                            : "bg-danger"
+                                        }`}
+                                      >
+                                        {item.node.status}
+                                      </span>{" "}
+                                      {item.node.status === "ACTIVE" ? (
+                                        <span>
+                                          &nbsp;{"$"} {item.node.price}
+                                        </span>
+                                      ) : (
+                                        ""
+                                      )}
+                                    </span>
                                   </li>
                                 )}
 
-                                {item.node.soldDate && (
+                                {type == "Rent" && (
                                   <li className="list-inline-item mb-0">
-                                    <span className="text-muted">Sold On</span>
-                                    <p className="fw-medium mb-0">
-                                      {item.node.soldDate}
-                                    </p>
+                                    <span
+                                      style={{
+                                        fontSize: "0.8rem",
+                                      }}
+                                    >
+                                      <span
+                                        className={`p-2 text-white rounded ${
+                                          item.node.status === "ACTIVE"
+                                            ? "bg-success"
+                                            : "bg-danger"
+                                        }`}
+                                      >
+                                        {item.node.status === "ACTIVE"
+                                          ? "Home Open"
+                                          : item.node.status}
+                                      </span>{" "}
+                                      {item.node.status === "ACTIVE" ? (
+                                        <span>
+                                          &nbsp;{"$"}
+                                          {item.node.listingDetails
+                                            .rentalPerWeek / 100}
+                                          /week
+                                        </span>
+                                      ) : (
+                                        ""
+                                      )}
+                                    </span>
                                   </li>
                                 )}
+
+                                {item.node.price != 0 &&
+                                  item.node.price &&
+                                  item.node.status !== "SOLD" &&
+                                  type != "Land" &&
+                                  type != "Rent" && (
+                                    <li className="list-inline-item mb-0">
+                                      <span
+                                        className="bg-success p-2 text-white rounded"
+                                        style={{
+                                          fontSize: "0.8rem",
+                                        }}
+                                      >
+                                        {item.node.status == "ACTIVE"
+                                          ? "Home Open"
+                                          : "OFF MARKET"}
+                                      </span>
+                                      <p className="fw-medium mb-0 mt-2">
+                                        {item.node.altToPrice}
+                                      </p>
+                                    </li>
+                                  )}
+
+                                {status === "ACTIVE" &&
+                                  item.node.daysOnMarket < 20 && (
+                                    <li className="list-inline-item mb-0">
+                                      <span
+                                        className="bg-warning p-2 text-white rounded"
+                                        style={{ fontSize: "0.8rem" }}
+                                      >
+                                        NEW
+                                      </span>
+                                    </li>
+                                  )}
                               </ul>
                             </div>
                           </div>
