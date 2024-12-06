@@ -43,16 +43,15 @@ export default function Home() {
 
   const fetchData = (data) => {
     setLoading(true);
-    getPropertys(data).then((data) => {
-      setPropertyData(data.properties.edges);
+    getPropertyByFilter(data).then((data) => {
+      setPropertyData(data.edges);
       setLoading(false);
     });
   };
 
   useEffect(() => {
     fetchData({
-      first: 6,
-      after: null,
+      isSelected: "Sale",
     });
     getAllSuburb().then((data) => {
       setSuburb(data);
@@ -138,10 +137,10 @@ export default function Home() {
           </div>
         </div>
 
-        <Searchbar filter={filer} suburb={suburb}/>
+        <Searchbar filter={filer} suburb={suburb} />
 
         <div className="container">
-          <FeaturedProperties propertyData={propertyData}  />
+          <FeaturedProperties propertyData={propertyData} />
         </div>
 
         <div className="mt-100">
