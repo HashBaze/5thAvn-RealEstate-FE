@@ -8,6 +8,12 @@ export default function Navbar({ menuClass, scrolled }) {
   const [isMobile, setIsMobile] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
+  const PROPERTYSTATUS = {
+    ACTIVE: "ACTIVE",
+    SOLD: "SOLD",
+    LEASED: "LEASED",
+  };
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -81,6 +87,7 @@ export default function Navbar({ menuClass, scrolled }) {
                     <span className="link-bg-white"></span>
                   </li>
 
+                  {/* Buying */}
                   <li className="has-submenu parent-menu-item">
                     <a
                       className={
@@ -96,7 +103,131 @@ export default function Navbar({ menuClass, scrolled }) {
                         setIsOpen(!isOpen);
                       }}
                     >
-                      Listing
+                      Buying
+                    </a>
+                    <span className="menu-arrow"></span>
+                    {isMobile && isOpen && (
+                      <div className="p-3 text-dark d-flex flex-column gap-3 ms-4">
+                        <Link
+                          href={`/propertyListings?type=Sale&status=${PROPERTYSTATUS.ACTIVE}`}
+                          className="sub-menu-item"
+                        >
+                          Property
+                        </Link>
+
+                        <Link
+                          href="/propertyListings?type=Land"
+                          className="sub-menu-item"
+                        >
+                          Land
+                        </Link>
+
+                        <Link href="#" className="sub-menu-item">
+                          Buy With Us
+                        </Link>
+                      </div>
+                    )}
+
+                    <ul className="submenu">
+                      <li>
+                        <Link
+                          href={`/propertyListings?type=Sale&status=${PROPERTYSTATUS.ACTIVE}`}
+                          className="sub-menu-item"
+                        >
+                          Property
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/propertyListings?type=Land"
+                          className="sub-menu-item"
+                        >
+                          Land
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="#" className="sub-menu-item">
+                          Buy With Us
+                        </Link>
+                      </li>
+                    </ul>
+                  </li>
+
+                  {/* selling */}
+                  <li className="has-submenu parent-menu-item">
+                    <a
+                      className={
+                        `has-submenu parent-menu-item ${
+                          scrolled ? "text-dark" : "text-white"
+                        }` + (isMenu ? "text-dark" : "")
+                      }
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const parent = e.target.closest(".has-submenu");
+                        parent.classList.toggle("active");
+                        setIsOpen(!isOpen);
+                      }}
+                    >
+                      Selling
+                    </a>
+                    <span className="menu-arrow"></span>
+                    {isMobile && isOpen && (
+                      <div className="p-3 text-dark d-flex flex-column gap-3 ms-4">
+                        <Link href="#" className="sub-menu-item text-dark">
+                          Our Selling Process
+                        </Link>
+
+                        <Link
+                          href={`/propertyListings?type=Sale&status=${PROPERTYSTATUS.SOLD}`}
+                          className="sub-menu-item text-dark"
+                        >
+                          Recent Sales
+                        </Link>
+
+                        <Link href="#" className="sub-menu-item text-dark">
+                          Digital Appraisal
+                        </Link>
+                      </div>
+                    )}
+
+                    <ul className="submenu">
+                      <li>
+                        <Link href="#" className="sub-menu-item text-dark">
+                          Our Selling Process
+                        </Link>
+
+                        <Link
+                          href={`/propertyListings?type=Sale&status=${PROPERTYSTATUS.SOLD}`}
+                          className="sub-menu-item text-dark"
+                        >
+                          Recent Sales
+                        </Link>
+
+                        <Link href="#" className="sub-menu-item text-dark">
+                          Digital Appraisal
+                        </Link>
+                      </li>
+                    </ul>
+                  </li>
+
+                  {/* Renting */}
+                  <li className="has-submenu parent-menu-item">
+                    <a
+                      className={
+                        `has-submenu parent-menu-item ${
+                          scrolled ? "text-dark" : "text-white"
+                        }` + (isMenu ? "text-dark" : "")
+                      }
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const parent = e.target.closest(".has-submenu");
+                        parent.classList.toggle("active");
+                        setIsOpen(!isOpen);
+                      }}
+                    >
+                      Renting
                     </a>
                     <span className="menu-arrow"></span>
                     {isMobile && isOpen && (
@@ -105,21 +236,11 @@ export default function Navbar({ menuClass, scrolled }) {
                           href="/propertyListings?type=Rent"
                           className="sub-menu-item text-dark"
                         >
-                          Rent
+                          Current Listings
                         </Link>
 
-                        <Link
-                          href="/propertyListings?type=Sale"
-                          className="sub-menu-item text-dark"
-                        >
-                          Property
-                        </Link>
-
-                        <Link
-                          href="/propertyListings?type=Land"
-                          className="sub-menu-item text-dark"
-                        >
-                          Land
+                        <Link href="#" className="sub-menu-item text-dark">
+                          Rental Appraisal
                         </Link>
                       </div>
                     )}
@@ -128,25 +249,13 @@ export default function Navbar({ menuClass, scrolled }) {
                       <li>
                         <Link
                           href="/propertyListings?type=Rent"
-                          className="sub-menu-item"
+                          className="sub-menu-item text-dark"
                         >
-                          Rent
+                          Current Listings
                         </Link>
-                      </li>
-                      <li>
-                        <Link
-                          href="/propertyListings?type=Sale"
-                          className="sub-menu-item"
-                        >
-                          Property
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          href="/propertyListings?type=Land"
-                          className="sub-menu-item"
-                        >
-                          Land
+
+                        <Link href="#" className="sub-menu-item text-dark">
+                          Rental Appraisal
                         </Link>
                       </li>
                     </ul>

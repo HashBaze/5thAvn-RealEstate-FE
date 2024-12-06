@@ -3,21 +3,20 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { getPropertys } from "../service/propertyService";
+import { getPropertyByFilter } from "../service/propertyService";
 
 export default function IndexThreeSlider() {
   const [propertyData, setPropertyData] = useState([]);
 
   const fetchData = (data) => {
-    getPropertys(data).then((data) => {
-      setPropertyData(data.properties.edges);
+    getPropertyByFilter(data).then((data) => {
+      setPropertyData(data.edges);
     });
   };
 
   useEffect(() => {
     fetchData({
-      first: 5,
-      after: null,
+      isSelected: "Sale",
     });
   }, []);
 
@@ -40,7 +39,7 @@ export default function IndexThreeSlider() {
         swipeable={false}
         showArrows={false}
       >
-        {propertyData.map((item, index) => {
+        {propertyData.slice(0, 5).map((item, index) => {
           return (
             <div
               key={index}
@@ -58,18 +57,18 @@ export default function IndexThreeSlider() {
                 <div className="row">
                   <div className="col-12">
                     <div className="title-heading text-start">
-                      <h1 className="heading fw-bold text-white title-dark mb-3">
-                        {item.node.formattedAddress || "Property Title"}
-                      </h1>
+                      <h2 className="heading fw-bold text-white title-dark mb-3">
+                        {item.node.headline || "Property Title"}
+                      </h2>
                       <p className="para-desc text-white-50 title-dark mb-0">
-                        {item.node.headline ||
+                        {item.node.formattedAddress ||
                           "A great platform to buy, sell, and rent properties without any agent or commissions."}
                       </p>
 
                       <div className="mt-4 pt-2 position-relative">
                         <Link
                           style={{ zIndex: 9999, position: "absolute" }}
-                          href={`/propertyListings/sale/viewProperty?property=${item.node.formattedAddress
+                          href={`/propertyListings/sale/viewProperty?property=${item.node.headline
                             .toLowerCase()
                             .replace(/\s+/g, "-")}-${item.node.id}`}
                           className="btn btn-pills btn-primary"

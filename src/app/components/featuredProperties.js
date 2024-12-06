@@ -45,7 +45,7 @@ export default function FuaturedProperties({ propertyData }) {
                         .replace(/\s+/g, "-")}-${item.node.id}`}
                       className="title fs-5 text-dark fw-medium"
                     >
-                      {item.node.formattedAddress}
+                      {item.node.headline}
                     </Link>
 
                     <ul className="list-unstyled border-top border-bottom d-flex align-items-center justify-content-between">
@@ -86,15 +86,24 @@ export default function FuaturedProperties({ propertyData }) {
                     </ul>
 
                     <ul className="list-unstyled d-flex justify-content-between mt-2 mb-0">
-                      {item.node.price != 0 && item.node.price && (
-                        <li className="list-inline-item mb-0">
-                          <small className="text-muted">Price</small>
-                          <br />
-                          <small className="fw-medium mb-0">
-                            {item.node.price} $
-                          </small>
-                        </li>
-                      )}
+                      {item.node.price != 0 &&
+                        item.node.price && (
+                          <li className="list-inline-item mb-0 d-flex gap-2">
+                            <span
+                              className="bg-success p-2 text-white rounded"
+                              style={{
+                                fontSize: "0.8rem",
+                              }}
+                            >
+                              {item.node.status == "ACTIVE"
+                                ? "Home Open"
+                                : item.node.status}
+                            </span>
+                            <p className="fw-medium mb-0 mt-2">
+                              {item.node.altToPrice}
+                            </p>
+                          </li>
+                        )}
                     </ul>
                   </div>
                 </div>
