@@ -9,8 +9,7 @@ import Footer from "./footer";
 import { getProperty } from "../service/propertyService";
 import Spinner from "./spinner";
 
-export default function ViewProperty({type , id}) {
-  
+export default function ViewProperty({ id }) {
   const [loading, setLoading] = useState(false);
   const [images, setImages] = React.useState([]);
   const [property, setProperty] = React.useState({
@@ -24,6 +23,11 @@ export default function ViewProperty({type , id}) {
     longitude: "",
     latitude: "",
     streetNo: "",
+    floorplans: [
+      {
+        url: "",
+      },
+    ],
     listingDetails: {
       bedrooms: "",
       bathrooms: "",
@@ -33,14 +37,16 @@ export default function ViewProperty({type , id}) {
 
   useEffect(() => {
     setLoading(true);
-    getProperty(id).then((response) => {
-      setProperty(response.property);
-      setImages(response.property.images);
-      setLoading(false);
-    }).catch((error) => {
-      console.error(error);
-      setLoading(false);
-    });
+    getProperty(id)
+      .then((response) => {
+        setProperty(response.property);
+        setImages(response.property.images);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoading(false);
+      });
   }, [id]);
 
   return (
@@ -142,6 +148,18 @@ export default function ViewProperty({type , id}) {
                     <span className="small text-muted">Street NO</span>
                     <span className="small">{property.streetNo}</span>
                   </div>
+
+                  {property.floorplans && (
+                    <div className="d-flex align-items-center justify-content-between mt-2">
+                      <span className="small text-muted">Floor Plan</span>
+                      <Link
+                        target="_blank"
+                        href={property.floorplans[0].url + ""}
+                      >
+                        View
+                      </Link>
+                    </div>
+                  )}
                 </div>
 
                 {property.vendors &&
@@ -149,7 +167,7 @@ export default function ViewProperty({type , id}) {
                     ?.phoneNumber && (
                     <div className="d-flex mt-3">
                       <Link
-                      className="btn btn-primary w-100 me-2"
+                        className="btn btn-primary w-100 me-2"
                         href={`tel:${property.vendors[0].contact.phoneNumbers[0].phoneNumber}`}
                       >
                         Contact
@@ -173,7 +191,7 @@ export default function ViewProperty({type , id}) {
               </div>
             </div>
           </div>
-          <ProprtySlider />
+          {/* <ProprtySlider /> */}
         </div>
       </section>
       <Footer />

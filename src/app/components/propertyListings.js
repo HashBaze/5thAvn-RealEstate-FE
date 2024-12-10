@@ -748,7 +748,7 @@ export default function PropertyListings() {
                                         >
                                           {item.node.status}
                                         </span>{" "}
-                                        &nbsp; - &nbsp; ${item.node.price}
+                                        &nbsp; - &nbsp; ${Number(item.node.price).toLocaleString()}
                                       </p>
                                     </li>
                                   )}
@@ -771,7 +771,7 @@ export default function PropertyListings() {
                                       </span>{" "}
                                       {item.node.status === "ACTIVE" ? (
                                         <span>
-                                          &nbsp;{"$"} {item.node.price}
+                                          &nbsp;{"$"} {Number(item.node.price).toLocaleString()}
                                         </span>
                                       ) : (
                                         ""
