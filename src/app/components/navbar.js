@@ -122,7 +122,7 @@ export default function Navbar({ menuClass, scrolled }) {
                           Land
                         </Link>
 
-                        <Link href="#" className="sub-menu-item">
+                        <Link href="/buyWithUs" className="sub-menu-item">
                           Buy With Us
                         </Link>
                       </div>
@@ -146,7 +146,7 @@ export default function Navbar({ menuClass, scrolled }) {
                         </Link>
                       </li>
                       <li>
-                        <Link href="#" className="sub-menu-item">
+                        <Link href="/buyWithUs" className="sub-menu-item">
                           Buy With Us
                         </Link>
                       </li>
@@ -174,7 +174,7 @@ export default function Navbar({ menuClass, scrolled }) {
                     <span className="menu-arrow"></span>
                     {isMobile && isOpen && (
                       <div className="p-3 text-dark d-flex flex-column gap-3 ms-4">
-                        <Link href="#" className="sub-menu-item text-dark">
+                        <Link href="/sellingProcess" className="sub-menu-item text-dark">
                           Our Selling Process
                         </Link>
 
@@ -185,7 +185,7 @@ export default function Navbar({ menuClass, scrolled }) {
                           Recent Sales
                         </Link>
 
-                        <Link href="#" className="sub-menu-item text-dark">
+                        <Link href="/digitalApparaisal" className="sub-menu-item text-dark">
                           Digital Appraisal
                         </Link>
                       </div>
@@ -193,7 +193,7 @@ export default function Navbar({ menuClass, scrolled }) {
 
                     <ul className="submenu">
                       <li>
-                        <Link href="#" className="sub-menu-item text-dark">
+                        <Link href="/sellingProcess" className="sub-menu-item text-dark">
                           Our Selling Process
                         </Link>
 
@@ -204,7 +204,7 @@ export default function Navbar({ menuClass, scrolled }) {
                           Recent Sales
                         </Link>
 
-                        <Link href="#" className="sub-menu-item text-dark">
+                        <Link href="/digitalApparaisal" className="sub-menu-item text-dark">
                           Digital Appraisal
                         </Link>
                       </li>
@@ -239,7 +239,7 @@ export default function Navbar({ menuClass, scrolled }) {
                           Current Listings
                         </Link>
 
-                        <Link href="#" className="sub-menu-item text-dark">
+                        <Link href="/rent/rentalApparaisal" className="sub-menu-item text-dark">
                           Rental Appraisal
                         </Link>
                       </div>
@@ -254,7 +254,7 @@ export default function Navbar({ menuClass, scrolled }) {
                           Current Listings
                         </Link>
 
-                        <Link href="#" className="sub-menu-item text-dark">
+                        <Link href="/rent/rentalApparaisal" className="sub-menu-item text-dark">
                           Rental Appraisal
                         </Link>
                       </li>

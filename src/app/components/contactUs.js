@@ -9,9 +9,11 @@ import { sendCompanyEmail } from "../service/mailService";
 import emailjs from "emailjs-com";
 import Swal from "sweetalert2";
 import Link from "next/link";
+import Spinner from "./spinner";
 
 export default function ContactUs() {
   const form = useRef();
+  const [loading , setloading] = useState(false);
 
   const [email, setEmail] = useState({
     email: "",
@@ -21,6 +23,7 @@ export default function ContactUs() {
   });
 
   const sendEmail = (e) => {
+    setloading(true);
     e.preventDefault();
     const validationErrors = validate();
 
@@ -42,6 +45,13 @@ export default function ContactUs() {
         )
         .then(
           (result) => {
+            setloading(false);
+            setEmail({
+              email: "",
+              subject: "",
+              messege: "",
+              name: "",
+            });
             Swal.fire({
               icon: "success",
               title: "Email sent successfully",
@@ -107,6 +117,7 @@ export default function ContactUs() {
 
   return (
     <>
+    {loading && (<Spinner />)}
       <Navbar
         navClass="defaultscroll sticky"
         menuClass="navigation-menu nav-left"
