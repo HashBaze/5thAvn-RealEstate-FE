@@ -5,12 +5,11 @@ import { useSearchParams } from 'next/navigation';
 
 const page = ({ params }) => {
     const searchParams = useSearchParams();
-    const type = params.type; 
     let id = searchParams.get('property'); 
     id = id.split('-').pop();
     return (
         <div>
-            <ViewProperty type={type} id={id} />
+            <ViewProperty  id={id} />
         </div>
     );
 };
