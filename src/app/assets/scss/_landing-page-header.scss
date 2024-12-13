@@ -59,9 +59,23 @@
 
 @media (max-width: 425px) {
   .svg-container {
-    left: 20px;
+    left: 40px;
     width: 400px;
-    height: 430px;
+    height: 500px;
+  }
+
+  .btn-animated{
+    font-size: 0.8rem;
+    height: 50px;
+  }
+
+  .btn-lern-more{
+    font-size: 0.8rem;
+    height: 50px;
+  }
+
+  .text-start{
+    font-size: 1rem;
   }
 }
 
