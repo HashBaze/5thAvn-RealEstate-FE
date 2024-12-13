@@ -1,13 +1,14 @@
 import React from "react";
 import { BsArrowUpRightCircleFill } from "react-icons/bs";
 import { useRouter } from "next/navigation";
+import { TypeAnimation } from "react-type-animation";
 
 export const WhoWeAre = () => {
   const router = useRouter();
 
   return (
     <>
-      <div className="" >
+      <div className="">
         <div className="">
           <div className="section-title text-center mb-4 pb-2">
             <h4 className="title mb-3">Who We Are</h4>
@@ -23,11 +24,20 @@ export const WhoWeAre = () => {
             <div className="col-lg-6 col-md-6 col-12 p-3 who-weare-bg"></div>
 
             <div className="col-lg-6 col-md-6 col-12 p-5">
-              <p className="text-primary text-start who-we-are-main-text">
+              <p className="text-start who-we-are-main-text">
                 Restaurant Project
               </p>
 
-              <h1 className="display-5 text-start" data-aos="fade-right">Who We Are</h1>
+              <h1 className="display-5 text-start" data-aos="fade-right">
+                <TypeAnimation
+                  sequence={["Integrity", 1000, "Innovation", 1000 , "Commitment", 1000]}
+                  wrapper="span"
+                  speed={5}
+                  repeat={Infinity}
+                  className="typewrite text-primary ms-2"
+                  cursor={false}
+                /> 
+              </h1>
               <p data-aos="fade-right">
                 Since 2010, we have dedicated ourselves to making moving a
                 joyful experience within the San Francisco community we serve.

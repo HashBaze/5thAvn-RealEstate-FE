@@ -41,10 +41,14 @@ export default function LandingPageHeader() {
                 us.
               </p>
               <div className="d-flex mt-3">
-                <button className="btn btn-lg me-2 btn-animated">
+                <button className="btn btn-lg me-2 btn-animated" onClick={()=>{
+                  window.location.href = "/propertyListings?type=Sale&status=ACTIVE";
+                }}>
                   Get Started
                 </button>
-                <button className="btn btn-outline-primary btn-lg">
+                <button className="btn btn-outline-primary btn-lg btn-lern-more" onClick={()=>{
+                  window.location.href = "/aboutus";
+                }}>
                   Learn More
                 </button>
               </div>
