@@ -1,0 +1,18 @@
+.subcription-bg{
+    background-color: $blue-oerlay;
+}
+
+.bg-container{
+    background-image: url('/images/bg/03.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 50vh;
+    width: 100%;
+}
+
+.link-hover:hover{
+    color: blue;
+    text-decoration: underline;
+}

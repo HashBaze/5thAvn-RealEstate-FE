@@ -1,0 +1,20 @@
+.who-weare-bg {
+  background-image: url("/images/who-we-are.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 60vh;
+  width: 50%;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 425px) {
+  .who-weare-bg {
+    width: 100%;
+  }
+}
+
+.who-we-are-main-text {
+  font-size: 1.3rem;
+}

@@ -30,24 +30,224 @@ export default function Navbar({ menuClass, scrolled }) {
       <header
         id="topnav"
         className={
-          `defaultscroll sticky ${!scrolled ? "bg-transparent" : "bg-white"}` +
-          (isMenu ? "bg-white" : "")
+          `defaultscroll sticky bg-white p-2` + (isMenu ? "bg-white" : "")
         }
       >
-        <div className="container">
-          <Image
-            src="/images/logo/logo.png"
-            style={{
-              cursor: "pointer",
-            }}
-            width={132}
-            height={50}
-            className="logo-light-mode mt-2"
-            alt="LOGO"
-            onClick={() => {
-              window.location.href = "/";
-            }}
-          />
+        <div className="">
+          <nav className={`d-flex justify-content-between align-items-center`}>
+            <div className="">
+              <div
+                id="navigation"
+                style={{ display: isMenu ? "block" : "none" }}
+              >
+                <ul className={menuClass}>
+                  <li className={`has-submenu parent-menu-item bg-transparent`}>
+                    <Link
+                      className={`has-submenu parent-menu-item text-dark`}
+                      href="/"
+                    >
+                      Home
+                    </Link>
+                    <span className="link-bg-white"></span>
+                  </li>
+
+                  <li className="has-submenu parent-menu-item">
+                    <a
+                      className={
+                        `has-submenu parent-menu-item text-dark` +
+                        (isMenu ? "text-dark" : "")
+                      }
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const parent = e.target.closest(".has-submenu");
+                        parent.classList.toggle("active");
+                        setIsOpen(!isOpen);
+                      }}
+                    >
+                      Buying
+                    </a>
+                    <span className="menu-arrow"></span>
+
+                    <ul className="submenu">
+                      <li>
+                        <Link
+                          href={`/propertyListings?type=Sale&status=${PROPERTYSTATUS.ACTIVE}`}
+                          className="sub-menu-item"
+                        >
+                          Property
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/propertyListings?type=Land"
+                          className="sub-menu-item"
+                        >
+                          Land
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="/buyWithUs" className="sub-menu-item">
+                          Buy With Us
+                        </Link>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li className="has-submenu parent-menu-item">
+                    <a
+                      className={
+                        `has-submenu parent-menu-item text-dark` +
+                        (isMenu ? "text-dark" : "")
+                      }
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const parent = e.target.closest(".has-submenu");
+                        parent.classList.toggle("active");
+                        setIsOpen(!isOpen);
+                      }}
+                    >
+                      Selling
+                    </a>
+                    <span className="menu-arrow"></span>
+
+                    <ul className="submenu">
+                      <li>
+                        <Link
+                          href="/sellingProcess"
+                          className="sub-menu-item text-dark"
+                        >
+                          Our Selling Process
+                        </Link>
+
+                        <Link
+                          href={`/propertyListings?type=Sale&status=${PROPERTYSTATUS.SOLD}`}
+                          className="sub-menu-item text-dark"
+                        >
+                          Recent Sales
+                        </Link>
+
+                        <Link
+                          href="/digitalApparaisal"
+                          className="sub-menu-item text-dark"
+                        >
+                          Digital Appraisal
+                        </Link>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li className="has-submenu parent-menu-item">
+                    <a
+                      className={`has-submenu parent-menu-item text-dark`}
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const parent = e.target.closest(".has-submenu");
+                        parent.classList.toggle("active");
+                        setIsOpen(!isOpen);
+                      }}
+                    >
+                      Renting
+                    </a>
+                    <span className="menu-arrow"></span>
+
+                    <ul className="submenu">
+                      <li>
+                        <Link
+                          href="/propertyListings?type=Rent"
+                          className="sub-menu-item text-dark"
+                        >
+                          Current Listings
+                        </Link>
+
+                        <Link
+                          href="/rent/rentalApparaisal"
+                          className="sub-menu-item text-dark"
+                        >
+                          Rental Appraisal
+                        </Link>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className=" d-flex justify-content-center">
+            {!isMobile && (
+            <Image
+              src="/images/logo/logo.png"
+              style={{
+                cursor: "pointer",
+              }}
+              width={132}
+              height={50}
+              className="logo-light-mode mt-2"
+              alt="LOGO"
+              onClick={() => {
+                window.location.href = "/";
+              }}
+            />
+          )}
+
+            </div>
+            <div className="" id="navigation" style={{ display: isMenu ? "block" : "none" }}>
+              <ul className={menuClass}>
+                <li className="has-submenu parent-menu-item">
+                  <Link
+                    href="/aboutus"
+                    className={`has-submenu parent-menu-item text-dark`}
+                  >
+                    About Us
+                  </Link>
+                </li>
+
+                <li className="has-submenu parent-menu-item">
+                  <Link
+                    href="/blogs"
+                    className={`has-submenu parent-menu-item text-dark`}
+                  >
+                    Blogs
+                  </Link>
+                </li>
+
+                <li className="has-submenu parent-menu-item">
+                  <Link
+                    href="/features"
+                    className={`has-submenu parent-menu-item text-dark`}
+                  >
+                    Features
+                  </Link>
+                </li>
+
+                <li className="has-submenu parent-menu-item">
+                  <Link
+                    href="/contactus"
+                    className={`has-submenu parent-menu-item text-dark`}
+                  >
+                    Contact Us
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+          {isMobile && (
+            <Image
+              src="/images/logo/logo.png"
+              style={{
+                cursor: "pointer",
+              }}
+              width={132}
+              height={50}
+              className="logo-light-mode mt-2"
+              alt="LOGO"
+              onClick={() => {
+                window.location.href = "/";
+              }}
+            />
+          )}
 
           <div className="menu-extras">
             <div className="menu-item">
@@ -66,256 +266,278 @@ export default function Navbar({ menuClass, scrolled }) {
             </div>
           </div>
 
-          <ul className="buy-button list-inline mb-0 bg-transparent">
-            <li className="list-inline-item ps-1 mb-0 bg-transparent">
-              <div
-                id="navigation"
-                style={{ display: isMenu ? "block" : "none" }}
-              >
-                <ul className={menuClass}>
-                  <li className={`has-submenu parent-menu-item bg-transparent`}>
-                    <Link
-                      className={
-                        `has-submenu parent-menu-item ${
-                          scrolled ? "text-dark" : "text-white"
-                        }` + (isMenu ? "text-dark" : "")
-                      }
-                      href="/"
+          {isMobile && (
+            <ul className="buy-button list-inline mb-0 bg-transparent">
+              <li className="list-inline-item ps-1 mb-0 bg-transparent">
+                <div
+                  id="navigation"
+                  style={{ display: isMenu ? "block" : "none" }}
+                >
+                  <ul className={menuClass}>
+                    <li
+                      className={`has-submenu parent-menu-item bg-transparent`}
                     >
-                      Home
-                    </Link>
-                    <span className="link-bg-white"></span>
-                  </li>
+                      <Link
+                        className={
+                          `has-submenu parent-menu-item ${
+                            scrolled ? "text-dark" : "text-white"
+                          }` + (isMenu ? "text-dark" : "")
+                        }
+                        href="/"
+                      >
+                        Home
+                      </Link>
+                      <span className="link-bg-white"></span>
+                    </li>
 
-                  {/* Buying */}
-                  <li className="has-submenu parent-menu-item">
-                    <a
-                      className={
-                        `has-submenu parent-menu-item ${
-                          scrolled ? "text-dark" : "text-white"
-                        }` + (isMenu ? "text-dark" : "")
-                      }
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        const parent = e.target.closest(".has-submenu");
-                        parent.classList.toggle("active");
-                        setIsOpen(!isOpen);
-                      }}
-                    >
-                      Buying
-                    </a>
-                    <span className="menu-arrow"></span>
-                    {isMobile && isOpen && (
-                      <div className="p-3 text-dark d-flex flex-column gap-3 ms-4">
-                        <Link
-                          href={`/propertyListings?type=Sale&status=${PROPERTYSTATUS.ACTIVE}`}
-                          className="sub-menu-item"
-                        >
-                          Property
-                        </Link>
+                    {/* Buying */}
+                    <li className="has-submenu parent-menu-item">
+                      <a
+                        className={
+                          `has-submenu parent-menu-item ${
+                            scrolled ? "text-dark" : "text-white"
+                          }` + (isMenu ? "text-dark" : "")
+                        }
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          const parent = e.target.closest(".has-submenu");
+                          parent.classList.toggle("active");
+                          setIsOpen(!isOpen);
+                        }}
+                      >
+                        Buying
+                      </a>
+                      <span className="menu-arrow"></span>
+                      {isMobile && isOpen && (
+                        <div className="p-3 text-dark d-flex flex-column gap-3 ms-4">
+                          <Link
+                            href={`/propertyListings?type=Sale&status=${PROPERTYSTATUS.ACTIVE}`}
+                            className="sub-menu-item"
+                          >
+                            Property
+                          </Link>
 
-                        <Link
-                          href="/propertyListings?type=Land"
-                          className="sub-menu-item"
-                        >
-                          Land
-                        </Link>
+                          <Link
+                            href="/propertyListings?type=Land"
+                            className="sub-menu-item"
+                          >
+                            Land
+                          </Link>
 
-                        <Link href="/buyWithUs" className="sub-menu-item">
-                          Buy With Us
-                        </Link>
-                      </div>
-                    )}
+                          <Link href="/buyWithUs" className="sub-menu-item">
+                            Buy With Us
+                          </Link>
+                        </div>
+                      )}
 
-                    <ul className="submenu">
-                      <li>
-                        <Link
-                          href={`/propertyListings?type=Sale&status=${PROPERTYSTATUS.ACTIVE}`}
-                          className="sub-menu-item"
-                        >
-                          Property
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          href="/propertyListings?type=Land"
-                          className="sub-menu-item"
-                        >
-                          Land
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href="/buyWithUs" className="sub-menu-item">
-                          Buy With Us
-                        </Link>
-                      </li>
-                    </ul>
-                  </li>
+                      <ul className="submenu">
+                        <li>
+                          <Link
+                            href={`/propertyListings?type=Sale&status=${PROPERTYSTATUS.ACTIVE}`}
+                            className="sub-menu-item"
+                          >
+                            Property
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            href="/propertyListings?type=Land"
+                            className="sub-menu-item"
+                          >
+                            Land
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="/buyWithUs" className="sub-menu-item">
+                            Buy With Us
+                          </Link>
+                        </li>
+                      </ul>
+                    </li>
 
-                  {/* selling */}
-                  <li className="has-submenu parent-menu-item">
-                    <a
-                      className={
-                        `has-submenu parent-menu-item ${
-                          scrolled ? "text-dark" : "text-white"
-                        }` + (isMenu ? "text-dark" : "")
-                      }
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        const parent = e.target.closest(".has-submenu");
-                        parent.classList.toggle("active");
-                        setIsOpen(!isOpen);
-                      }}
-                    >
-                      Selling
-                    </a>
-                    <span className="menu-arrow"></span>
-                    {isMobile && isOpen && (
-                      <div className="p-3 text-dark d-flex flex-column gap-3 ms-4">
-                        <Link href="/sellingProcess" className="sub-menu-item text-dark">
-                          Our Selling Process
-                        </Link>
+                    {/* selling */}
+                    <li className="has-submenu parent-menu-item">
+                      <a
+                        className={
+                          `has-submenu parent-menu-item ${
+                            scrolled ? "text-dark" : "text-white"
+                          }` + (isMenu ? "text-dark" : "")
+                        }
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          const parent = e.target.closest(".has-submenu");
+                          parent.classList.toggle("active");
+                          setIsOpen(!isOpen);
+                        }}
+                      >
+                        Selling
+                      </a>
+                      <span className="menu-arrow"></span>
+                      {isMobile && isOpen && (
+                        <div className="p-3 text-dark d-flex flex-column gap-3 ms-4">
+                          <Link
+                            href="/sellingProcess"
+                            className="sub-menu-item text-dark"
+                          >
+                            Our Selling Process
+                          </Link>
 
-                        <Link
-                          href={`/propertyListings?type=Sale&status=${PROPERTYSTATUS.SOLD}`}
-                          className="sub-menu-item text-dark"
-                        >
-                          Recent Sales
-                        </Link>
+                          <Link
+                            href={`/propertyListings?type=Sale&status=${PROPERTYSTATUS.SOLD}`}
+                            className="sub-menu-item text-dark"
+                          >
+                            Recent Sales
+                          </Link>
 
-                        <Link href="/digitalApparaisal" className="sub-menu-item text-dark">
-                          Digital Appraisal
-                        </Link>
-                      </div>
-                    )}
+                          <Link
+                            href="/digitalApparaisal"
+                            className="sub-menu-item text-dark"
+                          >
+                            Digital Appraisal
+                          </Link>
+                        </div>
+                      )}
 
-                    <ul className="submenu">
-                      <li>
-                        <Link href="/sellingProcess" className="sub-menu-item text-dark">
-                          Our Selling Process
-                        </Link>
+                      <ul className="submenu">
+                        <li>
+                          <Link
+                            href="/sellingProcess"
+                            className="sub-menu-item text-dark"
+                          >
+                            Our Selling Process
+                          </Link>
 
-                        <Link
-                          href={`/propertyListings?type=Sale&status=${PROPERTYSTATUS.SOLD}`}
-                          className="sub-menu-item text-dark"
-                        >
-                          Recent Sales
-                        </Link>
+                          <Link
+                            href={`/propertyListings?type=Sale&status=${PROPERTYSTATUS.SOLD}`}
+                            className="sub-menu-item text-dark"
+                          >
+                            Recent Sales
+                          </Link>
 
-                        <Link href="/digitalApparaisal" className="sub-menu-item text-dark">
-                          Digital Appraisal
-                        </Link>
-                      </li>
-                    </ul>
-                  </li>
+                          <Link
+                            href="/digitalApparaisal"
+                            className="sub-menu-item text-dark"
+                          >
+                            Digital Appraisal
+                          </Link>
+                        </li>
+                      </ul>
+                    </li>
 
-                  {/* Renting */}
-                  <li className="has-submenu parent-menu-item">
-                    <a
-                      className={
-                        `has-submenu parent-menu-item ${
-                          scrolled ? "text-dark" : "text-white"
-                        }` + (isMenu ? "text-dark" : "")
-                      }
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        const parent = e.target.closest(".has-submenu");
-                        parent.classList.toggle("active");
-                        setIsOpen(!isOpen);
-                      }}
-                    >
-                      Renting
-                    </a>
-                    <span className="menu-arrow"></span>
-                    {isMobile && isOpen && (
-                      <div className="p-3 text-dark d-flex flex-column gap-3 ms-4">
-                        <Link
-                          href="/propertyListings?type=Rent"
-                          className="sub-menu-item text-dark"
-                        >
-                          Current Listings
-                        </Link>
+                    {/* Renting */}
+                    <li className="has-submenu parent-menu-item">
+                      <a
+                        className={
+                          `has-submenu parent-menu-item ${
+                            scrolled ? "text-dark" : "text-white"
+                          }` + (isMenu ? "text-dark" : "")
+                        }
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          const parent = e.target.closest(".has-submenu");
+                          parent.classList.toggle("active");
+                          setIsOpen(!isOpen);
+                        }}
+                      >
+                        Renting
+                      </a>
+                      <span className="menu-arrow"></span>
+                      {isMobile && isOpen && (
+                        <div className="p-3 text-dark d-flex flex-column gap-3 ms-4">
+                          <Link
+                            href="/propertyListings?type=Rent"
+                            className="sub-menu-item text-dark"
+                          >
+                            Current Listings
+                          </Link>
 
-                        <Link href="/rent/rentalApparaisal" className="sub-menu-item text-dark">
-                          Rental Appraisal
-                        </Link>
-                      </div>
-                    )}
+                          <Link
+                            href="/rent/rentalApparaisal"
+                            className="sub-menu-item text-dark"
+                          >
+                            Rental Appraisal
+                          </Link>
+                        </div>
+                      )}
 
-                    <ul className="submenu">
-                      <li>
-                        <Link
-                          href="/propertyListings?type=Rent"
-                          className="sub-menu-item text-dark"
-                        >
-                          Current Listings
-                        </Link>
+                      <ul className="submenu">
+                        <li>
+                          <Link
+                            href="/propertyListings?type=Rent"
+                            className="sub-menu-item text-dark"
+                          >
+                            Current Listings
+                          </Link>
 
-                        <Link href="/rent/rentalApparaisal" className="sub-menu-item text-dark">
-                          Rental Appraisal
-                        </Link>
-                      </li>
-                    </ul>
-                  </li>
+                          <Link
+                            href="/rent/rentalApparaisal"
+                            className="sub-menu-item text-dark"
+                          >
+                            Rental Appraisal
+                          </Link>
+                        </li>
+                      </ul>
+                    </li>
 
-                  <li className="has-submenu parent-menu-item">
-                    <Link
-                      href="/aboutus"
-                      className={
-                        `has-submenu parent-menu-item ${
-                          scrolled ? "text-dark" : "text-white"
-                        }` + (isMenu ? "text-dark" : "")
-                      }
-                    >
-                      About Us
-                    </Link>
-                  </li>
+                    <li className="has-submenu parent-menu-item">
+                      <Link
+                        href="/aboutus"
+                        className={
+                          `has-submenu parent-menu-item ${
+                            scrolled ? "text-dark" : "text-white"
+                          }` + (isMenu ? "text-dark" : "")
+                        }
+                      >
+                        About Us
+                      </Link>
+                    </li>
 
-                  <li className="has-submenu parent-menu-item">
-                    <Link
-                      href="/blogs"
-                      className={
-                        `has-submenu parent-menu-item ${
-                          scrolled ? "text-dark" : "text-white"
-                        }` + (isMenu ? "text-dark" : "")
-                      }
-                    >
-                      Blogs
-                    </Link>
-                  </li>
+                    <li className="has-submenu parent-menu-item">
+                      <Link
+                        href="/blogs"
+                        className={
+                          `has-submenu parent-menu-item ${
+                            scrolled ? "text-dark" : "text-white"
+                          }` + (isMenu ? "text-dark" : "")
+                        }
+                      >
+                        Blogs
+                      </Link>
+                    </li>
 
-                  <li className="has-submenu parent-menu-item">
-                    <Link
-                      href="/features"
-                      className={
-                        `has-submenu parent-menu-item ${
-                          scrolled ? "text-dark" : "text-white"
-                        }` + (isMenu ? "text-dark" : "")
-                      }
-                    >
-                      Features
-                    </Link>
-                  </li>
+                    <li className="has-submenu parent-menu-item">
+                      <Link
+                        href="/features"
+                        className={
+                          `has-submenu parent-menu-item ${
+                            scrolled ? "text-dark" : "text-white"
+                          }` + (isMenu ? "text-dark" : "")
+                        }
+                      >
+                        Features
+                      </Link>
+                    </li>
 
-                  <li className="has-submenu parent-menu-item">
-                    <Link
-                      href="/contactus"
-                      className={
-                        `has-submenu parent-menu-item ${
-                          scrolled ? "text-dark" : "text-white"
-                        }` + (isMenu ? "text-dark" : "")
-                      }
-                    >
-                      Contact Us
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </li>
-          </ul>
+                    <li className="has-submenu parent-menu-item">
+                      <Link
+                        href="/contactus"
+                        className={
+                          `has-submenu parent-menu-item ${
+                            scrolled ? "text-dark" : "text-white"
+                          }` + (isMenu ? "text-dark" : "")
+                        }
+                      >
+                        Contact Us
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          )}
         </div>
       </header>
     </>
