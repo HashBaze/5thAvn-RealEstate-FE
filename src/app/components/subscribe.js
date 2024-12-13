@@ -11,9 +11,7 @@ export const Subscribe = () => {
     <>
       <div className="row justify-content-center mt-100" data-aos="fade-right">
         <section className="subcription-bg">
-          <div className="bg-container">
-            <div className="bg-overlay"></div>
-          </div>
+          <div className="bg-container"></div>
         </section>
         <section className="container-fluid subcription-bg">
           <div className="justify-content-between">
@@ -29,7 +27,8 @@ export const Subscribe = () => {
               </p>
             </div>
             <div className="d-flex justify-content-end p-3">
-              <button data-aos="fade-right"
+              <button
+                data-aos="fade-right"
                 onClick={() => {
                   router.push("/contactus");
                 }}

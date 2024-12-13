@@ -30,7 +30,7 @@ export default function Navbar({ menuClass, scrolled }) {
       <header
         id="topnav"
         className={
-          `defaultscroll sticky bg-white p-2` + (isMenu ? "bg-white" : "")
+          `defaultscroll sticky bg-white p-2`
         }
       >
         <div className="">

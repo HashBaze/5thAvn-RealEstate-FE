@@ -16,7 +16,7 @@ const Searchbar = ({ filter, suburb }) => {
               className="bg-overlay image-wrap "
               id="hero-images"
               style={{
-                backgroundImage: "url('/images/bg/03.jpg')",
+                backgroundImage: "url('/images/bg/05.jpg')",
                 backgroundSize: "cover",
                 backgroundPosition: "center center",
                 width: "100vw",
