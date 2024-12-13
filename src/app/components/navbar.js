@@ -16,7 +16,7 @@ export default function Navbar({ menuClass, scrolled }) {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 990);
+      setIsMobile(window.innerWidth <= 768);
     };
 
     handleResize();

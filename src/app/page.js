@@ -1,10 +1,8 @@
 "use client";
-import Image from "next/image";
 import "./page.module.css";
 import "./globals.css";
+import "aos/dist/aos.css";
 
-import VideoOne from "./components/modalVideo/videoOne";
-import IndexThreeSlider from "./components/indexThreeSlider";
 import ScrollTop from "./components/scrollTop";
 import FeaturedProperties from "./components/featuredProperties";
 import UseScroll from "./hooks/UseScroll";
@@ -15,15 +13,24 @@ import Footer from "./components/footer";
 import Navbar from "./components/navbar";
 import Testimonials from "./components/testimonials";
 import { useEffect, useState } from "react";
-import {
-  getAllSuburb,
-  getPropertyByFilter,
-  getPropertys,
-} from "./service/propertyService";
+import { getAllSuburb, getPropertyByFilter } from "./service/propertyService";
 import Spinner from "./components/spinner";
+import LandingPageHeader from "./components/landingPageHeader";
+import AOS from "aos";
 
 export default function Home() {
   const isScrolled = UseScroll();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      AOS.init({
+        duration: 1000,
+        offset: 100,
+        delay: 60,
+        easing: "ease-in-out",
+      });
+    }
+  }, []);
 
   const filer = (data) => {
     setLoading(true);
@@ -71,67 +78,70 @@ export default function Home() {
         menuClass="navigation-menu nav-left"
         scrolled={isScrolled}
       />
-      <IndexThreeSlider />
+      <LandingPageHeader />
       <section className="section w-100">
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-lg-6 col-md-6">
-              <div className="about-left">
-                <div className="position-relative shadow p-2 rounded-top-pill rounded-5 bg-white img-one">
-                  <Image
-                    src="/images/hero.jpg"
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    style={{ width: "100%", height: "auto" }}
-                    className="img-fluid rounded-top-pill rounded-5"
-                    alt=""
-                  />
-
-                  <VideoOne />
-
-                  <div className="position-absolute top-0 start-0 z-n1">
-                    <Image
-                      src="/images/svg/dots.svg"
-                      width={0}
-                      height={0}
-                      sizes="100vw"
-                      style={{ width: "100%", height: "auto" }}
-                      className="avatar avatar-xl-large"
-                      alt=""
-                    />
+        <div className="container-fluid p-5">
+          <div className="row justify-content-between">
+            <div className="col-lg-6 col-md-6 col-12">
+              <h1 className="display-5">Our Purpose</h1>
+            </div>
+          </div>
+          <div className="row g-2 mt-5">
+            <div className="col-lg-3 col-md-6 col-12" data-aos="fade-right">
+              <div className="border rounded-4 shadow-lg card1 p-5">
+                <a className="" href="#">
+                  <h3 className="cardH3">1. Property Listings</h3>
+                  <p className="small small-p mt-3">
+                    Browse a wide selection of residential and commercial
+                    properties to find your dream home or ideal investment.
+                  </p>
+                  <div className="go-corner" href="#">
+                    <div className="go-arrow">→</div>
                   </div>
-                </div>
-
-                <div className="img-two shadow rounded-3 overflow-hidden p-2 bg-white">
-                  <Image
-                    src="/images/1.jpg"
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    style={{ width: "100%", height: "auto" }}
-                    className="img-fluid rounded-3"
-                    alt=""
-                  />
-                </div>
+                </a>
               </div>
             </div>
-
-            <div className="col-lg-6 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
-              <div className="section-title ms-lg-5">
-                <h4 className="text-primary fw-medium mb-2">
-                  Purpose of the company
-                </h4>
-                <p className="text-muted para-desc mb-0">
-                  Looking to buy or sell a property? Our trusted real estate
-                  agency is here to help! With years of industry experience, we
-                  assist with every step—finding the right home, negotiating the
-                  best price, and ensuring a smooth closing process. Whether
-                  it's a house, apartment, or condo, our expert agents know the
-                  local market and are ready to guide you. Visit our website to
-                  explore listings or contact us today for all your real estate
-                  needs!
-                </p>
+            <div className="col-lg-3 col-md-6 col-12" data-aos="fade-up">
+              <div className="border rounded-4 shadow-lg card1 p-5">
+                <a className="" href="#">
+                  <h3 className="cardH3">2. Mortgage Services</h3>
+                  <p className="small small-p mt-3">
+                    Access mortgage calculators, loan options, and expert advice
+                    to make informed decisions for your property purchase.
+                  </p>
+                  <div className="go-corner" href="#">
+                    <div className="go-arrow">→</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-6 col-12" data-aos="fade-down">
+              <div className="border rounded-4 shadow-lg card1 p-5">
+                <a className="" href="#">
+                  <h3 className="cardH3">3. Market Trends</h3>
+                  <p className="small small-p mt-3">
+                    Stay updated with the latest market trends, property values,
+                    and neighborhood insights to make smarter real estate
+                    investments.
+                  </p>
+                  <div className="go-corner" href="#">
+                    <div className="go-arrow">→</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-6 col-12" data-aos="fade-left">
+              <div className="border rounded-4 shadow-lg card1 p-5">
+                <a className="" href="#">
+                  <h3 className="cardH3">4. Real Estate Agents</h3>
+                  <p className="small small-p mt-3">
+                    Connect with experienced real estate agents who can guide
+                    you through buying, selling, or renting properties.
+                  </p>
+                  <div className="go-corner" href="#">
+                    <div className="go-arrow">→</div>
+                  </div>
+                </a>
               </div>
             </div>
           </div>
@@ -140,14 +150,18 @@ export default function Home() {
         <Searchbar filter={filer} suburb={suburb} />
 
         <div className="container">
-          <FeaturedProperties propertyData={propertyData} />
+          <FeaturedProperties
+            propertyData={propertyData}
+            filter={filer}
+            suburb={suburb}
+          />
         </div>
 
-        <div className="mt-100">
+        <div className="mt-100" data-aos="fade-right">
           <WhoWeAre />
         </div>
 
-        <div className="container mt-100 mt-60">
+        <div className="container mt-100 mt-60" data-aos="fade-up">
           <Testimonials />
         </div>
 

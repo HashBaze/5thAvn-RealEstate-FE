@@ -4,40 +4,40 @@ import TextAnimation from "./textAnimation";
 import { propertyType } from "../data/data";
 
 const Searchbar = ({ filter, suburb }) => {
-  const [isSelect, setIsSelect] = useState("Rent");
-  const [formData, setFormData] = useState({
-    bedRoomMin: "",
-    bedRoomMax: "",
-    bathRooms: "",
-    houseCategory: "any",
-    suburb: "",
-    priceFrom: "",
-    priceTo: "",
-    airConditioning: false,
-    pool: false,
-    secaurity: false,
-  });
+  // const [isSelect, setIsSelect] = useState("Rent");
+  // const [formData, setFormData] = useState({
+  //   bedRoomMin: "",
+  //   bedRoomMax: "",
+  //   bathRooms: "",
+  //   houseCategory: "any",
+  //   suburb: "",
+  //   priceFrom: "",
+  //   priceTo: "",
+  //   airConditioning: false,
+  //   pool: false,
+  //   secaurity: false,
+  // });
 
-  const options = [];
+  // const options = [];
 
-  for (let value = 50000; value <= 10000000; value += 50000) {
-    if (value > 1000000) {
-      value += 200000;
-    }
+  // for (let value = 50000; value <= 10000000; value += 50000) {
+  //   if (value > 1000000) {
+  //     value += 200000;
+  //   }
 
-    if (value > 3000000) {
-      continue;
-    }
+  //   if (value > 3000000) {
+  //     continue;
+  //   }
 
-    options.push(value);
-  }
-  options.push(4000000);
-  options.push(5000000);
-  options.push(10000000);
+  //   options.push(value);
+  // }
+  // options.push(4000000);
+  // options.push(5000000);
+  // options.push(10000000);
 
   return (
     <>
-      <section className="position-relative mt-5 pt-4">
+      <section className="position-relative mt-5 pt-4" data-aos="fade-up">
         <div className="px-md-4 px-2 mt-2">
           <div
             className="bg-home-one container-fluid d-table shadow rounded-3 overflow-hidden"
@@ -60,7 +60,7 @@ const Searchbar = ({ filter, suburb }) => {
                 <div className="col-12">
                   <div className="title-heading">
                     <TextAnimation />
-                    <p className="para-desc text-white title-dark mb-0">
+                    <p className="para-desc text-white title-dark mb-0" data-aos="fade-right">
                       A great plateform to buy, sell and rent your properties
                       without any agent or commisions.
                     </p>
@@ -72,14 +72,7 @@ const Searchbar = ({ filter, suburb }) => {
         </div>
       </section>
 
-      <form
-        className="card-body text-start container bg-white rounded p-3"
-        style={{
-          position: "relative",
-          top: "-150px",
-          zIndex: 1,
-        }}
-      >
+      {/* <form className="card-body text-start container bg-white rounded p-3">
         <div className="registration-form text-dark text-start">
           <div className="row g-lg-0 p-2 shadow-lg border rounded p-3">
             <div className="d-flex g-lg-0 p-2 mb-3">
@@ -332,7 +325,7 @@ const Searchbar = ({ filter, suburb }) => {
             </div>
           </div>
         </div>
-      </form>
+      </form> */}
     </>
   );
 };
