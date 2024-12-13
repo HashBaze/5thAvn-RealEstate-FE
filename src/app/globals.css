@@ -3,33 +3,6 @@
   white-space: nowrap;
 }
 
-.who-we-are-main-text {
-  font-size: 26px;
-  font-weight: 500;
-  margin-bottom: 10px;
-}
-
-@media (max-width: 440px) {
-  .btn-contact {
-    font-size: 10px;
-  }
-
-  .who-we-are-main-text {
-    font-size: 15px;
-  }
-
-  .who-we-are-p {
-    font-size: 13px;
-  }
-
-  .btn-serch{
-    font-size: 12px;
-  }
-
-  .txt-subscribe{
-    font-size: 16px;
-  }
-}
 
 
 .txt-subscribe{

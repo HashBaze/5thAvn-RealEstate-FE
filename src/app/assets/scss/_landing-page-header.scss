@@ -1,0 +1,238 @@
+.col-seperated {
+  height: 90vh;
+}
+
+.svg-container {
+  position: absolute;
+  top: 100px;
+  overflow: visible;
+  width: 800px;
+  height: 438px;
+}
+
+.header-promt {
+  background-color: rgba(71, 157, 219, 0.367);
+  color: rgba(0, 0, 255, 0.728);
+}
+
+.blue-bg {
+  background-color: $blue-oerlay;
+}
+
+.right-side-bg {
+  background-image: url("/images/bg/01.jpg");
+  height: 100%;
+  width: 50vw;
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 1030px) {
+  .svg-container {
+    left: 20px;
+    top: -10px;
+    width: 550px;
+    height: 600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .right-side-bg {
+    width: 100vw;
+    padding-left: 0;
+  }
+  .col-seperated {
+    height: 100vh;
+  }
+
+  .row {
+    padding-left: 0;
+  }
+
+  .svg-container {
+    left: 20px;
+    top: 100px;
+    width: 800px;
+    height: 430px;
+  }
+}
+
+@media (max-width: 425px) {
+  .svg-container {
+    left: 20px;
+    width: 400px;
+    height: 430px;
+  }
+}
+
+.bg-overlay-my-container {
+  background-color: rgba(0, 0, 0, 0.348);
+  height: 100%;
+  width: 100%;
+}
+
+rect {
+  cursor: pointer;
+  fill: transparent;
+  transition: width 0.3s ease, height 0.3s ease;
+
+}
+
+.hide-text-insights{
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.hover-rect-insights:hover ~ .hide-text-insights {
+  opacity: 1;
+}
+
+.hover-rect-insights:hover {
+  width: 320px;
+  height: 85px;
+  fill: black;
+}
+
+.hover-rect-tours:hover {
+  width: 200px;
+  height: 150px;
+  fill: black;
+}
+
+.hover-rect-network:hover {
+  width: 200px;
+  height: 150px;
+  fill: black;
+}
+
+.hide-text-network{
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.hover-rect-network:hover ~ .hide-text-network {
+  opacity: 1;
+}
+
+
+.hide-text-tours{
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.hover-rect-tours:hover ~ .hide-text-tours {
+  opacity: 1;
+}
+
+
+.hover-rect-out-side:hover {
+  width: 200px;
+  height: 150px;
+  fill: black;
+}
+
+
+.hide-text-out-side {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.hover-rect-out-side:hover ~ .hide-text-out-side {
+  opacity: 1;
+}
+
+.hide-text-listings{
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.hover-rect-listings:hover ~ .hide-text-listings {
+  opacity: 1;
+}
+
+
+.hover-rect-listings:hover {
+  width: 200px;
+  height: 150px;
+  fill: black;
+}
+.hover-rect-listings:hover ~ tspan {
+  width: 200px;
+  height: 150px;
+  z-index: -1000;
+}
+.animated-text {
+  transition: transform 0.3s ease, font-size 0.3s ease;
+}
+
+.hover-rect:hover + .animated-text {
+  font-size: 14px;
+}
+
+.animated-ellipse {
+  animation: pulse 2s infinite ease-in-out;
+  z-index: 100;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    rx: 12;
+    ry: 12;
+    fill: white;
+  }
+  50% {
+    rx: 15;
+    ry: 15;
+    fill: rgb(14, 173, 236);
+  }
+}
+
+.btn-animated {
+  animation: rainbow-flow 10s infinite alternate; /* Flowing animation left-to-right and back */
+  background: linear-gradient(
+    90deg,
+    #407d85,
+    /* Red */ #104891,
+    /* Orange */ #1665be,
+    /* Yellow */ #6fbae2,
+    /* Green */ #5e5ee0,
+    /* Blue */ #6c61be,
+    /* Indigo */ #5f64e5 /* Violet */
+  );
+  background-size: 300%; /* Smooth gradient transition */
+  color: white; /* Text color */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.2s ease-in-out; /* Add smooth hover scaling */
+}
+
+@keyframes rainbow-flow {
+  0% {
+    background-position: 0% 50%; /* Start from left */
+  }
+  25% {
+    background-position: 25% 50%; /* Slight move */
+    color: white; /* Reset text color */
+  }
+  50% {
+    background-position: 100% 50%; /* Move to the right */
+    color: white; /* Reset text color */
+  }
+  75% {
+    background-position: 50% 50%; /* Move halfway back */
+    color: white; /* Reset text color */
+  }
+  100% {
+    background-position: 0% 50%; /* Return to left */
+  }
+}
+
+/* Optional: Add hover effect */
+.btn-animated:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+  color: white; /* Reset text color */
+}
