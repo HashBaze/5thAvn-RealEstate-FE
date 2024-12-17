@@ -196,10 +196,10 @@ export default function DigitalAppraisal() {
       </div>
 
       <section
-        className="bg-half-170 d-table h-100 w-100 d-flex justify-content-center"
+        className="bg-half-100 d-table h-100 w-100 d-flex justify-content-center"
         style={{ backgroundImage: "url('/images/bg.png')" }}
       >
-        <p className="text-center ms-4 main-header">
+        <p className="text-center ms-4 fs-1 fw-bold">
           Discover the true <br /> value of your home.
         </p>
       </section>
@@ -211,7 +211,7 @@ export default function DigitalAppraisal() {
         <section className="row justify-content-center align-items-center">
           <div className="col-lg-4 col-md-6 col-12">
             <div className="section-title text-center">
-              <p className="appraisal-second-headline text-center">
+              <p className="text-center text-lg-end fw-bold">
                 Curious about your home's estimated value?
               </p>
             </div>
@@ -221,7 +221,7 @@ export default function DigitalAppraisal() {
 
           <div className="col-lg-4 col-md-6 col-12">
             <div className="section-title text-center">
-              <p className="text-dark-desc text-center">
+              <p className="text-center text-lg-start">
                 Fill out the form below to get a free appraisal of your
                 property. Our experts will prepare a comprehensive report that
                 includes insights from recent sales, local market trends, and
@@ -242,7 +242,7 @@ export default function DigitalAppraisal() {
                 {/* First Name */}
                 <div className="col-md-6 mb-3">
                   <label className="form-label" htmlFor="firstName">
-                    First Name*
+                    First Name<span className="text-danger">*</span>
                   </label>
                   <input
                     type="text"
@@ -259,7 +259,7 @@ export default function DigitalAppraisal() {
                 {/* Last Name */}
                 <div className="col-md-6 mb-3">
                   <label className="form-label" htmlFor="lastName">
-                    Last Name*
+                    Last Name<span className="text-danger">*</span>
                   </label>
                   <input
                     type="text"
@@ -276,7 +276,7 @@ export default function DigitalAppraisal() {
                 {/* Mobile Number */}
                 <div className="col-md-6 mb-3">
                   <label className="form-label" htmlFor="mobileNumber">
-                    Mobile Number*
+                    Mobile Number<span className="text-danger">*</span>
                   </label>
                   <input
                     type="text"
@@ -293,7 +293,7 @@ export default function DigitalAppraisal() {
                 {/* Email */}
                 <div className="col-md-6 mb-3">
                   <label className="form-label" htmlFor="email">
-                    Your Email*
+                    Your Email<span className="text-danger">*</span>
                   </label>
                   <input
                     type="email"
@@ -310,7 +310,7 @@ export default function DigitalAppraisal() {
                 {/* Address */}
                 <div className="col-md-6 mb-3">
                   <label className="form-label" htmlFor="address">
-                    Address to Appraise?*
+                    Address to Appraise?<span className="text-danger">*</span>
                   </label>
                   <input
                     type="text"
@@ -327,7 +327,7 @@ export default function DigitalAppraisal() {
                 {/* Property Type */}
                 <div className="col-md-6 mb-3">
                   <label className="form-label" htmlFor="propertyType">
-                    Property Type*
+                    Property Type<span className="text-danger">*</span>
                   </label>
                   <select
                     value={formData.propertyType}
@@ -347,7 +347,7 @@ export default function DigitalAppraisal() {
                 {/* Selling Time */}
                 <div className="col-md-6 mb-3">
                   <label className="form-label" htmlFor="sellingTime">
-                    When are you considering selling?*
+                    When are you considering selling?<span className="text-danger">*</span>
                   </label>
                   <select
                     id="sellingTime"
@@ -459,11 +459,11 @@ export default function DigitalAppraisal() {
                         value={option}
                         onChange={handleChange}
                         type="checkbox"
-                        className="form-check-input"
+                        className="form-check-input border border-primary"
                         id={option.replace(/\s+/g, "")}
                       />
                       <label
-                        className="form-check-label"
+                        className="form-check-label ms-2"
                         htmlFor={option.replace(/\s+/g, "")}
                       >
                         {option}
@@ -491,11 +491,11 @@ export default function DigitalAppraisal() {
                           value={option}
                           onChange={handleChange}
                           type="checkbox"
-                          className="form-check-input"
+                          className="form-check-input border"
                           id={option.replace(/\s+/g, "")}
                         />
                         <label
-                          className="form-check-label"
+                          className="form-check-label ms-2"
                           htmlFor={option.replace(/\s+/g, "")}
                         >
                           {option}
@@ -521,11 +521,11 @@ export default function DigitalAppraisal() {
                           value={option}
                           onChange={handleChange}
                           type="checkbox"
-                          className="form-check-input"
+                          className="form-check-input border"
                           id={option.replace(/\s+/g, "")}
                         />
                         <label
-                          className="form-check-label"
+                          className="form-check-label ms-2"
                           htmlFor={option.replace(/\s+/g, "")}
                         >
                           {option}

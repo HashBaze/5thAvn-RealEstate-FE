@@ -172,14 +172,14 @@ export default function BuyWithUs() {
       </div>
 
       <section
-        className="bg-half-170 d-table h-100 w-100 d-flex justify-content-center"
+        className="bg-half-100 d-table h-75 w-100 d-flex justify-content-center"
         style={{ backgroundImage: "url('/images/bg.png')" }}
       >
-        <p className="text-center ms-4 main-header">
+        <p className="text-center fs-1 fw-bold">
           Light the fire of your dreams. <br /> Redefine your life.
         </p>
       </section>
-      <h1 className="text-center ms-4">buy your next home with us</h1>
+      <h1 className="text-center fs-3">buy your next home with us</h1>
 
       <section
         className="bg-half-100 row justify-content-center"
@@ -187,8 +187,8 @@ export default function BuyWithUs() {
       >
         <section className="row justify-content-center align-items-center">
           <div className="col-lg-4 col-md-6 col-12">
-            <div className="section-title text-center">
-              <p className="appraisal-second-headline">
+            <div className="">
+              <p className="fs-2 fw-bold text-center text-lg-end">
                 Let’s handle your needs and search for your dream home…
               </p>
             </div>
@@ -197,8 +197,8 @@ export default function BuyWithUs() {
           <div className="ring"></div>
 
           <div className="col-lg-4 col-md-6 col-12">
-            <div className="section-title text-center">
-              <p className="text-dark-desc">
+            <div className="">
+              <p className="text-center text-lg-start">
                 Buying a home is a significant milestone and a smart way to
                 break free from rising rental costs. While envisioning your
                 dream home's features can be exciting, navigating the buying
@@ -215,7 +215,7 @@ export default function BuyWithUs() {
           </div>
         </section>
       </section>
-      <h1 className="text-center ms-4">buyers FORM</h1>
+      <h1 className="text-center ms-4">Buyers FORM</h1>
 
       <div className="row justify-content-center mt-5">
         <div className="col-lg-8">
@@ -225,7 +225,7 @@ export default function BuyWithUs() {
                 {/* Name */}
                 <div className="col-md-6 mb-3">
                   <label htmlFor="name" className="form-label">
-                    Introduce yourself*
+                    Introduce yourself<span className="text-danger">*</span>
                   </label>
                   <input
                     type="text"
@@ -243,7 +243,7 @@ export default function BuyWithUs() {
                 {/* Phone */}
                 <div className="col-md-6 mb-3">
                   <label htmlFor="phone" className="form-label">
-                    Your Phone Number*
+                    Your Phone Number<span className="text-danger">*</span>
                   </label>
                   <input
                     type="text"
@@ -261,7 +261,7 @@ export default function BuyWithUs() {
                 {/* Email */}
                 <div className="col-md-6 mb-3">
                   <label htmlFor="email" className="form-label">
-                    Your Email*
+                    Your Email<span className="text-danger">*</span>
                   </label>
                   <input
                     type="email"
@@ -278,7 +278,7 @@ export default function BuyWithUs() {
                 </div>
                 {/* Best Time to Reach */}
                 <div className="col-md-6 mb-3">
-                  <label className="form-label">Best time to reach you</label>
+                  <label className="form-label">Best time to reach you</label><span className="text-danger">*</span>
                   {["Morning", "Afternoon", "Evening"].map((time) => (
                     <div className="form-check" key={time}>
                       <input
@@ -301,7 +301,7 @@ export default function BuyWithUs() {
                 {/* Interested Cities */}
                 <div className="col-md-12 mb-3">
                   <label className="form-label">
-                    Please indicate the cities/suburbs that interest you*
+                    Please indicate the cities/suburbs that interest you<span className="text-danger">*</span>
                   </label>
                   {["Melbourne", "Cranbourne", "Sydney"].map((city) => (
                     <div className="form-check" key={city}>
@@ -335,7 +335,7 @@ export default function BuyWithUs() {
                 {/* Home Type */}
                 <div className="col-md-6 mb-3">
                   <label htmlFor="homeType" className="form-label">
-                    Type of home you are interested in
+                    Type of home you are interested in<span className="text-danger">*</span>
                   </label>
                   {[
                     "Single Story",
@@ -365,7 +365,7 @@ export default function BuyWithUs() {
                 {["bedrooms", "bathrooms", "garage", "floors"].map((field) => (
                   <div className="col-md-6 mb-3" key={field}>
                     <label htmlFor={field} className="form-label">
-                      {field.charAt(0).toUpperCase() + field.slice(1)}
+                      {field.charAt(0).toUpperCase() + field.slice(1)}<span className="text-danger">*</span>
                     </label>
                     <select
                       name={field}
@@ -385,7 +385,7 @@ export default function BuyWithUs() {
                 {/* Budget */}
 
                 <div className="col-md-6 mb-3">
-                  <label className="form-label">Budget</label>
+                  <label className="form-label">Budget</label><span className="text-danger">*</span>
                   <select
                     name="budget"
                     id="budget"
@@ -412,7 +412,7 @@ export default function BuyWithUs() {
                 </div>
 
                 <div className="col-md-6 mb-3">
-                  <label className="form-label">Lot Size*</label>
+                  <label className="form-label">Lot Size<span className="text-danger">*</span></label>
                   <input
                     type="text"
                     id="lotSize"

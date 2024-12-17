@@ -287,45 +287,7 @@ export default function Blog() {
 
             <div className="col-lg-4 col-md-6 col-12">
               <div className="card bg-white p-4 rounded-3 shadow sticky-bar">
-                <div className="pt-2">
-                  <h6 className="pt-2 pb-2 bg-light rounded-3 text-center">
-                    Recent Post
-                  </h6>
-                  <div className="mt-4">
-                    {recentBlogs.map((item, index) => {
-                      return (
-                        <div
-                          className="blog blog-primary d-flex align-items-center mt-3"
-                          key={index}
-                        >
-                          <Image
-                            src={item.coverImage}
-                            className="avatar avatar-small rounded-3"
-                            width={104}
-                            height={85}
-                            style={{ width: "auto" }}
-                            alt=""
-                          />
-                          <div className="flex-1 ms-3">
-                            <Link
-                              href={`/blogs/blogDetail?blog=${item.title
-                                .toLowerCase()
-                                .replace(/\s+/g, "-")}-${item._id}`}
-                              className="d-block title text-dark fw-medium"
-                            >
-                              {item.title}
-                            </Link>
-                            <span className="text-muted small">
-                              {formatDate(item.date)}
-                            </span>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                <div className="mt-5">
+              <div className="">
                   <h6 className="pt-2 pb-2 rounded-3 text-center">
                     Filter By Tags
                   </h6>
@@ -378,6 +340,45 @@ export default function Blog() {
                     </button>
                   </div>
                 </div>
+                <div className="pt-2 mt-5">
+                  <h6 className="pt-2 pb-2 bg-light rounded-3 text-center">
+                    Recent Post
+                  </h6>
+                  <div className="mt-4">
+                    {recentBlogs.map((item, index) => {
+                      return (
+                        <div
+                          className="blog blog-primary d-flex align-items-center mt-3"
+                          key={index}
+                        >
+                          <Image
+                            src={item.coverImage}
+                            className="avatar avatar-small rounded-3"
+                            width={104}
+                            height={85}
+                            style={{ width: "auto" }}
+                            alt=""
+                          />
+                          <div className="flex-1 ms-3">
+                            <Link
+                              href={`/blogs/blogDetail?blog=${item.title
+                                .toLowerCase()
+                                .replace(/\s+/g, "-")}-${item._id}`}
+                              className="d-block title text-dark fw-medium"
+                            >
+                              {item.title}
+                            </Link>
+                            <span className="text-muted small">
+                              {formatDate(item.date)}
+                            </span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+               
               </div>
             </div>
           </div>

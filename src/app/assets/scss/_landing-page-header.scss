@@ -19,6 +19,12 @@
   background-color: $blue-oerlay;
 }
 
+.header-title{
+  font-size:4rem;
+  line-height: 1.2;
+  font-weight: bold;
+}
+
 .right-side-bg {
   background-image: url("/images/bg/01.jpg");
   height: 100%;
@@ -36,10 +42,6 @@
  }
  .col-seperated{
     height: 70vh;
- }
-
- .card1{
-    height: calc(100vh / 3.6);
  }
 }
 
@@ -81,12 +83,13 @@
     height: 100vh;
   }
   
-  .card1{
-    height: calc(100vh / 2.5);
-  }
 }
 
 @media (max-width: 430px) {
+
+  .hide-col{
+    display: none;
+  }
 
   .col-seperated {
     height: 70vh;
@@ -113,7 +116,7 @@
   }
 
   .header-title{
-    font-size: 1rem;
+    font-size:2rem;
     line-height: 1.2;
   }
 
@@ -144,23 +147,23 @@ rect {
   transition: opacity 0.3s ease-in-out;
 }
 
-.hover-rect-insights:hover ~ .hide-text-insights {
+.hover-rect-insights:hover rect ~ .hide-text-insights {
   opacity: 1;
 }
 
-.hover-rect-insights:hover {
+.hover-rect-insights:hover rect{
   width: 320px;
   height: 85px;
   fill: black;
 }
 
-.hover-rect-tours:hover {
+.hover-rect-tours:hover rect{
   width: 200px;
   height: 150px;
   fill: black;
 }
 
-.hover-rect-network:hover {
+.hover-rect-network:hover rect{
   width: 200px;
   height: 150px;
   fill: black;
@@ -171,7 +174,7 @@ rect {
   transition: opacity 0.3s ease-in-out;
 }
 
-.hover-rect-network:hover ~ .hide-text-network {
+.hover-rect-network:hover  rect~ .hide-text-network {
   opacity: 1;
 }
 
@@ -181,12 +184,12 @@ rect {
   transition: opacity 0.3s ease-in-out;
 }
 
-.hover-rect-tours:hover ~ .hide-text-tours {
+.hover-rect-tours:hover rect ~ .hide-text-tours {
   opacity: 1;
 }
 
 
-.hover-rect-out-side:hover {
+.hover-rect-out-side:hover rect{
   width: 200px;
   height: 150px;
   fill: black;
@@ -198,7 +201,7 @@ rect {
   transition: opacity 0.3s ease-in-out;
 }
 
-.hover-rect-out-side:hover ~ .hide-text-out-side {
+.hover-rect-out-side:hover rect ~ .hide-text-out-side {
   opacity: 1;
 }
 
@@ -207,12 +210,12 @@ rect {
   transition: opacity 0.3s ease-in-out;
 }
 
-.hover-rect-listings:hover ~ .hide-text-listings {
+.hover-rect-listings:hover rect ~ .hide-text-listings {
   opacity: 1;
 }
 
 
-.hover-rect-listings:hover {
+.hover-rect-listings:hover rect {
   width: 200px;
   height: 150px;
   fill: black;

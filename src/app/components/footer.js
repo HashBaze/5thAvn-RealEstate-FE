@@ -61,7 +61,7 @@ export default function Footer() {
                   <div className="col-lg-4 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
                     <h5 className="footer-head">Our Pages</h5>
                     <div className="row">
-                      <div className="col-lg-12 col-6">
+                      <div className="col-lg-12 mt-4 col-6">
                         <li>
                           {" "}
                           <Link
@@ -109,7 +109,7 @@ export default function Footer() {
                         </li>
                       </div>
 
-                      <div className="col-lg-12 col-6">
+                      <div className="col-lg-12 mt-4 col-6">
                         Buying
                         <li>
                           <Link
@@ -137,7 +137,7 @@ export default function Footer() {
                         </li>
                       </div>
 
-                      <div className="col-lg-12 col-6">
+                      <div className="col-lg-12 mt-4 col-6">
                         Selling
                         <li>
                           <Link
@@ -166,7 +166,7 @@ export default function Footer() {
                         </li>
                       </div>
 
-                      <div className="col-lg-12 col-6">
+                      <div className="col-lg-12 mt-4 col-6">
                         Renting
                         <li>
                           <Link

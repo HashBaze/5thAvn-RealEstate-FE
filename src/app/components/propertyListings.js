@@ -182,9 +182,6 @@ export default function PropertyListings() {
           <div className="row mt-5 justify-content-center">
             <div className="col-12">
               <div className="title-heading text-center">
-                <p className="text-white-50 para-desc mx-auto mb-0">
-                  Grid view Listing
-                </p>
                 <h5 className="heading fw-semibold mb-0 sub-heading text-white title-dark">
                   {type === "Sale"
                     ? "For Sale"
@@ -889,6 +886,7 @@ export default function PropertyListings() {
       <Footer />
       <ScrollTop />
       <PropertyFilterModal
+        status={status}
         isModalOpen={isModalOpen}
         handleOpenModal={handleOpenModal}
         handleCloseModal={handleCloseModal}
