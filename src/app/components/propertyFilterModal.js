@@ -9,6 +9,7 @@ export default function PropertyFilterModal({
   fetchDataByFilter,
   setFilterData,
   type,
+  status
 }) {
   const [formData, setFormData] = useState({
     bedRoomMin: "",
@@ -23,6 +24,7 @@ export default function PropertyFilterModal({
     secaurity: false,
     page: 1,
     isSelected: type,
+    status: status,
   });
   const [suburb, setSuburb] = useState([]);
 

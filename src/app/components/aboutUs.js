@@ -13,6 +13,7 @@ import UseScroll from "../hooks/UseScroll";
 import { useAuth } from "../context/authContext";
 import { getRecentBlogs } from "../service/blogService";
 import Spinner from "./spinner";
+import AOS from "aos";
 
 export const AboutUs = () => {
   const router = useRouter();
@@ -55,6 +56,14 @@ export const AboutUs = () => {
 
   useEffect(() => {
     fetchRecentBlogs();
+    if (typeof window !== "undefined") {
+      AOS.init({
+        duration: 1000,
+        offset: 100,
+        delay: 60,
+        easing: "ease-in-out",
+      });
+    }
   }, []);
 
   return (
@@ -100,71 +109,70 @@ export const AboutUs = () => {
         </div>
       </div>
       <section className="">
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-lg-6 col-md-6">
-              <div className="about-left">
-                <div className="position-relative shadow p-2 rounded-top-pill rounded-5 bg-white img-one">
-                  <Image
-                    src="/images/hero.jpg"
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    style={{ width: "100%", height: "auto" }}
-                    className="img-fluid rounded-top-pill rounded-5"
-                    alt=""
-                  />
-                  <div className="position-absolute top-0 start-0 z-n1">
-                    <Image
-                      src="/images/svg/dots.svg"
-                      width={0}
-                      height={0}
-                      sizes="100vw"
-                      style={{ width: "100%", height: "auto" }}
-                      className="avatar avatar-xl-large"
-                      alt=""
-                    />
-                  </div>
-                </div>
-
-                <div className="img-two shadow rounded-3 overflow-hidden p-2 bg-white">
-                  <Image
-                    src="/images/1.jpg"
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    style={{ width: "100%", height: "auto" }}
-                    className="img-fluid rounded-3"
-                    alt=""
-                  />
+        <div className="container-fluid p-lg-5 p-md-4">
+          <div className="row justify-content-between">
+            <h1 className="text-sm-start text-center">Our Purpose</h1>
+          </div>
+          <div className="row g-2 mt-5 d-flex flex-wrap">
+            <div
+              className="col-lg-6 col-md-6 col-xl-3 col-12 d-flex align-items-stretch"
+              data-aos="fade-left"
+            >
+              <div className="border rounded-4 shadow-lg card1 p-5 w-100">
+                <h3 className="cardH3">1. Property Listings</h3>
+                <p className="small small-p mt-3">
+                  Browse a wide selection of residential and commercial
+                  properties to find your dream home or ideal investment.
+                </p>
+                <div className="go-corner" href="#">
+                  <div className="go-arrow">→</div>
                 </div>
               </div>
             </div>
-
-            <div className="col-lg-6 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
-              <div className="section-title ms-lg-5">
-                <h6 className="text-primary fw-medium mb-2">
-                  Our story: 5th Avenue
-                </h6>
-                <p className="text-muted para-desc mb-0">
-                  Para: Looking for a real estate agency in your area? Look no
-                  further than the trusted experts at our agency! With years of
-                  experience in the real estate industry, our agents are
-                  equipped to help you buy or sell your home. We‘ll work with
-                  you to find the perfect property, negotiate the best price,
-                  and help you through the closing process. Contact us today to
-                  get started!
+            <div
+              className="col-lg-6 col-md-6 col-xl-3 col-12 d-flex align-items-stretch"
+              data-aos="fade-up"
+            >
+              <div className="border rounded-4 shadow-lg card1 p-5 w-100">
+                <h3 className="cardH3">2. Mortgage Services</h3>
+                <p className="small small-p mt-3">
+                  Access mortgage calculators, loan options, and expert advice
+                  to make informed decisions for your property purchase.
                 </p>
-
-                <p className="text-muted para-desc mb-0 mt-5">
-                  We are a full–service real estate agency, meaning we can help
-                  you with every step of buying or selling a home. We have a
-                  wide range of properties listed on our website, from houses to
-                  apartments to condos. And, our agents are knowledgeable about
-                  the local market, so they can help you find the perfect home
-                  for your needs. Give us a call today and let us help you with
-                  all your real estate needs!
+                <div className="go-corner" href="#">
+                  <div className="go-arrow">→</div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="col-lg-6 col-md-6 col-xl-3 col-12 d-flex align-items-stretch"
+              data-aos="fade-down"
+            >
+              <div className="border rounded-4 shadow-lg card1 p-5 w-100">
+                <h3 className="cardH3">3. Market Trends</h3>
+                <p className="small small-p mt-3">
+                  Stay updated with the latest market trends, property values,
+                  and neighborhood insights to make smarter real estate
+                  investments.
                 </p>
+                <div className="go-corner" href="#">
+                  <div className="go-arrow">→</div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="col-lg-6 col-md-6 col-xl-3 col-12 d-flex align-items-stretch"
+              data-aos="fade-left"
+            >
+              <div className="border rounded-4 shadow-lg card1 p-5 w-100">
+                <h3 className="cardH3">4. Real Estate Agents</h3>
+                <p className="small small-p mt-3">
+                  Connect with experienced real estate agents who can guide you
+                  through buying, selling, or renting properties.
+                </p>
+                <div className="go-corner" href="#">
+                  <div className="go-arrow">→</div>
+                </div>
               </div>
             </div>
           </div>
@@ -187,7 +195,7 @@ export const AboutUs = () => {
             {aboutData.map((item, index) => {
               let Icon = item.icon;
               return (
-                <div className="col-md-4" key={index}>
+                <div className="col-md-4" key={index} data-aos="fade-up">
                   <div className="position-relative features text-center mx-lg-4 px-md-1">
                     <div className="feature-icon position-relative overflow-hidden d-flex justify-content-center">
                       <FiHexagon className="hexagon" />

@@ -84,12 +84,12 @@ export default function Home() {
           <div className="row justify-content-between">
             <h1 className="text-sm-start text-center">Our Purpose</h1>
           </div>
-          <div className="row g-2 mt-5">
+          <div className="row g-2 mt-5 d-flex flex-wrap">
             <div
-              className="col-lg-6 col-md-6 col-xl-3 col-12"
+              className="col-lg-6 col-md-6 col-xl-3 col-12 d-flex align-items-stretch"
               data-aos="fade-right"
             >
-              <div className="border rounded-4 shadow-lg card1 p-5">
+              <div className="border rounded-4 shadow-lg card1 p-5 w-100">
                 <h3 className="cardH3">1. Property Listings</h3>
                 <p className="small small-p mt-3">
                   Browse a wide selection of residential and commercial
@@ -101,10 +101,10 @@ export default function Home() {
               </div>
             </div>
             <div
-              className="col-lg-6 col-md-6 col-xl-3 col-12"
+              className="col-lg-6 col-md-6 col-xl-3 col-12 d-flex align-items-stretch"
               data-aos="fade-up"
             >
-              <div className="border rounded-4 shadow-lg card1 p-5">
+              <div className="border rounded-4 shadow-lg card1 p-5 w-100">
                 <h3 className="cardH3">2. Mortgage Services</h3>
                 <p className="small small-p mt-3">
                   Access mortgage calculators, loan options, and expert advice
@@ -116,10 +116,10 @@ export default function Home() {
               </div>
             </div>
             <div
-              className="col-lg-6 col-md-6 col-xl-3 col-12"
+              className="col-lg-6 col-md-6 col-xl-3 col-12 d-flex align-items-stretch"
               data-aos="fade-down"
             >
-              <div className="border rounded-4 shadow-lg card1 p-5">
+              <div className="border rounded-4 shadow-lg card1 p-5 w-100">
                 <h3 className="cardH3">3. Market Trends</h3>
                 <p className="small small-p mt-3">
                   Stay updated with the latest market trends, property values,
@@ -132,10 +132,10 @@ export default function Home() {
               </div>
             </div>
             <div
-              className="col-lg-6 col-xl-3 col-md-6 col-12"
+              className="col-lg-6 col-md-6 col-xl-3 col-12 d-flex align-items-stretch"
               data-aos="fade-left"
             >
-              <div className="border rounded-4 shadow-lg card1 p-5">
+              <div className="border rounded-4 shadow-lg card1 p-5 w-100">
                 <h3 className="cardH3">4. Real Estate Agents</h3>
                 <p className="small small-p mt-3">
                   Connect with experienced real estate agents who can guide you
