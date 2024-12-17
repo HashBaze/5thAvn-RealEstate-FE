@@ -18,9 +18,7 @@ export default function Footer() {
   };
   return (
     <>
-      <section
-        className=""
-      ></section>
+      <section className=""></section>
       <footer className="bg-footer">
         <div className="container">
           <div className="row">
@@ -62,54 +60,56 @@ export default function Footer() {
                   </div>
                   <div className="col-lg-4 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
                     <h5 className="footer-head">Our Pages</h5>
-                    <li>
-                      {" "}
-                      <Link
-                        className={`has-submenu parent-menu-item text-white`}
-                        href="/"
-                      >
-                        Home
-                      </Link>
-                    </li>
-
-                    <li className="has-submenu parent-menu-item">
-                      <Link
-                        href="/aboutus"
-                        className={`has-submenu parent-menu-item text-white`}
-                      >
-                        About Us
-                      </Link>
-                    </li>
-
-                    <li className="has-submenu parent-menu-item">
-                      <Link
-                        href="/blogs"
-                        className={`has-submenu parent-menu-item text-white`}
-                      >
-                        Blogs
-                      </Link>
-                    </li>
-
-                    <li className="has-submenu parent-menu-item">
-                      <Link
-                        href="/features"
-                        className={`has-submenu parent-menu-item text-white`}
-                      >
-                        Features
-                      </Link>
-                    </li>
-
-                    <li className="has-submenu parent-menu-item">
-                      <Link
-                        href="/contactus"
-                        className={`has-submenu parent-menu-item text-white`}
-                      >
-                        Contact Us
-                      </Link>
-                    </li>
-
                     <div className="row">
-                      <div className="col-12">
+                      <div className="col-lg-12 col-6">
+                        <li>
+                          {" "}
+                          <Link
+                            className={`has-submenu parent-menu-item text-white`}
+                            href="/"
+                          >
+                            Home
+                          </Link>
+                        </li>
+
+                        <li className="has-submenu parent-menu-item">
+                          <Link
+                            href="/aboutus"
+                            className={`has-submenu parent-menu-item text-white`}
+                          >
+                            About Us
+                          </Link>
+                        </li>
+
+                        <li className="has-submenu parent-menu-item">
+                          <Link
+                            href="/blogs"
+                            className={`has-submenu parent-menu-item text-white`}
+                          >
+                            Blogs
+                          </Link>
+                        </li>
+
+                        <li className="has-submenu parent-menu-item">
+                          <Link
+                            href="/features"
+                            className={`has-submenu parent-menu-item text-white`}
+                          >
+                            Features
+                          </Link>
+                        </li>
+
+                        <li className="has-submenu parent-menu-item">
+                          <Link
+                            href="/contactus"
+                            className={`has-submenu parent-menu-item text-white`}
+                          >
+                            Contact Us
+                          </Link>
+                        </li>
+                      </div>
+
+                      <div className="col-lg-12 col-6">
                         Buying
                         <li>
                           <Link
@@ -137,7 +137,7 @@ export default function Footer() {
                         </li>
                       </div>
 
-                      <div className="col-12">
+                      <div className="col-lg-12 col-6">
                         Selling
                         <li>
                           <Link
@@ -165,9 +165,8 @@ export default function Footer() {
                           </Link>
                         </li>
                       </div>
-                    </div>
-                    <div className="row">
-                      <div className="col">
+
+                      <div className="col-lg-12 col-6">
                         Renting
                         <li>
                           <Link
