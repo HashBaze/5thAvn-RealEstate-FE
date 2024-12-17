@@ -15,19 +15,21 @@ const league = League_Spartan({
 export default function RootLayout({ children }) {
   return (
     <AuthProvider>
-        <html lang="en">
-          <head>
-            <link rel="icon" href="/images/logo/logo.png" />
-            <head>
-              <title>5th Avenue</title>
-              <meta
-                name="description"
-                content="5th Avenue is a modern and stylish e-commerce template. It is built on top of Bootstrap 4 and it is fully responsive."
-              />
-            </head>
-          </head>
-          <body className={league.variable}>{children}</body>
-        </html>
+      <html lang="en">
+        <head>
+          <link rel="icon" href="/images/logo/logo.png" />
+          <title>5th Avenue</title>
+          <meta
+            name="description"
+            content="5th Avenue is a modern and stylish e-commerce template. It is built on top of Bootstrap 4 and it is fully responsive."
+          />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+          />
+        </head>
+        <body className={league.variable}>{children}</body>
+      </html>
     </AuthProvider>
   );
 }

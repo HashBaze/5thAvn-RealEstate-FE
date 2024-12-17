@@ -187,18 +187,23 @@ export default function RentalApparaisal() {
         <div className="ring"></div>
       </section>
 
-      <h3 className="text-center mt-5">Tell us about your rental property!</h3>
+      <div className="container">
+        <h3 className="text-center mt-5">
+          Tell us about your rental property!
+        </h3>
 
-      <p className="text-center">
-        Complete the form below to request a free appraisal and receive a <br />
-        detailed report on your property's current market value. Our property{" "}
-        <br />
-        experts will evaluate your rental using recent comparable rentals, local{" "}
-        <br />
-        market trends, and relevant data to provide you with a comprehensive,{" "}
-        <br />
-        free analysis of its rental value and a suggested rental price.
-      </p>
+        <p className="text-center">
+          Complete the form below to request a free appraisal and receive a
+          <br className="d-none d-md-block d-lg-block" />
+          detailed report on your property's current market value. Our property
+          <br className="d-none d-md-block d-lg-block" />
+          experts will evaluate your rental using recent comparable rentals,
+          local <br className="d-none d-md-block d-lg-block" />
+          market trends, and relevant data to provide you with a comprehensive,
+          <br className="d-none d-md-block d-lg-block" />
+          free analysis of its rental value and a suggested rental price.
+        </p>
+      </div>
 
       <h3 className="text-center mt-100">RENTAL APPRAISAL REQUEST FORM</h3>
 

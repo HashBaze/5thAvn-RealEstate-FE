@@ -149,7 +149,7 @@ export default function ViewProperty({ id }) {
                     <span className="small">{property.streetNo}</span>
                   </div>
 
-                  {property.floorplans && (
+                  {property.floorplans.length > 0 && (
                     <div className="d-flex align-items-center justify-content-between mt-2">
                       <span className="small text-muted">Floor Plan</span>
                       <Link

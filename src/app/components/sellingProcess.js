@@ -96,8 +96,8 @@ export default function SellingProcess() {
             <div className="col-12">
               <div className="title-heading text-center">
                 <h5 className="heading fw-semibold mb-0 sub-heading text-white title-dark">
-                  our property selling <br />
-                  PROCESS
+                  Our Property Selling <br />
+                  Process
                 </h5>
               </div>
             </div>
@@ -133,21 +133,13 @@ export default function SellingProcess() {
       </div>
 
       <section className="d-flex justify-content-center position-relative">
-        <section className="background-container mt-5 row justify-content-center bg-desktop">
-          <div className="col-12 col-lg-6 text-center content-left">
-            <div className="title-heading">
-              <p className="title-dark mt-5">
+        <section className="row justify-content-center container">            
+              <p className="title-dark text-center fw-bold fs-2 mt-5">
                 Your Home Sale, Simplified with <br />
                 5th Avenue Real Estate
               </p>
-            </div>
-          </div>
 
-          <div className="ring-animation mt-5"></div>
-
-          <div className="col-12 col-lg-6 text-center content-right border-col">
-            <div className="title-heading">
-              <p id="description">
+              <p id="description" className="text-center mt-5">
                 Selling your home is a significant milestone, and at 5th Avenue{" "}
                 <br />
                 Real Estate Property Group, we aim to make the journey smooth,{" "}
@@ -158,8 +150,8 @@ export default function SellingProcess() {
                 <br />
                 every step of the way.
               </p>
-            </div>
-          </div>
+
+          <div className="ring-animation mt-5"></div>
         </section>
       </section>
 
@@ -172,18 +164,18 @@ export default function SellingProcess() {
           {steps.map((step, index) => (
             <div key={index} className="col-12 col-lg-6 p-3">
               <div className="title-heading">
-                <h5 className="heading fw-semibold mb-0 sub-heading title-dark">
+                <h5 className="heading fw-semibold mb-0 sub-heading title-dark text-center text-lg-start">
                   {step.title}
                 </h5>
-                <p className="text-muted mt-3">{step.description}</p>
+                <p className="text-muted mt-3 text-center text-lg-start">{step.description}</p>
               </div>
             </div>
           ))}
         </section>
       </section>
 
-      <section className="container ">
-        <p>
+      <section className="container">
+        <p className="m-5">
           At 5th Avenue Real Estate Property Group, we are dedicated to <br />
           delivering exceptional service, outstanding results, and a<br />
           home-selling experience that exceeds your expectations. Let’s make
