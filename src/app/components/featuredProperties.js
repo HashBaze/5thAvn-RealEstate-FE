@@ -308,7 +308,7 @@ export default function FuaturedProperties({ propertyData, filter, suburb }) {
         {propertyData.length > 0 ? (
           propertyData.slice(0, 6).map((item, index) => {
             return (
-              <div className="col-lg-4 col-md-6 col-12" key={index}>
+              <div className="col-lg-4 col-md-6 col-12" key={index} data-aos={`${index % 2 == 0 ? "flip-left" : "flip-right"}`}>
                 <div className="card property border-0 shadow position-relative overflow-hidden rounded-3">
                   <div className="property-image position-relative overflow-hidden shadow">
                     <Image
@@ -376,7 +376,7 @@ export default function FuaturedProperties({ propertyData, filter, suburb }) {
                       {item.node.price != 0 && item.node.price && (
                         <li className="list-inline-item mb-0 d-flex gap-2">
                           <span
-                            className="bg-success p-2 text-white rounded"
+                            className="bg-success p-2 text-white rounded txt-home-open"
                             style={{
                               fontSize: "0.8rem",
                             }}
