@@ -17,7 +17,7 @@ export default function LandingPageHeader() {
       <div className="row blue-bg p-0">
         <div className="col-lg-6 d-flex col-md-12 col-seperated p-0">
           <div className="d-flex align-items-center">
-            <div className="p-5">
+            <div className="p-lg-5 p-md-5 header-content">
               <small className="text-center header-promt rounded-5 p-2">
                 Discover Your Dream Home
               </small>
@@ -56,7 +56,7 @@ export default function LandingPageHeader() {
           </div>
         </div>
         <div className="col-lg-6 d-flex col-md-12 col-seperated p-0">
-          <div className="d-flex align-items-center">
+          <div className="d-flex align-items-center w-100">
             <div className="right-side-bg position-relative">
               <div className="bg-overlay-my-container"></div>
               <div className="w-md-100">
@@ -271,7 +271,6 @@ export default function LandingPageHeader() {
                     fill="white"
                     fontFamily="Arial, sans-serif"
                     className="animated-text"
-                    z={-100}
                   >
                     Finance Solutions
                   </text>

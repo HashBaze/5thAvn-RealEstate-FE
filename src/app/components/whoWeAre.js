@@ -23,7 +23,7 @@ export const WhoWeAre = () => {
           <div className="row">
             <div className="col-lg-6 col-md-6 col-12 p-3 who-weare-bg"></div>
 
-            <div className="col-lg-6 col-md-6 col-12 p-5">
+            <div className="col-lg-6 col-md-12 col-12 p-5">
               <p className="text-start who-we-are-main-text">
                 Restaurant Project
               </p>
@@ -61,13 +61,12 @@ export const WhoWeAre = () => {
               </div>
 
               <button
-                className="btn btn-primary mt-4"
+                className="btn btn-primary mt-4 btn-contact"
                 onClick={() => {
                   router.push("/aboutus");
                 }}
               >
                 Read More{" "}
-                <BsArrowUpRightCircleFill className="icons text-dark fs-5" />
               </button>
             </div>
           </div>

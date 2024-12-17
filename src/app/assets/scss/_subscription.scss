@@ -7,11 +7,34 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 50vh;
+    height: 30vh;
     width: 100%;
+}
+
+.subscribe-title{
+    font-size: 3rem;
+}
+
+.subscribe-desc{
+    font-size: 1rem;
 }
 
 .link-hover:hover{
     color: blue;
     text-decoration: underline;
+}
+
+@media (max-width: 425px) {
+    .bg-container {
+        height: 20vh;
+        background-position: fixed; 
+    }
+
+    .subscribe-title{
+        font-size: 1rem;
+    }
+
+    .subscribe-desc{
+        font-size: 0.8rem;
+    }
 }

@@ -18,3 +18,16 @@
 .who-we-are-main-text {
   font-size: 1.3rem;
 }
+
+
+@media (max-width: 820px) {
+  .who-weare-bg {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .btn-contact {
+    width: 20%;
+  }
+}

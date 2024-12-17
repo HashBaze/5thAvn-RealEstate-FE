@@ -15,27 +15,26 @@ export const Subscribe = () => {
         </section>
         <section className="container-fluid subcription-bg">
           <div className="justify-content-between">
-            <div className="mt-5 p-3">
-              <h1 className="text-dark display-5" data-aos="fade-right">
+            <div className="p-3">
+              <p className="text-dark text-center subscribe-title" data-aos="fade-right">
                 Subscribe to be stay <br />
                 updated with us
-              </h1>
-              <p data-aos="fade-right">
+              </p>
+              <p data-aos="fade-right" className="text-center subscribe-desc">
                 Subscribe to our newsletter and get the latest news and updates{" "}
                 <br />
                 from our team.
               </p>
             </div>
-            <div className="d-flex justify-content-end p-3">
+            <div className="d-flex justify-content-center p-2">
               <button
                 data-aos="fade-right"
                 onClick={() => {
                   router.push("/contactus");
                 }}
-                className="btn"
+                className="btn btn-primary btn-contact mb-2 w-sm-100"
                 type="button"
               >
-                <BsArrowUpRightCircleFill className="icons text-primary fs-4" />
                 <span className="ms-3 link-hover">Contact Us Our Team</span>
               </button>
             </div>
