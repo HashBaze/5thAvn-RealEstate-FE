@@ -50,3 +50,7 @@ footer {
         border-color: lighten($footer, 3%) !important;
     }
 }
+
+.nav-row li {
+    white-space: nowrap;
+}

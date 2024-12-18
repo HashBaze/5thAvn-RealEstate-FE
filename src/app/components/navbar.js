@@ -7,6 +7,9 @@ export default function Navbar({ menuClass, scrolled }) {
   let [isMenu, setisMenu] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenBuying, setIsOpenBuying] = useState(false);
+  const [isOpenSelling, setIsOpenSelling] = useState(false);
+  const [isOpenRenting, setIsOpenRenting] = useState(false);
 
   const PROPERTYSTATUS = {
     ACTIVE: "ACTIVE",
@@ -27,12 +30,7 @@ export default function Navbar({ menuClass, scrolled }) {
 
   return (
     <>
-      <header
-        id="topnav"
-        className={
-          `defaultscroll sticky bg-white p-2`
-        }
-      >
+      <header id="topnav" className={`defaultscroll sticky bg-white p-2`}>
         <div className="">
           <nav className={`d-flex justify-content-between align-items-center`}>
             <div className="">
@@ -175,24 +173,27 @@ export default function Navbar({ menuClass, scrolled }) {
               </div>
             </div>
             <div className=" d-flex justify-content-center">
-            {!isMobile && (
-            <Image
-              src="/images/logo/logo.png"
-              style={{
-                cursor: "pointer",
-              }}
-              width={132}
-              height={50}
-              className="logo-light-mode mt-2"
-              alt="LOGO"
-              onClick={() => {
-                window.location.href = "/";
-              }}
-            />
-          )}
-
+              {!isMobile && (
+                <Image
+                  src="/images/logo/logo.png"
+                  style={{
+                    cursor: "pointer",
+                  }}
+                  width={132}
+                  height={50}
+                  className="logo-light-mode mt-2"
+                  alt="LOGO"
+                  onClick={() => {
+                    window.location.href = "/";
+                  }}
+                />
+              )}
             </div>
-            <div className="" id="navigation" style={{ display: isMenu ? "block" : "none" }}>
+            <div
+              className=""
+              id="navigation"
+              style={{ display: isMenu ? "block" : "none" }}
+            >
               <ul className={menuClass}>
                 <li className="has-submenu parent-menu-item">
                   <Link
@@ -303,29 +304,32 @@ export default function Navbar({ menuClass, scrolled }) {
                           e.preventDefault();
                           const parent = e.target.closest(".has-submenu");
                           parent.classList.toggle("active");
-                          setIsOpen(!isOpen);
+                          setIsOpenBuying(!isOpenBuying);
                         }}
                       >
                         Buying
                       </a>
                       <span className="menu-arrow"></span>
-                      {isMobile && isOpen && (
+                      {isMobile && isOpenBuying && (
                         <div className="p-3 text-dark d-flex flex-column gap-3 ms-4">
                           <Link
                             href={`/propertyListings?type=Sale&status=${PROPERTYSTATUS.ACTIVE}`}
-                            className="sub-menu-item"
+                            className="sub-menu-item text-dark"
                           >
                             Property
                           </Link>
 
                           <Link
                             href="/propertyListings?type=Land"
-                            className="sub-menu-item"
+                            className="sub-menu-item text-dark"
                           >
                             Land
                           </Link>
 
-                          <Link href="/buyWithUs" className="sub-menu-item">
+                          <Link
+                            href="/buyWithUs"
+                            className="sub-menu-item text-dark"
+                          >
                             Buy With Us
                           </Link>
                         </div>
@@ -369,13 +373,13 @@ export default function Navbar({ menuClass, scrolled }) {
                           e.preventDefault();
                           const parent = e.target.closest(".has-submenu");
                           parent.classList.toggle("active");
-                          setIsOpen(!isOpen);
+                          setIsOpenSelling(!isOpenSelling);
                         }}
                       >
                         Selling
                       </a>
                       <span className="menu-arrow"></span>
-                      {isMobile && isOpen && (
+                      {isMobile && isOpenSelling && (
                         <div className="p-3 text-dark d-flex flex-column gap-3 ms-4">
                           <Link
                             href="/sellingProcess"
@@ -439,13 +443,13 @@ export default function Navbar({ menuClass, scrolled }) {
                           e.preventDefault();
                           const parent = e.target.closest(".has-submenu");
                           parent.classList.toggle("active");
-                          setIsOpen(!isOpen);
+                          setIsOpenRenting(!isOpenRenting);
                         }}
                       >
                         Renting
                       </a>
                       <span className="menu-arrow"></span>
-                      {isMobile && isOpen && (
+                      {isMobile && isOpenRenting && (
                         <div className="p-3 text-dark d-flex flex-column gap-3 ms-4">
                           <Link
                             href="/propertyListings?type=Rent"
