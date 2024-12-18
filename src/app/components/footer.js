@@ -25,7 +25,7 @@ export default function Footer() {
             <div className="col-12">
               <div className="footer-py-60 footer-border">
                 <div className="row">
-                  <div className="col-lg-4 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
+                  <div className="col-lg-4 col-12 mb-0 mb-md-6 pb-0 pb-md-2">
                     <Link href="#" className="logo-footer">
                       <Image
                         src="/images/logo/logo.png"
@@ -58,9 +58,9 @@ export default function Footer() {
                       </li>
                     </ul>
                   </div>
-                  <div className="col-lg-4 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                  <div className="col-lg-4 col-md-6 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
                     <h5 className="footer-head">Our Pages</h5>
-                    <div className="row">
+                    <div className="row nav-row">
                       <div className="col-lg-12 mt-4 col-6">
                         <li>
                           {" "}

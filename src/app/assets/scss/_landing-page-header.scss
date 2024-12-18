@@ -19,8 +19,8 @@
   background-color: $blue-oerlay;
 }
 
-.header-title{
-  font-size:4rem;
+.header-title {
+  font-size: 4rem;
   line-height: 1.2;
   font-weight: bold;
 }
@@ -32,18 +32,20 @@
   background-size: cover;
   background-position: center;
 }
-
 @media (max-width: 1030px) {
- .svg-container{
+  .svg-container {
+    top: 10px;
     width: 50vw;
     height: 50vh;
     margin: auto;
     left: 20px;
- }
- .col-seperated{
-    height: 70vh;
- }
+  }
+  .col-seperated {
+    height: 60vh;
+  }
 }
+
+
 
 @media (max-width: 320px) {
 }
@@ -69,7 +71,6 @@
   }
 }
 
-
 @media (max-width: 768px) {
   .svg-container {
     left: 20px;
@@ -79,15 +80,13 @@
     margin: auto;
   }
 
-  .col-seperated{
+  .col-seperated {
     height: 100vh;
   }
-  
 }
 
 @media (max-width: 430px) {
-
-  .hide-col{
+  .hide-col {
     display: none;
   }
 
@@ -95,28 +94,28 @@
     height: 70vh;
   }
 
-  .btn-animated{
+  .btn-animated {
     font-size: 0.8rem;
     height: 50px;
     white-space: nowrap;
   }
 
-  .btn-lern-more{
+  .btn-lern-more {
     font-size: 0.8rem;
     height: 50px;
     white-space: nowrap;
   }
 
-  .text-start{
+  .text-start {
     font-size: 1rem;
   }
 
-  .header-content{
+  .header-content {
     padding: 20px;
   }
 
-  .header-title{
-    font-size:2rem;
+  .header-title {
+    font-size: 2rem;
     line-height: 1.2;
   }
 
@@ -139,10 +138,9 @@ rect {
   cursor: pointer;
   fill: transparent;
   transition: width 0.3s ease, height 0.3s ease;
-
 }
 
-.hide-text-insights{
+.hide-text-insights {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
@@ -151,35 +149,34 @@ rect {
   opacity: 1;
 }
 
-.hover-rect-insights:hover rect{
+.hover-rect-insights:hover rect {
   width: 320px;
   height: 85px;
   fill: black;
 }
 
-.hover-rect-tours:hover rect{
+.hover-rect-tours:hover rect {
   width: 200px;
   height: 150px;
   fill: black;
 }
 
-.hover-rect-network:hover rect{
+.hover-rect-network:hover rect {
   width: 200px;
   height: 150px;
   fill: black;
 }
 
-.hide-text-network{
+.hide-text-network {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
 
-.hover-rect-network:hover  rect~ .hide-text-network {
+.hover-rect-network:hover rect ~ .hide-text-network {
   opacity: 1;
 }
 
-
-.hide-text-tours{
+.hide-text-tours {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
@@ -188,13 +185,11 @@ rect {
   opacity: 1;
 }
 
-
-.hover-rect-out-side:hover rect{
+.hover-rect-out-side:hover rect {
   width: 200px;
   height: 150px;
   fill: black;
 }
-
 
 .hide-text-out-side {
   opacity: 0;
@@ -205,7 +200,7 @@ rect {
   opacity: 1;
 }
 
-.hide-text-listings{
+.hide-text-listings {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
@@ -213,7 +208,6 @@ rect {
 .hover-rect-listings:hover rect ~ .hide-text-listings {
   opacity: 1;
 }
-
 
 .hover-rect-listings:hover rect {
   width: 200px;
