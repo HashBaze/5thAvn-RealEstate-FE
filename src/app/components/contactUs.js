@@ -283,8 +283,8 @@ export default function ContactUs() {
         </div>
 
         <div className="container mt-100 mt-60">
-          <div className="row g-4">
-            <div className="col-md-4">
+          <div className="row g-4 justify-content-center">
+            <div className="col-md-6">
               <div className="position-relative features text-center mx-lg-4 px-md-1">
                 <div className="feature-icon position-relative overflow-hidden d-flex justify-content-center">
                   <FiHexagon className="hexagon" />
@@ -305,7 +305,7 @@ export default function ContactUs() {
               </div>
             </div>
 
-            <div className="col-md-4">
+            <div className="col-md-6">
               <div className="position-relative features text-center mx-lg-4 px-md-1">
                 <div className="feature-icon position-relative overflow-hidden d-flex justify-content-center">
                   <FiHexagon className="hexagon" />
@@ -329,7 +329,7 @@ export default function ContactUs() {
               </div>
             </div>
 
-            <div className="col-md-4">
+            <div className="col-md-6">
               <div className="position-relative features text-center mx-lg-4 px-md-1">
                 <div className="feature-icon position-relative overflow-hidden d-flex justify-content-center">
                   <FiHexagon className="hexagon" />

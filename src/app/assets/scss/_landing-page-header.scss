@@ -34,29 +34,24 @@
 }
 @media (max-width: 1030px) {
   .svg-container {
-    top: 10px;
     width: 50vw;
     height: 50vh;
     margin: auto;
     left: 20px;
   }
-  .col-seperated {
-    height: 60vh;
-  }
+
 }
 
-
-
-@media (max-width: 320px) {
+@media (max-width: 1030px) and (min-height: 1366px) {
+  .col-seperated{
+    height: 50vh;
+  }
 }
 
 @media (max-width: 950px) {
   .right-side-bg {
     width: 100vw;
     padding-left: 0;
-  }
-  .col-seperated {
-    height: 50vh;
   }
 
   .row {
@@ -79,6 +74,7 @@
     height: 80vh;
     margin: auto;
   }
+
 
   .col-seperated {
     height: 100vh;

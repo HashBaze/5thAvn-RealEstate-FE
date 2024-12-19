@@ -362,8 +362,8 @@ export default function PropertyFilterModal({
                   </div>
 
                   {type != "Land" && (
-                    <div className="row w-75 mt-3">
-                      <div className="col form-check">
+                    <div className="row mt-3">
+                      <div className="col-6 col-lg-4 form-check">
                         <input
                           onChange={(e) => {
                             const updatedAirConditioning =
@@ -378,7 +378,7 @@ export default function PropertyFilterModal({
                               airConditioning: updatedAirConditioning,
                             });
                           }}
-                          className="form-check-input shadow"
+                          className="form-check-input shadow border"
                           type="checkbox"
                           checked={formData.airConditioning}
                           id="flexCheckDefault"
@@ -392,14 +392,14 @@ export default function PropertyFilterModal({
                         </label>
                       </div>
 
-                      <div className="col form-check">
+                      <div className="col-6 col-lg-4 form-check">
                         <input
                           onChange={(e) => {
                             const updatedPool = !formData.pool;
                             setFormData({ ...formData, pool: updatedPool });
                             setFilterData({ ...formData, pool: updatedPool });
                           }}
-                          className="form-check-input shadow"
+                          className="form-check-input shadow border"
                           type="checkbox"
                           checked={formData.pool}
                           id="flexCheckDefault"
@@ -413,7 +413,7 @@ export default function PropertyFilterModal({
                         </label>
                       </div>
 
-                      <div className="col form-check">
+                      <div className="col-6 col-lg-4 form-check">
                         <input
                           onChange={(e) => {
                             const updatedSecaurity = !formData.secaurity;
@@ -427,7 +427,7 @@ export default function PropertyFilterModal({
                               secaurity: updatedSecaurity,
                             });
                           }}
-                          className="form-check-input shadow"
+                          className="form-check-input shadow border"
                           type="checkbox"
                           checked={formData.secaurity}
                           id="flexCheckDefault"
@@ -479,11 +479,10 @@ export default function PropertyFilterModal({
                       type="button"
                       className="btn btn-secondary col-4"
                     >
-                      <span className="ms-2 btn-serch">Clear</span>
+                      <span className="ms-2 col-4 btn-serch">Clear</span>
                     </button>
                     <button
                       onClick={() => {
-                        console.log(type);
                         formData.isSelected = type;
                         fetchDataByFilter();
                       }}

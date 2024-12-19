@@ -97,7 +97,7 @@ export default function RentalApparaisal() {
   };
 
   return (
-    <div>
+    <div className="mt-100">
       {loadig && <Spinner />}
       <Navbar
         navClass="defaultscroll sticky"
@@ -155,7 +155,7 @@ export default function RentalApparaisal() {
         style={{ backgroundImage: "url('/images/bg.png')" }}
       >
         <p
-          className="text-center ms-4 text-animation"
+          className="text-center ms-4 text-animation header-main"
           style={{
             color: "black",
             fontSize: "6rem",
@@ -171,8 +171,8 @@ export default function RentalApparaisal() {
       </section>
       <section className="container">
         <p
-          className="text-center"
-          style={{ color: "black", fontSize: "2rem", textAlign: "center" }}
+          className="text-center text-rent-second"
+          style={{ color: "black", textAlign: "center" }}
         >
           if you're seeking a true partner to manage your rental property, we’re{" "}
           <br />
@@ -460,7 +460,7 @@ export default function RentalApparaisal() {
                       id="comments"
                       rows="4"
                       value={email.additionalDetails}
-                      className="form-control"
+                      className="form-control border shadow"
                       placeholder="Additional Details"
                     ></textarea>
                     {errors.additionalDetails && (

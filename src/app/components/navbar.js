@@ -32,7 +32,7 @@ export default function Navbar({ menuClass, scrolled }) {
     <>
       <header id="topnav" className={`defaultscroll sticky bg-white p-2`}>
         <div className="">
-          <nav className={`d-flex justify-content-between align-items-center`}>
+          <nav className={`d-flex justify-content-between align-items-center `}>
             <div className="">
               <div
                 id="navigation"
@@ -172,7 +172,7 @@ export default function Navbar({ menuClass, scrolled }) {
                 </ul>
               </div>
             </div>
-            <div className=" d-flex justify-content-center">
+            <div className="d-flex justify-content-center d-lg-block d-md-none">
               {!isMobile && (
                 <Image
                   src="/images/logo/logo.png"
@@ -181,7 +181,7 @@ export default function Navbar({ menuClass, scrolled }) {
                   }}
                   width={132}
                   height={50}
-                  className="logo-light-mode mt-2"
+                  className="logo-light-mode mt-2 d-block d-lg-block d-md-none"
                   alt="LOGO"
                   onClick={() => {
                     window.location.href = "/";
@@ -189,6 +189,7 @@ export default function Navbar({ menuClass, scrolled }) {
                 />
               )}
             </div>
+
             <div
               className=""
               id="navigation"
