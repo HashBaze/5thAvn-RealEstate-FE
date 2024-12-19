@@ -9,7 +9,7 @@ export default function PropertyFilterModal({
   fetchDataByFilter,
   setFilterData,
   type,
-  status
+  status,
 }) {
   const [formData, setFormData] = useState({
     bedRoomMin: "",
@@ -443,55 +443,61 @@ export default function PropertyFilterModal({
                     </div>
                   )}
 
-                  <div className="row justify-content-between p-3">
-                    <button
-                      onClick={() => {
-                        setFormData({
-                          bedRoomMin: "",
-                          bedRoomMax: "",
-                          bathRooms: "",
-                          houseCategory: "any",
-                          suburb: "",
-                          priceFrom: "",
-                          priceTo: "",
-                          airConditioning: false,
-                          pool: false,
-                          secaurity: false,
-                          page: 1,
-                          isSelected: type,
-                        });
-                        setFilterData({
-                          bedRoomMin: "",
-                          bedRoomMax: "",
-                          bathRooms: "",
-                          houseCategory: "any",
-                          suburb: "",
-                          priceFrom: "",
-                          priceTo: "",
-                          airConditioning: false,
-                          pool: false,
-                          secaurity: false,
-                          page: 1,
-                          isSelected: type,
-                        });
-                        fetchDataByFilter();
-                      }}
-                      type="button"
-                      className="btn btn-secondary col-4"
-                    >
-                      <span className="ms-2 col-4 btn-serch">Clear</span>
-                    </button>
-                    <button
-                      onClick={() => {
-                        formData.isSelected = type;
-                        fetchDataByFilter();
-                      }}
-                      type="button"
-                      className="btn btn-primary col-4"
-                    >
-                      <FiSearch className="icons" />
-                      <span className="ms-2 btn-serch">Search</span>
-                    </button>
+                  <div className="container">
+                    <div className="row justify-content-between align-items-center">
+                      <div className="col d-flex justify-content-center">
+                        <button
+                          onClick={() => {
+                            setFormData({
+                              bedRoomMin: "",
+                              bedRoomMax: "",
+                              bathRooms: "",
+                              houseCategory: "any",
+                              suburb: "",
+                              priceFrom: "",
+                              priceTo: "",
+                              airConditioning: false,
+                              pool: false,
+                              secaurity: false,
+                              page: 1,
+                              isSelected: type,
+                            });
+                            setFilterData({
+                              bedRoomMin: "",
+                              bedRoomMax: "",
+                              bathRooms: "",
+                              houseCategory: "any",
+                              suburb: "",
+                              priceFrom: "",
+                              priceTo: "",
+                              airConditioning: false,
+                              pool: false,
+                              secaurity: false,
+                              page: 1,
+                              isSelected: type,
+                            });
+                            fetchDataByFilter();
+                          }}
+                          type="button"
+                          className="btn btn-secondary"
+                        >
+                          <span className="ms-2 btn-serch">Clear</span>
+                        </button>
+                      </div>
+                      <div className="col d-flex justify-content-center">
+                        <button
+                          onClick={() => {
+                            formData.isSelected = type;
+                            fetchDataByFilter();
+                          }}
+                          type="button"
+                          className="btn btn-primary"
+                        >
+                          <FiSearch className="icons" />
+                          <span className="ms-2 btn-serch">Search</span>
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </form>

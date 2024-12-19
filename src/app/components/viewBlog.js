@@ -116,7 +116,7 @@ export default function ViewBlog() {
         </div>
       </section>
       <div className="position-relative">
-        <div className="shape overflow-hidden text-white">
+        <div className="shape overflow-hidden text-white border-0">
           <svg
             viewBox="0 0 2880 48"
             fill="none"
@@ -230,10 +230,9 @@ export default function ViewBlog() {
                           />
                           <div className="flex-1 ms-3">
                             <Link
-                              href={`#`}
-                              onClick={() => {
-                                window.location.href = `/blogs/blogDetail?id=${item._id}`;
-                              }}
+                              href={`/blogs/blogDetail?blog=${item.title
+                                .toLowerCase()
+                                .replace(/\s+/g, "-")}-${item._id}`}
                               className="d-block title text-dark fw-medium"
                             >
                               {item.title}

@@ -8,7 +8,7 @@ import Lightbox from "react-18-image-lightbox";
 import "../../../node_modules/react-18-image-lightbox/style.css";
 
 export default function PropertyDetailImg({ images }) {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0); 
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [open, setIsOpen] = useState(false);
 
   const handleMovePrev = () => {
@@ -47,16 +47,7 @@ export default function PropertyDetailImg({ images }) {
           />
         </Link>
         {images.length > 1 && (
-          <div
-            className="position-absolute bottom-0 bg-opacity-50 rounded-1 end-0"
-            style={{
-              backgroundColor: "rgba(0, 0, 0, 0.6)",
-              zIndex: 100,
-              width: "250px",
-              height: "150px",
-              padding: "1rem",
-            }}
-          >
+          <div className="position-absolute bottom-0 bg-opacity-50 rounded-1 end-0 view-more-image">
             <div
               onClick={() => handleImageClick(0)}
               className="d-flex justify-content-center align-items-center h-100 position-relative view-more"

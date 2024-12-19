@@ -151,7 +151,7 @@ export default function RentalApparaisal() {
       </div>
 
       <section
-        className="bg-half-170 d-table h-100 w-100 d-flex justify-content-center"
+        className="bg-header-1 d-table h-100 w-100 d-flex justify-content-center"
         style={{ backgroundImage: "url('/images/bg.png')" }}
       >
         <p
@@ -188,7 +188,7 @@ export default function RentalApparaisal() {
       </section>
 
       <div className="container">
-        <h3 className="text-center mt-5">
+        <h3 className="text-center">
           Tell us about your rental property!
         </h3>
 

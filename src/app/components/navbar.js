@@ -241,8 +241,8 @@ export default function Navbar({ menuClass, scrolled }) {
               style={{
                 cursor: "pointer",
               }}
-              width={132}
-              height={50}
+              width={90}
+              height={40}
               className="logo-light-mode mt-2"
               alt="LOGO"
               onClick={() => {
