@@ -246,7 +246,7 @@ export default function ViewProperty({ id }) {
               </div>
             </div>
           </div>
-          {/* <ProprtySlider /> */}
+          <ProprtySlider />
         </div>
       </section>
       <Footer />
