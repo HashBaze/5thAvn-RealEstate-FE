@@ -53,5 +53,14 @@
     }
 }
 
+.text-rent-second{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 1rem;
+    text-align: end;
 
-
+    @media (max-width: 440px){
+        display: none;
+    }
+}

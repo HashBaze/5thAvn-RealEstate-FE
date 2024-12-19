@@ -42,8 +42,7 @@ export default function PropertyDetailImg({ images }) {
             width={0}
             height={0}
             sizes="100vh"
-            style={{ width: "100%", height: "70vh", objectFit: "cover" }}
-            className="img-fluid rounded-3 shadow"
+            className="img-fluid rounded-3 shadow single-view-mail-img"
             alt="Property"
           />
         </Link>

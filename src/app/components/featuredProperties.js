@@ -238,8 +238,8 @@ export default function FuaturedProperties({ propertyData, filter, suburb }) {
               </div>
             </div>
 
-            <div className="row w-75 mt-3">
-              <div className="col form-check">
+            <div className="row justify-content-between mt-3">
+              <div className="col-4 col-sm-6 col-lg-4 form-check">
                 <input
                   onChange={(e) =>
                     setFormData({
@@ -247,7 +247,7 @@ export default function FuaturedProperties({ propertyData, filter, suburb }) {
                       airConditioning: !formData.airConditioning,
                     })
                   }
-                  className="form-check-input shadow"
+                  className="form-check-input shadow border"
                   type="checkbox"
                   value=""
                   id="flexCheckDefault"
@@ -257,12 +257,12 @@ export default function FuaturedProperties({ propertyData, filter, suburb }) {
                 </label>
               </div>
 
-              <div className="col form-check">
+              <div className="col-4 col-sm-6 col-lg-4 form-check">
                 <input
                   onChange={(e) =>
                     setFormData({ ...formData, pool: !formData.pool })
                   }
-                  className="form-check-input shadow"
+                  className="form-check-input shadow border"
                   type="checkbox"
                   value=""
                   id="flexCheckDefault"
@@ -272,12 +272,12 @@ export default function FuaturedProperties({ propertyData, filter, suburb }) {
                 </label>
               </div>
 
-              <div className="col form-check">
+              <div className="col-col-sm-6 col-lg-4  form-check">
                 <input
                   onChange={(e) =>
                     setFormData({ ...formData, secaurity: !formData.secaurity })
                   }
-                  className="form-check-input shadow"
+                  className="form-check-input shadow border"
                   type="checkbox"
                   value=""
                   id="flexCheckDefault"

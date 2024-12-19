@@ -108,7 +108,62 @@ export default function ViewProperty({ id }) {
                   </li>
                 </ul>
 
-                <p className="text-muted">{property.description}</p>
+                <div className="d-block d-sm-block d-md-none d-lg-none">
+                  <div className="rounded-3 shadow bg-white sticky-bar p-4">
+                    <h5 className="mb-3">Price:</h5>
+
+                    <div className="d-flex align-items-center justify-content-between">
+                      <h5 className="mb-0">$ {property.price}</h5>
+                      <span className="badge bg-primary">
+                        {property.status}
+                      </span>
+                    </div>
+
+                    <div className="">
+                      <div className="d-flex align-items-center justify-content-between mt-2">
+                        <span className="small text-muted">Days</span>
+                        <span className="small">{property.daysOnMarket}</span>
+                      </div>
+
+                      <div className="d-flex align-items-center justify-content-between mt-2">
+                        <span className="small text-muted">Country</span>
+                        <span className="small">{property.country}</span>
+                      </div>
+
+                      <div className="d-flex align-items-center justify-content-between mt-2">
+                        <span className="small text-muted">Street NO</span>
+                        <span className="small">{property.streetNo}</span>
+                      </div>
+
+                      {property.floorplans.length > 0 && (
+                        <div className="d-flex align-items-center justify-content-between mt-2">
+                          <span className="small text-muted">Floor Plan</span>
+                          <Link
+                            target="_blank"
+                            href={property.floorplans[0].url + ""}
+                          >
+                            View
+                          </Link>
+                        </div>
+                      )}
+                    </div>
+
+                    {property.vendors &&
+                      property.vendors[0]?.contact?.phoneNumbers?.[0]
+                        ?.phoneNumber && (
+                        <div className="d-flex mt-3">
+                          <Link
+                            className="btn btn-primary w-100 me-2"
+                            href={`tel:${property.vendors[0].contact.phoneNumbers[0].phoneNumber}`}
+                          >
+                            Contact
+                          </Link>
+                        </div>
+                      )}
+                  </div>
+                </div>
+
+                <p className="text-muted mt-2">{property.description}</p>
 
                 <div className="card map border-0">
                   <div className="card-body p-0">
@@ -124,7 +179,7 @@ export default function ViewProperty({ id }) {
               </div>
             </div>
 
-            <div className="col-lg-4 col-md-5 col-12">
+            <div className="col-lg-4 col-md-5 col-12 d-none d-sm-none d-md-block d-lg-block">
               <div className="rounded-3 shadow bg-white sticky-bar p-4">
                 <h5 className="mb-3">Price:</h5>
 

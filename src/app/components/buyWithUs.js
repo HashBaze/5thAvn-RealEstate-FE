@@ -119,7 +119,7 @@ export default function BuyWithUs() {
   };
 
   return (
-    <div>
+    <div className="overflow-hidden">
       <Navbar
         navClass="defaultscroll sticky"
         menuClass="navigation-menu nav-left"
@@ -172,23 +172,25 @@ export default function BuyWithUs() {
       </div>
 
       <section
-        className="bg-half-100 d-table h-75 w-100 d-flex justify-content-center"
+        className="bg-half-100 w-100"
         style={{ backgroundImage: "url('/images/bg.png')" }}
       >
-        <p className="text-center fs-1 fw-bold">
+        <p className="text-center header-main fw-bold">
           Light the fire of your dreams. <br /> Redefine your life.
         </p>
-      </section>
-      <h1 className="text-center fs-3">buy your next home with us</h1>
 
-      <section
-        className="bg-half-100 row justify-content-center"
-        style={{ backgroundImage: "url('/images/Web_line_p46.png')" }}
-      >
-        <section className="row justify-content-center align-items-center">
+        <p className="text-center mb-4 sub-text">buy your next home with us</p>
+      </section>
+      
+
+      <section className="container-fluid">
+        <section
+          className="row justify-content-center"
+          style={{ backgroundImage: "url('/images/Web_line_p46.png')" }}
+        >
           <div className="col-lg-4 col-md-6 col-12">
             <div className="">
-              <p className="fs-2 fw-bold text-center text-lg-end">
+              <p className="fs-2 fw-bold header-main text-center text-lg-end">
                 Let’s handle your needs and search for your dream home…
               </p>
             </div>
@@ -196,22 +198,20 @@ export default function BuyWithUs() {
 
           <div className="ring"></div>
 
-          <div className="col-lg-4 col-md-6 col-12">
-            <div className="">
-              <p className="text-center text-lg-start">
-                Buying a home is a significant milestone and a smart way to
-                break free from rising rental costs. While envisioning your
-                dream home's features can be exciting, navigating the buying
-                process might feel daunting without the right guidance. That’s
-                where the right agent makes all the difference. At 5th Avenue
-                Real Estate Property Group, our team of experienced and
-                detail-focused agents is dedicated to making your home-buying
-                journey easy and stress-free. We take care of the complexities,
-                allowing you to focus on what truly matters. From answering your
-                questions to streamlining the entire process, we're here to
-                ensure your home-buying experience is smooth and hassle-free.
-              </p>
-            </div>
+          <div className="col-lg-4 col-md-6 col-12 ">
+            <p className="text-center text-description text-lg-start">
+              Buying a home is a significant milestone and a smart way to break
+              free from rising rental costs. While envisioning your dream home's
+              features can be exciting, navigating the buying process might feel
+              daunting without the right guidance. That’s where the right agent
+              makes all the difference. At 5th Avenue Real Estate Property
+              Group, our team of experienced and detail-focused agents is
+              dedicated to making your home-buying journey easy and stress-free.
+              We take care of the complexities, allowing you to focus on what
+              truly matters. From answering your questions to streamlining the
+              entire process, we're here to ensure your home-buying experience
+              is smooth and hassle-free.
+            </p>
           </div>
         </section>
       </section>
@@ -278,7 +278,8 @@ export default function BuyWithUs() {
                 </div>
                 {/* Best Time to Reach */}
                 <div className="col-md-6 mb-3">
-                  <label className="form-label">Best time to reach you</label><span className="text-danger">*</span>
+                  <label className="form-label">Best time to reach you</label>
+                  <span className="text-danger">*</span>
                   {["Morning", "Afternoon", "Evening"].map((time) => (
                     <div className="form-check" key={time}>
                       <input
@@ -301,7 +302,8 @@ export default function BuyWithUs() {
                 {/* Interested Cities */}
                 <div className="col-md-12 mb-3">
                   <label className="form-label">
-                    Please indicate the cities/suburbs that interest you<span className="text-danger">*</span>
+                    Please indicate the cities/suburbs that interest you
+                    <span className="text-danger">*</span>
                   </label>
                   {["Melbourne", "Cranbourne", "Sydney"].map((city) => (
                     <div className="form-check" key={city}>
@@ -335,7 +337,8 @@ export default function BuyWithUs() {
                 {/* Home Type */}
                 <div className="col-md-6 mb-3">
                   <label htmlFor="homeType" className="form-label">
-                    Type of home you are interested in<span className="text-danger">*</span>
+                    Type of home you are interested in
+                    <span className="text-danger">*</span>
                   </label>
                   {[
                     "Single Story",
@@ -365,7 +368,8 @@ export default function BuyWithUs() {
                 {["bedrooms", "bathrooms", "garage", "floors"].map((field) => (
                   <div className="col-md-6 mb-3" key={field}>
                     <label htmlFor={field} className="form-label">
-                      {field.charAt(0).toUpperCase() + field.slice(1)}<span className="text-danger">*</span>
+                      {field.charAt(0).toUpperCase() + field.slice(1)}
+                      <span className="text-danger">*</span>
                     </label>
                     <select
                       name={field}
@@ -385,7 +389,8 @@ export default function BuyWithUs() {
                 {/* Budget */}
 
                 <div className="col-md-6 mb-3">
-                  <label className="form-label">Budget</label><span className="text-danger">*</span>
+                  <label className="form-label">Budget</label>
+                  <span className="text-danger">*</span>
                   <select
                     name="budget"
                     id="budget"
@@ -412,7 +417,9 @@ export default function BuyWithUs() {
                 </div>
 
                 <div className="col-md-6 mb-3">
-                  <label className="form-label">Lot Size<span className="text-danger">*</span></label>
+                  <label className="form-label">
+                    Lot Size<span className="text-danger">*</span>
+                  </label>
                   <input
                     type="text"
                     id="lotSize"
@@ -425,7 +432,9 @@ export default function BuyWithUs() {
                 </div>
                 {/* Amenities */}
                 <div className="col-md-12 row mb-3">
-                  <label className="form-label">Amenities/features</label>
+                  <label className="form-label fw-bold">
+                    Amenities/features
+                  </label>
                   {[
                     "Office Room",
                     "Media Room",
@@ -445,7 +454,7 @@ export default function BuyWithUs() {
                   ].map((amenity) => (
                     <div className="form-check col-6" key={amenity}>
                       <input
-                        className="form-check-input"
+                        className="form-check-input border shadow"
                         type="checkbox"
                         name="amenities"
                         value={amenity}
@@ -466,7 +475,7 @@ export default function BuyWithUs() {
                   <textarea
                     id="additionalComments"
                     name="additionalComments"
-                    className="form-control"
+                    className="form-control border shadow"
                     rows="4"
                     value={formData.additionalComments}
                     onChange={handleChange}
