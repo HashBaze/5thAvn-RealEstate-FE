@@ -109,9 +109,9 @@ export const AboutUs = () => {
         </div>
       </div>
       <section className="">
-        <div className="container-fluid p-lg-5 p-md-4">
+        <div className="container-fluid p-lg-5 p-md-4 overflow-hidden">
           <div className="row justify-content-between">
-            <h1 className="text-sm-start text-center">Our Purpose</h1>
+            <h1 className="text-sm-start text-center mt-5">Our Purpose</h1>
           </div>
           <div className="row g-2 mt-5 d-flex flex-wrap">
             <div
@@ -385,7 +385,9 @@ export const AboutUs = () => {
                     <div className="card-body content p-0">
                       <div className="p-4">
                         <Link
-                          href={`/blogs/blogDetail?id=${item._id}`}
+                          href={`/blogs/blogDetail?blog=${item.title
+                            .toLowerCase()
+                            .replace(/\s+/g, "-")}-${item._id}`}
                           className="title fw-medium fs-5 text-dark"
                         >
                           {item.title}
@@ -401,8 +403,10 @@ export const AboutUs = () => {
                         ></p>
 
                         <Link
-                          href={`/blogs/blogDetail?id=${item._id}`}
-                          className="text-dark read-more"
+                          href={`/blogs/blogDetail?blog=${item.title
+                            .toLowerCase()
+                            .replace(/\s+/g, "-")}-${item._id}`}
+                          className="title fw-medium fs-5 text-dark"
                         >
                           Read More{" "}
                           <i className="mdi mdi-chevron-right align-middle"></i>

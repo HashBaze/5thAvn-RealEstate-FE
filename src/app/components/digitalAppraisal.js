@@ -199,7 +199,7 @@ export default function DigitalAppraisal() {
         className="bg-half-100 d-table h-100 w-100 d-flex justify-content-center"
         style={{ backgroundImage: "url('/images/bg.png')" }}
       >
-        <p className="text-center ms-4 fs-1 fw-bold">
+        <p className="text-center fs-1 fw-bold">
           Discover the true <br /> value of your home.
         </p>
       </section>
@@ -443,7 +443,7 @@ export default function DigitalAppraisal() {
                   </div>
                 ))}
                 <div className="col-12 row mb-3">
-                  <label className="mb-4">Heating & Cooling</label>
+                  <label className="mb-4 fw-bold">Heating & Cooling</label>
                   {[
                     "Ducted Heating",
                     "Hydronic Heating",
@@ -459,7 +459,7 @@ export default function DigitalAppraisal() {
                         value={option}
                         onChange={handleChange}
                         type="checkbox"
-                        className="form-check-input border border-primary"
+                        className="form-check-input border shadow"
                         id={option.replace(/\s+/g, "")}
                       />
                       <label
@@ -472,7 +472,7 @@ export default function DigitalAppraisal() {
                   ))}
                 </div>
                 <div className="col-12 row mb-3">
-                  <label className="mb-4">The Fun Stuff</label>
+                  <label className="mb-4 fw-bold">The Fun Stuff</label>
                   {[
                     "Gym",
                     "Inground Pool",
@@ -491,7 +491,7 @@ export default function DigitalAppraisal() {
                           value={option}
                           onChange={handleChange}
                           type="checkbox"
-                          className="form-check-input border"
+                          className="form-check-input border shadow"
                           id={option.replace(/\s+/g, "")}
                         />
                         <label
@@ -506,7 +506,7 @@ export default function DigitalAppraisal() {
                 </div>
 
                 <div className="col-12 row mb-3">
-                  <label className="mb-4">Other Featurs</label>
+                  <label className="mb-4 fw-bold">Other Featurs</label>
                   {[
                     "Alarm System",
                     "Dishwasher",
@@ -521,7 +521,7 @@ export default function DigitalAppraisal() {
                           value={option}
                           onChange={handleChange}
                           type="checkbox"
-                          className="form-check-input border"
+                          className="form-check-input border shadow"
                           id={option.replace(/\s+/g, "")}
                         />
                         <label
@@ -543,7 +543,7 @@ export default function DigitalAppraisal() {
                     value={formData.referredBy}
                     onChange={handleChange}
                     id="referredBy"
-                    className="form-control"
+                    className="form-control shadow border"
                     rows="2"
                   ></textarea>
                 </div>
@@ -556,7 +556,7 @@ export default function DigitalAppraisal() {
                     id="additionalComments"
                     value={formData.additionalComments}
                     onChange={handleChange}
-                    className="form-control"
+                    className="form-control shadow border"
                     rows="2"
                   ></textarea>
                 </div>

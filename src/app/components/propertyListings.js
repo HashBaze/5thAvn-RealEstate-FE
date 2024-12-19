@@ -215,14 +215,14 @@ export default function PropertyListings() {
         <div className="container">
           <div className="row g-4">
             <div className="col-lg-4 col-md-12 col-12">
-              <div className="card bg-white p-4 rounded-3 shadow sticky-bar">
+              <div className="bg-white p-4 rounded-3 shadow">
                 <div>
                   <h6 className="mb-0">Search Properties</h6>
                 </div>
 
                 {isMobile && (
-                  <div className="mt-4">
-                    <ul className="d-flex flex-column">
+                  <div className="">
+                    <ul className="d-flex flex-column p-0 m-0">
                       <li className="list-inline-item mb-1">
                         {formData.bathRooms && (
                           <span className="text-dark me-2 ms-1">
@@ -304,7 +304,7 @@ export default function PropertyListings() {
                 )}
 
                 {!isMobile && (
-                  <div className="mt-4 row">
+                  <div className="row">
                     {type != "Land" && (
                       <div className="col-6">
                         <label
@@ -616,7 +616,7 @@ export default function PropertyListings() {
                   </div>
                 )}
 
-                <div className="mt-2 d-flex justify-content-between">
+                <div className="d-flex mt-2 justify-content-between">
                   {!isMobile && (
                     <button
                       onClick={() => {

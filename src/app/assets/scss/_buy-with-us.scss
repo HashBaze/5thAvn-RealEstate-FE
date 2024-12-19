@@ -1,0 +1,20 @@
+.header-main{
+    font-size: 3rem;
+    @media (max-width: 425px) {
+        font-size: 2rem;
+    }
+}
+
+.sub-text{
+    font-size: 2rem;
+    @media (max-width: 425px) {
+        font-size: 1rem;
+    }
+}
+
+.text-description{
+    font-size: 1rem;
+    @media (max-width: 425px) {
+        font-size: 0.8rem;
+    }
+}

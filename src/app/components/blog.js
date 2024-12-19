@@ -330,11 +330,11 @@ export default function Blog() {
                     </small>
                   )}
 
-                  <div className="bg-primary mt-2 rounded-3 text-center">
+                  <div className="mt-2 rounded-3 text-center">
                     <button
                       onClick={handleSerch}
                       type="button"
-                      className="btn col"
+                      className="btn w-100 btn-primary"
                     >
                       <FaSearch /> <small>Search</small>
                     </button>

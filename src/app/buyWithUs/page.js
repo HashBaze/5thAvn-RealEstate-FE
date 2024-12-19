@@ -5,7 +5,7 @@ import BuyWithUs from '../components/buyWithUs'
 
 export default function page() {
   return (
-    <div>
+    <div className='w-100 overflow-hidden'>
       <BuyWithUs />
     </div>
   )

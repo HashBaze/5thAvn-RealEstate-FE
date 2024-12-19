@@ -87,7 +87,7 @@ export default function SellingProcess() {
       />
 
       <section
-        className="bg-half-170 d-table w-100"
+        className="bg-half-170 h-100 d-table w-100"
         style={{ backgroundImage: "url('/images/bg/01.jpg')" }}
       >
         <div className="bg-overlay bg-gradient-overlay-2"></div>
@@ -132,9 +132,9 @@ export default function SellingProcess() {
         </div>
       </div>
 
-      <section className="d-flex justify-content-center position-relative">
+      <section className="d-flex justify-content-center position-relative w-100">
         <section className="row justify-content-center container">            
-              <p className="title-dark text-center fw-bold fs-2 mt-5">
+              <p className="title-dark text-center fw-bold header-main mt-5">
                 Your Home Sale, Simplified with <br />
                 5th Avenue Real Estate
               </p>
