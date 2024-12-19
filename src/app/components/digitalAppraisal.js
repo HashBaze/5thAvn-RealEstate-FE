@@ -454,7 +454,7 @@ export default function DigitalAppraisal() {
                     "Evaporative Cooling",
                     "Fans",
                   ].map((option) => (
-                    <div className="col-6" key={option}>
+                    <div className="col-12 col-md-6 col-lg-6" key={option}>
                       <input
                         value={option}
                         onChange={handleChange}
@@ -485,7 +485,7 @@ export default function DigitalAppraisal() {
                     "Tennis Court",
                     "Solar Panels",
                   ].map((option) => (
-                    <div className="col-6" key={option}>
+                    <div className="col-12 col-md-6 col-lg-6" key={option}>
                       <div className="form-check">
                         <input
                           value={option}
@@ -515,7 +515,7 @@ export default function DigitalAppraisal() {
                     "Music System e.g Sonos",
                     "Water Tank",
                   ].map((option) => (
-                    <div className="col-6" key={option}>
+                    <div className="col-12 col-md-6 col-lg-6" key={option}>
                       <div className="form-check">
                         <input
                           value={option}
